@@ -20,25 +20,27 @@ dofile(minetest.get_modpath("mobs").."/littlespider.lua")
 
 -- Meat & Cooked Meat
 minetest.register_craftitem("mobs:meat_raw", {
-	description = "Raw Meat",
-	inventory_image = "mobs_meat_raw.png",
-	on_use = minetest.item_eat(3),
+    description = "Raw Meat",
+    inventory_image = "mobs_meat_raw.png",
+    on_use = minetest.item_eat(3),
+    groups = {foodstuffs = 1},
 })
 
 minetest.register_craftitem("mobs:meat", {
-	description = "Meat",
-	inventory_image = "mobs_meat.png",
-	on_use = minetest.item_eat(8),
+    description = "Meat",
+    inventory_image = "mobs_meat.png",
+    on_use = minetest.item_eat(8),
+    groups = {foodstuffs = 1},
 })
 
 minetest.register_craft({
-	type = "cooking",
-	output = "mobs:meat",
-	recipe = "mobs:meat_raw",
-	cooktime = 5,
+    type = "cooking",
+    output = "mobs:meat",
+    recipe = "mobs:meat_raw",
+    cooktime = 5,
 })
 
 
 if minetest.setting_get("log_mods") then
-	minetest.log("action", "[OK] Mobs loaded")
+    minetest.log("action", "[OK] Mobs loaded")
 end

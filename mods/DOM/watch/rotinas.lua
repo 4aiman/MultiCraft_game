@@ -40,13 +40,13 @@ watch.images_d={
 --Catch the sever time and convert to hour, 12000 = 12h = 0.5, 6000 = 6h = 0.25
 function watch.pega_hora(tipo)
   local tempo_r = "12:00"
-  local t = minetest.env:get_timeofday()
+  local t = minetest.get_timeofday()
   local tempo = t*24 -- Get the time
   local tempo_h = math.floor(tempo) -- Get 24h only, losting minutes
   local tempo_m =math.floor((tempo - tempo_h)*60) --Get only minutes
 
   --Hour
-  tempo_h_12=tempo_h
+  local tempo_h_12=tempo_h
   if tempo_h > 12 then -- Converte time to time in 12h format
     tempo_h_12 = tempo_h - 12
   end
@@ -57,7 +57,7 @@ function watch.pega_hora(tipo)
 
   tempo_r = tostring(tempo_h) .. ":"
 
-  --Minutes  
+  --Minutes
   if tempo_m < 10 then -- Add a zero at left if need.
     tempo_r = tempo_r .. "0"
   end
@@ -101,7 +101,7 @@ function watch.registra_item(nome,imagem,aparece_nas_receitas)
   minetest.register_tool(nome, {
     description = "Watch",
     inventory_image = imagem,
-    groups = {not_in_creative_inventory=g},
+    groups = {not_in_creative_inventory=g, tools = g},
     metadata = {w_type="d"},
     wield_image = "",
     stack_max = 1,
@@ -112,7 +112,7 @@ end
 minetest.register_globalstep(function(dtime)
   local t="a" -- d to digital, a to analogic
 
-  now = watch.pega_hora(2)
+  local now = watch.pega_hora(2)
 --DOM_inspeciona_r("Hora:"..now)
   if now == "12" then now = "0" end
 

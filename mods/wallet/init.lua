@@ -11,28 +11,28 @@ local directions = {
 }
 
 function update_wall(pos)
-	local typewall = 0
-	
-    if minetest.env:get_node(pos).name:find("wallet:wall") == 1 then
-		typewall = typewall + 1
+        local typewall = 0
+
+    if minetest.get_node(pos).name:find("wallet:wall") == 1 then
+                typewall = typewall + 1
     end
-	if minetest.env:get_node(pos).name:find("wallet:wallmossy") == 1 then
-		typewall = typewall + 1
-	end
-	
-	if typewall == 0 then
-		return
-	end
-	
+        if minetest.get_node(pos).name:find("wallet:wallmossy") == 1 then
+                typewall = typewall + 1
+        end
+
+        if typewall == 0 then
+                return
+        end
+
     local sum = 0
     for i = 1, 4 do
-        local node = minetest.env:get_node({x = pos.x + directions[i].x, y = pos.y + directions[i].y, z = pos.z + directions[i].z})
+        local node = minetest.get_node({x = pos.x + directions[i].x, y = pos.y + directions[i].y, z = pos.z + directions[i].z})
         if minetest.registered_nodes[node.name].walkable then
             sum = sum + 2 ^ (i - 1)
         end
     end
 
-    local node = minetest.env:get_node({x = pos.x, y = pos.y+1, z = pos.z})
+    local node = minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z})
     if sum == 5 or sum == 10 then
         if minetest.registered_nodes[node.name].walkable or node.name == "torches:floor" then
             sum = sum + 11
@@ -42,13 +42,13 @@ function update_wall(pos)
     if sum == 0 then
         sum = 15
     end
-	
-	if typewall == 1 then
-		minetest.env:add_node(pos, {name = "wallet:wall_"..sum})
-	else
-		minetest.env:add_node(pos, {name = "wallet:wallmossy_"..sum})
-	end 
-	
+
+        if typewall == 1 then
+                minetest.add_node(pos, {name = "wallet:wall_"..sum})
+        else
+                minetest.add_node(pos, {name = "wallet:wallmossy_"..sum})
+        end
+
 end
 
 function update_wall_global(pos)
@@ -99,10 +99,10 @@ for i = 0, 15 do
     if need_pillar then table.insert(take, pillar) end
 
     minetest.register_node("wallet:wall_"..i, {
-		collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-		},
+                collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+                },
         drawtype = "nodebox",
         tile_images = {"default_cobble.png"},
         paramtype = "light",
@@ -117,10 +117,10 @@ end
 
 minetest.register_node("wallet:wall_0", {
     drawtype = "nodebox",
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
     tile_images = {"default_cobble.png"},
     paramtype = "light",
     groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,fences=1},
@@ -133,10 +133,10 @@ minetest.register_node("wallet:wall_0", {
 
 minetest.register_node("wallet:wall_16", {
     drawtype = "nodebox",
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
     tile_images = {"default_cobble.png"},
     paramtype = "light",
     groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,fences=1},
@@ -149,10 +149,10 @@ minetest.register_node("wallet:wall_16", {
 
 minetest.register_node("wallet:wall_21", {
     drawtype = "nodebox",
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
     tile_images = {"default_cobble.png"},
     paramtype = "light",
     groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,fences=1},
@@ -165,30 +165,31 @@ minetest.register_node("wallet:wall_21", {
 
 minetest.register_node("wallet:wall", {
     description = "Cobblestone Wall",
-	paramtype = "light",
+        paramtype = "light",
     tile_images = {"default_cobble.png"},
-	inventory_image = "cobblestone_wallet.png",
+        inventory_image = "cobblestone_wallet.png",
     stack_max = 64,
+    groups = {building =1},
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
         fixed = pillar
     },
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
-	collisionbox = {-0.2, 0, -0.2, 0.2, 1.4, 0.2},
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
+        collisionbox = {-0.2, 0, -0.2, 0.2, 1.4, 0.2},
     on_construct = update_wall
 })
 
 
 minetest.register_craft({
-	output = 'wallet:wall 6',
-	recipe = {
-		{'default:cobble', 'default:cobble', 'default:cobble'},
+        output = 'wallet:wall 6',
+        recipe = {
+                {'default:cobble', 'default:cobble', 'default:cobble'},
         {'default:cobble', 'default:cobble', 'default:cobble'}
-	}
+        }
 })
 
 -- Mossy wallet
@@ -222,10 +223,10 @@ for i = 0, 15 do
 
     minetest.register_node("wallet:wallmossy_"..i, {
         drawtype = "nodebox",
-		collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+                collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
         tile_images = {"default_mossycobble.png"},
         paramtype = "light",
         groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,fences=1},
@@ -239,10 +240,10 @@ end
 
 minetest.register_node("wallet:wallmossy_0", {
     drawtype = "nodebox",
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
     tile_images = {"default_mossycobble.png"},
     paramtype = "light",
     groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,fences=1},
@@ -255,10 +256,10 @@ minetest.register_node("wallet:wallmossy_0", {
 
 minetest.register_node("wallet:wallmossy_16", {
     drawtype = "nodebox",
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
     tile_images = {"default_mossycobble.png"},
     paramtype = "light",
     groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,fences=1},
@@ -271,10 +272,10 @@ minetest.register_node("wallet:wallmossy_16", {
 
 minetest.register_node("wallet:wallmossy_21", {
     drawtype = "nodebox",
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
     tile_images = {"default_mossycobble.png"},
     paramtype = "light",
     groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3,fences=1},
@@ -287,28 +288,29 @@ minetest.register_node("wallet:wallmossy_21", {
 
 minetest.register_node("wallet:wallmossy", {
     description = "Mossy Cobblestone Wall",
-	paramtype = "light",
-	collision_box = {
-			type = 'fixed', 
-			fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
-	},
+        paramtype = "light",
+        collision_box = {
+                        type = 'fixed',
+                        fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
+        },
     tile_images = {"default_mossycobble.png"},
-	inventory_image = "cobblestonemossy_wallet.png",
+        inventory_image = "cobblestonemossy_wallet.png",
     stack_max = 64,
+    groups = {building = 1},
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
         fixed = pillar
     },
-	collisionbox = {-0.2, 0, -0.2, 0.2, 1.4, 0.2},
+        collisionbox = {-0.2, 0, -0.2, 0.2, 1.4, 0.2},
     on_construct = update_wall
 })
 minetest.register_craft({
-	output = 'wallet:wallmossy 6',
-	recipe = {
-		{'default:mossycobble', 'default:mossycobble', 'default:mossycobble'},
+        output = 'wallet:wallmossy 6',
+        recipe = {
+                {'default:mossycobble', 'default:mossycobble', 'default:mossycobble'},
         {'default:mossycobble', 'default:mossycobble', 'default:mossycobble'}
-	}
+        }
 })
 
 

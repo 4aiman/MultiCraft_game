@@ -112,7 +112,7 @@ minetest.register_craftitem("qt_mobs:spawn_zombie", {
 	description = "Spawn Zombie",
 	inventory_image = "spawn_zombie.png",
 	liquids_pointable = false,
-	stack_max = 99,
+	stack_max = 64,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
 			local p = pointed_thing.above
@@ -231,7 +231,7 @@ minetest.register_craftitem("qt_mobs:spawn_zombie_armored", {
 	description = "Spawn Armored Zombie",
 	inventory_image = "spawn_zombie.png",
 	liquids_pointable = false,
-	stack_max = 99,
+	stack_max = 64,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
 			local p = pointed_thing.above
@@ -350,7 +350,7 @@ minetest.register_craftitem("qt_mobs:spawn_zombie_elite", {
 	description = "Spawn Elite Zombie",
 	inventory_image = "spawn_zombie.png",
 	liquids_pointable = false,
-	stack_max = 99,
+	stack_max = 64,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
 			local p = pointed_thing.above
@@ -465,7 +465,7 @@ minetest.register_craftitem("qt_mobs:spawn_skeleton", {
 	description = "Spawn Skeleton",
 	inventory_image = "spawn_skeleton.png",
 	liquids_pointable = false,
-	stack_max = 99,
+	stack_max = 64,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
 			local p = pointed_thing.above
@@ -584,7 +584,7 @@ minetest.register_craftitem("qt_mobs:spawn_skeleton_advanced", {
 	description = "Spawn Advanced Skeleton",
 	inventory_image = "spawn_skeleton.png",
 	liquids_pointable = false,
-	stack_max = 99,
+	stack_max = 64,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
 			local p = pointed_thing.above
@@ -695,7 +695,7 @@ minetest.register_craftitem("qt_mobs:spawn_skeleton_carbonized", {
 	description = "Spawn Carbonized Skeleton",
 	inventory_image = "spawn_skeleton_carbonized.png",
 	liquids_pointable = false,
-	stack_max = 99,
+	stack_max = 64,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
 			local p = pointed_thing.above
@@ -806,7 +806,7 @@ minetest.register_craftitem("qt_mobs:spawn_boss_grim_reaper", {
 	description = "Spawn Grim Reaper Boss",
 	inventory_image = "spawn_skeleton_carbonized.png",
 	liquids_pointable = false,
-	stack_max = 99,
+	stack_max = 64,
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing.type == "node" then
 			local p = pointed_thing.above

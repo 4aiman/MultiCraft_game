@@ -3,7 +3,7 @@ domb.aleatorio = nil
 
 --Inicialização da variável aleatoria para que seja usada quando necessário.
 minetest.after(0.01, function()
-  domb.aleatorio=PseudoRandom(200 + (minetest.env:get_timeofday()*100000))
+  domb.aleatorio=PseudoRandom(200 + (minetest.get_timeofday()*100000))
 end)
 
 -- Identifica vizinhança de um ponto, os pontos retornados tem a parte superior como ponto 1.
@@ -24,16 +24,16 @@ function DOM_vizinhos(ponto)
   p.total_agua_fonte = 0
   p.n = {'','','','','',''}
 
-  --Começa pelo y (altura) de baixo para cima, sendo assim os 3 últimos testes serão os 
+  --Começa pelo y (altura) de baixo para cima, sendo assim os 3 últimos testes serão os
   for vy=-1,1 do
     for vx=-1, 1 do
       for vz=-1,1 do
         p.n[pontos] = ''
-        tipo =  minetest.env:get_node({x=(ponto.x + vx), y=(ponto.y + vy), z=(ponto.z + vz)}).name
+        tipo =  minetest.get_node({x=(ponto.x + vx), y=(ponto.y + vy), z=(ponto.z + vz)}).name
 --print("Ponto pego: " .. tipo)
         -- Busca pontos onde dois eixos estejam zerados e um outro tenha valor.
         if vx==0 and vy==0 and vz==0 then
-          -- Ignora caso seja exatamente o ponto testado. 
+          -- Ignora caso seja exatamente o ponto testado.
         elseif (vx==0 and vy==0 and vz~= 0) or (vx==0 and vz==0 and vy~=0) or (vy==0 and vz==0 and vx~=0) then
 --print("Ponto: " .. tostring(vx) .. " " .. tostring(vy) .. " " .. tostring(vz) .. " (Pontos: " .. tostring(pontos) .. ")")
 --print("Tipo: " .. tipo)
@@ -61,7 +61,7 @@ function DOM_vizinhos(ponto)
         end
       end
     end
-  end 
+  end
 
   p.total_lava_corrente = p.total_lava - p.total_lava_fonte
   p.total_agua_corrente = p.total_agua - p.total_agua_fonte
@@ -77,7 +77,7 @@ end
 
 function DOM_remove_simbolos(texto)
   local t = ""
-  
+
   if texto == "" or texto == nil then
     return("")
   end
@@ -106,7 +106,7 @@ end
 
 function DOM_remove_espacos(texto)
   local t = ""
-  
+
   if texto == "" or texto == nil then
     return("")
   end
@@ -119,7 +119,7 @@ function DOM_remove_espacos(texto)
 
   --Remove espaços no final e no início do texto.
   t=string.trim(t)
-    
+
   return t
 end
 
@@ -131,7 +131,7 @@ end
   2) Linha
   3) Teste
   4) Parâmetros
- 
+
 ]]--
 function DOM_inspeciona_condicional(...)
   if(arg[3] ~= true) then return end
@@ -140,7 +140,7 @@ function DOM_inspeciona_condicional(...)
   local linha= {tostring(debug.getinfo(2, 'l').currentline)}
   local arquivo = debug.getinfo(2, 'S').short_src or debug.getinfo(2,'S').source
   if string.len(arquivo) > 25 then
-    arquivo = "..." arquivo:sub(string.len(arquivo)- 22) 
+    arquivo = "..." arquivo:sub(string.len(arquivo)- 22)
   end
 
   if arg[2] ~= nil then
@@ -174,7 +174,7 @@ function DOM_inspeciona(...)
   local linha = debug.getinfo(2, 'l').currentline
   local arquivo = debug.getinfo(2, 'S').short_src or debug.getinfo(2,'S').source
   if string.len(arquivo) > 25 then
-    arquivo = "..." .. arquivo:sub(arquivo:len(arquivo)- 22) 
+    arquivo = "..." .. arquivo:sub(arquivo:len(arquivo)- 22)
   end
 
   DOM_inspeciona_condicional(arquivo,linha,true,...)
@@ -191,7 +191,7 @@ function DOM_inspeciona_r(titulo)
   local linha = debug.getinfo(2, 'l').currentline
   local arquivo = debug.getinfo(2, 'S').short_src or debug.getinfo(2,'S').source
   if string.len(arquivo) > 25 then
-    arquivo = "..." arquivo:sub(string.len(arquivo)- 22) 
+    arquivo = "..." arquivo:sub(string.len(arquivo)- 22)
   end
 
   print(arquivo .. " [" .. linha .. "] " .. titulo)
@@ -222,8 +222,8 @@ function DOM_centraliza_matriz_5x5(matriz, largura, altura)
   --Largura ou Altura/Critério:  5/Ignora, 4/Ignora, 3/1 de margem, 2/1 de margem, 1/2 de margem
 local i = 0
 a=matriz[1][3]
-if a~=nil then 
-  if string.find(a,"gravel") then 
+if a~=nil then
+  if string.find(a,"gravel") then
     i = 1
   end
 end
@@ -234,7 +234,7 @@ end
   local d_a = margem_lateral
   local d_b = margem_superior
 
-  if margem_superior > 0 or margem_lateral > 0 then 
+  if margem_superior > 0 or margem_lateral > 0 then
     for a=5,margem_lateral+1,-1 do --Colunas
       for b=5,margem_superior+1,-1 do --Linhas
         -- Transfere valor da posição original para a deslocada tornando o valor da posição original como nulo.
@@ -258,7 +258,7 @@ function DOM_cria_matriz_5x5(itens)
   local i = {}
   local a = 0
   local largura = 0
-  
+
   if itens ~= "" and itens ~= nil then
     if itens.find(itens,",") then
     else
@@ -274,12 +274,12 @@ function DOM_cria_matriz_5x5(itens)
     a = a + 1
   end
 
-  largura = a 
+  largura = a
   while a < 5 do
     table.insert(i,nil)
     a = a + 1
   end
-  
+
   for a=1,5,1 do --Colunas
   -- Transfere valores para a linha 3.
      m_5x5[3][a] = i[a]
@@ -352,8 +352,8 @@ end
 --[[
   Registra comando para chamar rotinas de apoio pelo chat com o comando /dom_util <comando> <parametros...>
   Comandos:
-  apaga x y z 	Apaga node no lugar especificado.
-    
+  apaga x y z   Apaga node no lugar especificado.
+
     if  comando == "comando" then -- Comando?
       minetest.chat_send_player(name, "[DOM]dom_util: ".."Comando?")
     elseif comando == "comando2" then -- Comando?
@@ -384,17 +384,17 @@ function DOM_quebra_texto_em_lista_por_delimitador (texto, delimitador)
   lista.tamanho = 0
   local t = ""
   local fatia = ""
-  
+
   if texto==nil or texto =="" then return nil end -- Caso texto recebido não seja válido retorna nulo
   if delimitador==nil or delimitador =="" then return nil end -- Caso delimitador recebido não seja válido retorna nulo
 
 --print("Texto: \'"..dump(texto).."\'")
-  t = texto 
+  t = texto
   if not t:find(delimitador) then  -- Cria lista com um item caso não seja encontrado nenhum delimitador.
     table.insert(lista, t)
     lista.tamanho = 1
   end
- 
+
   while t:find(delimitador) do -- Enquanto o delimitador puder ser encontrado no texto, fica no laço.
     fatia = t:sub(1,t:find(delimitador)-1)
     table.insert(lista,fatia)
