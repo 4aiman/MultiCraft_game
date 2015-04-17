@@ -1,5 +1,5 @@
 # MultiCraft_game
-Based on Minetest_game and Overcraft_Origins subgame for Minetest 0.4.10.
+Based on Minetest_game and Overcraft_Origins subgame for Minetest and MultiCraft.
 
 
 A Minecraft-like game for the Minetest game engine [overcraft_origins]
