@@ -1,3 +1,4 @@
+if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- minetest/dye/init.lua
 
 -- To make recipes that will work with any dye ever made by anybody, define

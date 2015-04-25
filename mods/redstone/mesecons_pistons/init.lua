@@ -1,3 +1,4 @@
+if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- Get mesecon rules of pistons
 piston_rules =
 {{x=0,  y=0,  z=1}, --everything apart from z- (pusher side)

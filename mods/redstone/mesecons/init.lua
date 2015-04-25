@@ -1,3 +1,4 @@
+if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- |\    /| ____ ____  ____ _____   ____         _____
 -- | \  / | |    |     |    |      |    | |\   | |
 -- |  \/  | |___ ____  |___ |      |    | | \  | |____
@@ -30,7 +31,7 @@
 --		action_change = function
 --		rules = rules/get_rules
 --	},
---	conductor = 
+--	conductor =
 --	{
 --		state = mesecon.state.on/off
 --		offstate = opposite state (for state = on only)

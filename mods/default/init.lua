@@ -10,6 +10,9 @@ LIGHT_MAX = 20
 
 -- Definitions made by this mod that other mods can use too
 default = {}
+default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project = true
+local exit = os.exit
+if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 
 -- Load files
 dofile(minetest.get_modpath("default").."/functions.lua")

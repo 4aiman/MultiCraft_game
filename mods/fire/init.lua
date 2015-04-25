@@ -1,3 +1,4 @@
+if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- minetest/fire/init.lua
 
 minetest.register_node("fire:basic_flame", {
@@ -14,11 +15,11 @@ minetest.register_node("fire:basic_flame", {
 	walkable = false,
 	buildable_to = true,
 	damage_per_second = 4,
-	
+
 	after_place_node = function(pos, placer)
 		fire.on_flame_add_at(pos)
 	end,
-	
+
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		fire.on_flame_remove_at(pos)
 	end,

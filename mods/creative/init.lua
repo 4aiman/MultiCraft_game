@@ -1,3 +1,4 @@
+if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- minetest/creative/init.lua
 
 creative_inventory = {}
@@ -23,11 +24,11 @@ if minetest.setting_getbool("creative_mode") then
 			damage_groups = {fleshy = 10},
 		}
 	})
-	
+
 	minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
 		return true
 	end)
-	
+
 	function minetest.handle_node_drops(pos, drops, digger)
 		if not digger or not digger:is_player() then
 			return
@@ -42,5 +43,5 @@ if minetest.setting_getbool("creative_mode") then
 			end
 		end
 	end
-	
+
 end
