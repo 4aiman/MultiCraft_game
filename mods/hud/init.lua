@@ -1,8 +1,6 @@
 hud = {}
 
 local health_hud = {}
-hud.hunger = {}
-local hunger_hud = {}
 local air_hud = {}
 hud.armor = {}
 local armor_hud = {}
@@ -24,9 +22,9 @@ HUD_AIR_OFFSET = {x=15,y=-15}
 HUD_ARMOR_POS = {x=0.5,y=0.83}
 HUD_ARMOR_OFFSET = {x=-175, y=-15}
 
---load costum settings
+--load custom_fuck settings
 local set = io.open(minetest.get_modpath("hud").."/hud.conf", "r")
-if set then 
+if set then
 	dofile(minetest.get_modpath("hud").."/hud.conf")
 	set:close()
 else
@@ -42,35 +40,13 @@ local function hide_builtin(player)
 end
 
 
-local function costum_hud(player)
+local function custom_fuck_hud(player)
 
  --fancy hotbar
  --player:hud_set_hotbar_image("hud_hotbar.png")
  --player:hud_set_hotbar_selected_image("hud_hotbar_selected.png")
 
  if minetest.setting_getbool("enable_damage") then
- --hunger
-	if HUD_ENABLE_HUNGER then
-       	 player:hud_add({
-		hud_elem_type = "statbar",
-		position = HUD_HUNGER_POS,
-		scale = {x=1, y=1},
-		text = "hud_hunger_bg.png",
-		number = 20,
-		alignment = {x=-1,y=-1},
-		offset = HUD_HUNGER_OFFSET,
-	 })
-
-	 hunger_hud[player:get_player_name()] = player:hud_add({
-		hud_elem_type = "statbar",
-		position = HUD_HUNGER_POS,
-		scale = {x=1, y=1},
-		text = "hud_hunger_fg.png",
-		number = 20,
-		alignment = {x=-1,y=-1},
-		offset = HUD_HUNGER_OFFSET,
-	 })
-	end
  --health
         player:hud_add({
 		hud_elem_type = "statbar",
@@ -134,7 +110,7 @@ function hud.set_armor()
 end
 
 
-if HUD_ENABLE_HUNGER then dofile(minetest.get_modpath("hud").."/hunger.lua") end
+if HUD_ENABLE_HUNGER then dofile(minetest.get_modpath("hud").."/4hunger.lua") end
 if HUD_SHOW_ARMOR then dofile(minetest.get_modpath("hud").."/armor.lua") end
 
 
@@ -149,36 +125,19 @@ local function update_hud(player)
 	local arm = tonumber(hud.armor[player:get_player_name()])
 	if not arm then arm = 0 end
 	player:hud_change(armor_hud[player:get_player_name()], "number", arm)
- --hunger
-	local h = tonumber(hud.hunger[player:get_player_name()])
-	if h>20 then h=20 end
-	player:hud_change(hunger_hud[player:get_player_name()], "number", h)
 end
 
 local function timer(interval, player)
 	if interval > 0 then
-		hud.save_hunger(player)
 		minetest.after(interval, timer, interval, player)
 	end
 end
 
 minetest.register_on_joinplayer(function(player)
 	hud.armor[player:get_player_name()] = 0
-	if HUD_ENABLE_HUNGER then hud.hunger[player:get_player_name()] = hud.load_hunger(player) end
-	if not hud.hunger[player:get_player_name()] then
-		hud.hunger[player:get_player_name()] = 20
-	end
 	minetest.after(0.5, function()
 		hide_builtin(player)
-		costum_hud(player)
-		if HUD_ENABLE_HUNGER then hud.save_hunger(player) end
-	end)
-end)
-
-minetest.register_on_respawnplayer(function(player)
-	hud.hunger[player:get_player_name()] = 20
-	minetest.after(0.5, function()
-		if HUD_ENABLE_HUNGER then hud.save_hunger(player) end
+		custom_fuck_hud(player)
 	end)
 end)
 
@@ -190,26 +149,10 @@ minetest.after(2.5, function()
 	 timer2 = timer2 + dtime
 		for _,player in ipairs(minetest.get_connected_players()) do
 			if minetest.setting_getbool("enable_damage") then
-			 local h = tonumber(hud.hunger[player:get_player_name()])
-			 if HUD_ENABLE_HUNGER and timer > 4 then
-				if h>=16 and player:get_hp() > 0 then
-					player:set_hp(player:get_hp()+1)
-				elseif h<=1 and minetest.setting_getbool("enable_damage") then
-					if player:get_hp()-1 >= 1 then player:set_hp(player:get_hp()-1) end
-				end
-			 end
-			 if HUD_ENABLE_HUNGER and timer2>HUD_HUNGER_TICK then
-				if h>0 then
-					h=h-1
-					hud.hunger[player:get_player_name()]=h
-					hud.save_hunger(player)
-				end
-			 end
 			 if HUD_SHOW_ARMOR then hud.get_armor(player) end
 			 update_hud(player)
 			end
 		end
 		if timer>4 then timer=0 end
-		if timer2>HUD_HUNGER_TICK then timer2=0 end
 	end)
 end)
