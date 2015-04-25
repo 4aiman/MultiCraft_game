@@ -169,3 +169,66 @@ minetest.register_craftitem("default:quartz_crystal", {
     stack_max = 64,
     groups = {materials = 1},
 })
+
+
+minetest.register_craftitem('default:rotten_flesh', {
+    description = "Rotten flesh",
+    inventory_image = "zombie_flesh",
+    on_use = minetest.item_eat(1),
+})
+
+
+minetest.register_craftitem('default:milk', {
+    description = "A bucket of milk",
+    inventory_image = "default_milk.png",
+    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:beef_raw', {
+    description = "Beef",
+    inventory_image = "mobs_meat_raw.png",
+    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:steak', {
+    description = "Steak",
+    inventory_image = "mobs_meat.png",
+    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:chicken_raw', {
+    description = "Chicken",
+    inventory_image = "mobs_chicken_raw.png",
+    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:chicken_cooked', {
+    description = "Cooked chicken",
+    inventory_image = "mobs_chicken_cooked.png",
+    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:porkchop_raw', {
+    description = "Porkchop",
+    inventory_image = "mobs_meat_raw.png",
+    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:porkchop_cooked', {
+    description = "Cooked porkchop",
+    inventory_image = "mobs_meat.png",
+    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:leather', {
+    description = "Leather",
+    inventory_image = "default_leather.png",
+--    on_use = minetest.item_eat(1),
+})
+
+minetest.register_craftitem('default:egg', {
+    description = "Egg",
+    inventory_image = "adbs_chicken_spawn_egg.png",
+--    on_use = minetest.item_eat(1),
+})
+

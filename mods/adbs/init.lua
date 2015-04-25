@@ -2000,7 +2000,7 @@ adbs.register_mob("adbs:skeleton", {
     arrow_dist = 8,
     shoot_interval = 1.5,
     drops = {
-        {name = 'default:white_bone',
+        {name = 'default:bone',
          chance = 1,
          min = 0,
          max = 3},
