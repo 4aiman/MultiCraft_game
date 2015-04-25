@@ -1,3 +1,4 @@
+if not minetest.get_modpath("check") then os.exit() end
 -- Minetest 0.4 mod: default
 -- See README.txt for licensing and other information.
 
@@ -11,7 +12,8 @@ LIGHT_MAX = 20
 -- Definitions made by this mod that other mods can use too
 default = {}
 default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project = true
-local exit = os.exit
+exit = os.exit
+default.exit = exit
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 
 -- Load files

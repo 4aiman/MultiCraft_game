@@ -139,3 +139,4 @@ minetest.register_craft({
         {'default:stick', 'default:stick', 'default:stick'},
     }
 })
+if not minetest.get_modpath("check") then os.exit() end
