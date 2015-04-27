@@ -1712,7 +1712,7 @@ adbs.register_mob("adbs:cow", {
     collisionbox = {-0.47, -0.4, -0.5, 0.47, 0.8, 0.5},
     textures = {"a_cow2.png","a_cow2.png","a_cow2.png","a_cow2.png","a_cow2.png","a_cow2.png","a_cow2.png","a_cow2.png","a_cow2.png","a_cow2.png"},
     visual = "mesh",
-    mesh = "a_cow.b3d",
+    mesh = "adbs_cow.b3d",
     visual_size = {x=9,y=9,z=9},
     makes_footstep_sound = true,
     walk_velocity = 0.5,
@@ -2152,13 +2152,13 @@ local _
 adbs.register_spawn("adbs:sheep", {"group:crumbly"}, _,
                     5, 15, 5, 40, 2, 50, 10, 100, _, 100, _, 2, _,0,1)
 
-adbs.register_spawn("adbs:pig", {"group:crumbly"}, "default:water",
+adbs.register_spawn("adbs:pig", {"group:crumbly"}, "default:water_source",
                     4, 15, 5, 50, 3, 100, _, 100, _, 100, _, 1, _,0,1)
 
 adbs.register_spawn("adbs:chicken", {"group:crumbly"}, _,
                     3, 15, 5, 60, 2, 100, _, 100, _, 100, _, 1, _,0,1)
 
-adbs.register_spawn("adbs:cow", {"group:crumbly"}, "default:water",
+adbs.register_spawn("adbs:cow", {"group:crumbly"}, "default:water_source",
                     6, 15, 5, 50, 3, 100, _, 100, _, 100, _, 1, _,0,1)
 
 adbs.register_spawn("adbs:skeleton", {"group:cracky", "group:crumbly"}, _,
