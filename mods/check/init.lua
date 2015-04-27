@@ -2,7 +2,6 @@ local check = {
 "3d_armor",
 "unified_skins",
 "wieldview",
-"adbs",
 "beds",
 "boat",
 "bookex",
