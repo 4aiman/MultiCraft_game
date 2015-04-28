@@ -30,21 +30,23 @@ adbs.max_count.chicken=20
 adbs.max_count.chick=20
 adbs.max_count.skeleton=20
 adbs.max_count.zombie=20
-adbs.spawn_control = false
+adbs.spawn_control = true
 
 local isghost = isghost or {}
 
 function adbs.can_spawn(name)
-    if not adbs.spawn_control then return true end
-    if adbs.spawn_locked then return false end
+    if not adbs.spawn_control then print('[Error] Spawn control var not found!') return true end
+    if adbs.spawn_locked then print('[Warning] Spawn locked!') return false end
     local nm =name:sub(name:find(':')+1)
-    if adbs.max_count[nm] == -1 then return true end
+    print('[Info] Mob name: '..nm)
+    if adbs.max_count[nm] == -1 then print('[Warning] Max Count for "' .. nm .. '" set to -1!') return true end
     local cnt = 0
     for i=1,#adbs.ids do
         if adbs.ids[i] and adbs.ids[i]:get_luaentity() and adbs.ids[i]:get_luaentity().name == name then
            cnt = cnt + 1
         end
     end
+    print('[Info] nearby_mobs_count (' .. cnt .. ') VS max_count ('.. adbs.max_count[nm] ..')')
     return cnt < (adbs.max_count[nm] or 0)
 end
 
