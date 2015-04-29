@@ -1,49 +1,67 @@
 Minetest mod "Better HUD"
 =========================
-version: 1.1
+Version: 2.1.2
 
-License of source code: WTFPL
------------------------------
-(c) Copyright BlockMen (2013)
+(c) Copyright BlockMen (2013-2015)
 
 
-This program is free software. It comes without any warranty, to
-the extent permitted by applicable law. You can redistribute it
-and/or modify it under the terms of the Do What The Fuck You Want
-To Public License, Version 2, as published by Sam Hocevar. See
-http://sam.zoy.org/wtfpl/COPYING for more details.
+About this mod:
+~~~~~~~~~~~~~~~
+This mod improves the HUD of Minetest and adds (hidden by default) statbars for Hunger and Armor.
+Also it provides an API to add new statbars easily, see API.txt for more informations.
+
+Changes in builtin HUD items:
+- Adds background for Health bar
+- Uses better textures for Hotbar
+- Uses texture for crosshair
+- Positions of builtin statbars can be changed via "hud.conf" file
+- Experimental "ItemWheel" that replaces the hotbar (must be enabled by adding "hud_item_wheel = true" in minetest.conf)
+
+This mod gets provided as Modpack aswell, which includes the hunger mod (https://github.com/BlockMen/hunger)
+More information concerning the hunger mechanics can be get there.
+
+This mod supports the 3d_armor mod by stu (https://github.com/stujones11/minetest-3d_armor)
 
 
-Using the mod:
---------------
 
-This mod changes the HUD of Minetest. 
-It improves the apperance of the health and breath bar and adds a more fancy hotbar. Furthermore it adds a 
-costum crosshair, an armor bar (only for 3darmor mod) and a hunger bar. It includes also a mechanic for hunger.
+License:
+~~~~~~~~
+(c) Copyright BlockMen (2013-2015)
 
 
-You can create a "hud.conf" to costumize the positions of health, hunger, armor and breath bar. Take a look at "hud.conf.example" to get more infos.
+Code:
+Licensed under the GNU LGPL version 2.1 or higher.
+You can redistribute it and/or modify it under 
+the terms of the GNU Lesser General Public License 
+as published by the Free Software Foundation;
 
-!!NOTICE: Keep in mind if running a server with this mod, that the costum position should be displayed correct on every screen size!!
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+See LICENSE.txt and http://www.gnu.org/licenses/lgpl-2.1.txt
 
 
-Hunger:
-This mod adds hunger to the game. You can disable this by setting "HUD_HUNGER_ENABLE = false" in "hud.conf", or "hud_hunger_enable = false" in minetest.conf. In case of conflict hud.conf configuration is dominant.
+Textures:
+hud_heart_fg.png - celeron55 (CC BY-SA 3.0), modified by BlockMen
+hud_heart_bg.png - celeron55 (CC BY-SA 3.0), modified by BlockMen
+hud_hunger_fg.png - PilzAdam (WTFPL), modified by BlockMen
+hud_hunger_bg.png - PilzAdam (WTFPL), modified by BlockMen
+wieldhand.png (from character.png) - Jordach (CC BY-SA 3.0), modified by BlockMen
+hud_air_fg.png - kaeza (WTFPL), modified by BlockMen
+hud_armor_fg.png - Stu (CC BY-SA 3.0), modified by BlockMen
+hud_armor_bg.png - Stu (CC BY-SA 3.0), modified by BlockMen
 
-Currently supported food:
-- Apples (default)
-- Bread (default)
-- Drawves (beer and such)
-- Mooretrees
-- Simple mobs
-- Animalmaterials (mobf modpack)
-- Fishing
-- Glooptest
-- Bushes
-- Docfarming
-- Farming plus
-- Mtfoods
 
-Example: 1 apple fills up the hunger bar by 1 bread, 1 bread (from farming) 2 breads in bar.
+Github:
+~~~~~~~
+https://github.com/BlockMen/hud
 
-Altough it show 20 hunger points (10 breads) in hunger bar you can fill it up to 30 points. (5 breads not shown then)
+Forum:
+~~~~~~
+https://forum.minetest.net/viewtopic.php?id=6342
+
+
+Changelog:
+~~~~~~~~~~
+see changelog.txt

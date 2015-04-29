@@ -190,6 +190,7 @@ local function get_points(item) -- ToDo: redo to use groups!
     if item:find('salmon_raw')       then fp,sp = 02.0, 00.4 end
     if item:find('salmon_cooked')    then fp,sp = 06.0, 09.6 end
     if item:find('cookie')           then fp,sp = 02.0, 00.4 end
+    if item:find('melon_item')       then fp,sp = 02.0, 01.2 end
     if item:find('melon_slice')      then fp,sp = 02.0, 01.2 end
     if item:find('mushroom_stew')    then fp,sp = 05.0, 00.2 end
     if item:find('hearty_stew')      then fp,sp = 08.0, 04.2 end
@@ -208,8 +209,8 @@ local function get_points(item) -- ToDo: redo to use groups!
     if item:find('apple_gold')       then fp,sp = 08.0, 01.6 end
     if item:find('carrot_item')      then fp,sp = 01.0, 01.6 end
     if item:find('carrot_item_gold') then fp,sp = 03.0, 01.6 end
-    if item:find('potatoe_item')     then fp,sp = 02.0, 01.6 end
-    if item:find('potatoe_item_baked')then fp,sp = 02.0, 01.6 end
+    if item:find('potato_item')      then fp,sp = 02.0, 01.6 end
+    if item:find('potato_item_baked')then fp,sp = 02.0, 01.6 end
     if item:find('bread')            then fp,sp = 06.0, 01.6 end
     if item:find('cheese')           then fp,sp = 04.0, 01.6 end
     if item:find('meat')             then fp,sp = 08.0, 01.6 end
@@ -217,14 +218,17 @@ local function get_points(item) -- ToDo: redo to use groups!
     if item:find('rat_cooked')       then fp,sp = 04.0, 01.6 end
     if item:find('pork_raw')         then fp,sp = 03.0, 01.6 end
     if item:find('pork_cooked')      then fp,sp = 08.0, 01.6 end
+    if item:find('porkchop_raw')     then fp,sp = 03.0, 01.6 end
+    if item:find('porkchop_cooked')  then fp,sp = 08.0, 01.6 end
     if item:find('chicken_cooked')   then fp,sp = 06.0, 01.6 end
     if item:find('chicken_raw')      then fp,sp = 02.0, 01.6 end
     if item:find('chicken_egg_fried')then fp,sp = 02.0, 01.6 end
-    if item:find('bucket_milk')      then fp,sp,ps,stack = 3,0,nil,"bucket:bucket_empty" end
+    if item:find('milk')             then fp,sp,ps,stack = 3,0,nil,"bucket:bucket_empty" end
     if item:find('rotten_flesh')     then fp,sp = 01.2, 01.6 end
     if item:find('rotten')           then ps = 1 end
     if item:find('poison')           then ps = 1 end
     if item:find('bucket_cactus')    then fp,sp,ps,stack = 2,0,nil,"bucket:bucket_empty" end
+
     if fp~=0 and sp~=0
     then return fp,sp,ps,stack
     else return false
@@ -303,7 +307,7 @@ function init_hunger(player)
      hungerhudb[pll]=player:hud_add({
         hud_elem_type = "statbar",
         position = HUD_HUNGER_POS,
-        scale = {x=1, y=1},
+        size = HUD_SB_SIZE,
         text = "hud_hunger_bg.png",
         number = 20,
         alignment = {x=-1,y=-1},
@@ -312,7 +316,7 @@ function init_hunger(player)
      hungerhud[pll]=player:hud_add({
         hud_elem_type = "statbar",
         position = HUD_HUNGER_POS,
-        scale = {x=1, y=1},
+        size = HUD_SB_SIZE,
         text = "hud_hunger_fg.png",
         number = 20,
         alignment = {x=-1,y=-1},
