@@ -1,12 +1,12 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 --
 -- Helper functions
 --
 
 local function is_water(pos)
-    local nn = minetest.get_node(pos).name
-    return minetest.get_item_group(nn, "water") ~= 0
+    local nn = multicraft.get_node(pos).name
+    return multicraft.get_item_group(nn, "water") ~= 0
 end
 
 local function get_velocity(v, yaw, y)
@@ -61,13 +61,13 @@ function boat.on_punch(self, puncher, time_from_last_punch, tool_capabilities, d
         self.driver:set_detach()
         self.driver = nil
         boat.schedule_removal(self)
-        if not minetest.setting_getbool("creative_mode") then
+        if not multicraft.setting_getbool("creative_mode") then
             puncher:get_inventory():add_item("main", "boat:boat")
         end
     else
 
         boat.schedule_removal(self)
-        if not minetest.setting_getbool("creative_mode") then
+        if not multicraft.setting_getbool("creative_mode") then
             puncher:get_inventory():add_item("main", "boat:boat")
         end
 
@@ -124,7 +124,7 @@ function boat.on_step(self, dtime)
 
         tmp_pos.y=tmp_pos.y-0.5
 
-        if minetest.get_node(tmp_pos).name=="air" then
+        if multicraft.get_node(tmp_pos).name=="air" then
             tmp_velocity.y=-2
         end
 
@@ -136,16 +136,16 @@ end
 
 function boat.schedule_removal(self)
 
-    minetest.after(0.25,function()
+    multicraft.after(0.25,function()
         self.object:remove()
     end)
 
 end
 
 
-minetest.register_entity("boat:boat", boat)
+multicraft.register_entity("boat:boat", boat)
 
-minetest.register_craftitem("boat:boat", {
+multicraft.register_craftitem("boat:boat", {
     description = "Boat",
     inventory_image = "boat_inventory.png",
     liquids_pointable = true,
@@ -158,15 +158,15 @@ minetest.register_craftitem("boat:boat", {
             return
         end
         pointed_thing.under.y = pointed_thing.under.y+0.5
-        minetest.add_entity(pointed_thing.under, "boat:boat")
-        if not minetest.setting_getbool("creative_mode") then
+        multicraft.add_entity(pointed_thing.under, "boat:boat")
+        if not multicraft.setting_getbool("creative_mode") then
             itemstack:take_item()
         end
         return itemstack
     end,
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "boat:boat",
     recipe = {
         {"", "", ""},
@@ -175,4 +175,4 @@ minetest.register_craft({
     },
 })
 
-minetest.debug("[boat] Mod loaded")
+multicraft.debug("[boat] Mod loaded")

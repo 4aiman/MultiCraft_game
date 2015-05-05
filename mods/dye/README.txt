@@ -1,4 +1,4 @@
-Minetest 0.4 mod: dye
+multicraft 0.4 mod: dye
 ======================
 
 See init.lua for documentation.

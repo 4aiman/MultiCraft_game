@@ -1,6 +1,6 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
-minetest.register_tool("mapp:map", {
+multicraft.register_tool("mapp:map", {
         description = "map",
         inventory_image = "map_block.png",
         groups = {misc = 1},
@@ -43,34 +43,34 @@ function map_handler (itemstack, user, pointed_thing)
            yaw = math.floor(yaw / 10) * 10
         end
 
-                --Localise some global minetest variables for speed.
+                --Localise some global multicraft variables for speed.
 
-                local registered_nodes = minetest.registered_nodes
+                local registered_nodes = multicraft.registered_nodes
 
                 for i = -35,35,1 do
                         mapar[i+35] = {}
                         for j = -35,35,1 do
                                 mapar[i+35][j+35] = {}
                                 po.x, po.y, po.z = pos.x+i, pos.y, pos.z+j
-                                local no = minetest.get_node(po)
+                                local no = multicraft.get_node(po)
                                 local k=po.y
                                 if no.name == "air" then
                                         while no.name == "air" do
                                                 k=k-1
                                                 po.x, po.y, po.z = pos.x+i, k, pos.z+j
-                                                no = minetest.get_node(po)
+                                                no = multicraft.get_node(po)
                                         end
                                 elseif no.name ~= "air" and (no.name ~= "ignore")  then
                                                 while (no.name ~= "air") and (no.name ~= "ignore") do
                                                         k=k+1
                                                         po.x, po.y, po.z  = pos.x+i, k, pos.z+j
-                                                        no = minetest.get_node(po)
+                                                        no = multicraft.get_node(po)
                                                 end
                                   k=k-1
                                   po.x, po.y, po.z = pos.x+i, k, pos.z+j
                                 end
 
-                                local node = minetest.get_node(po)
+                                local node = multicraft.get_node(po)
                                 local tiles
                                 local def = registered_nodes[node.name]
                                 if def then tiles = def["tiles"] end
@@ -115,6 +115,6 @@ function map_handler (itemstack, user, pointed_thing)
 
         map = table.concat(p, "\n")
 
-        minetest.show_formspec(player_name, "mapp:map", map)
+        multicraft.show_formspec(player_name, "mapp:map", map)
         print("[Mapp] Map generated in: ".. clock() - start.." seconds.")
 end

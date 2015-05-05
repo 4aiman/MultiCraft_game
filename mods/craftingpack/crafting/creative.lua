@@ -4,9 +4,9 @@ crafting.start_is = {}
 crafting.pages = {}
 
 function init()
- local inv = minetest.create_detached_inventory("creative", {
+ local inv = multicraft.create_detached_inventory("creative", {
         allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-            if minetest.setting_getbool("creative_mode") then
+            if multicraft.setting_getbool("creative_mode") then
                 return count
             else
                 return 0
@@ -16,7 +16,7 @@ function init()
             return 0
         end,
         allow_take = function(inv, listname, index, stack, player)
-            if minetest.setting_getbool("creative_mode") then
+            if multicraft.setting_getbool("creative_mode") then
                 return -1
             else
                 return 0
@@ -37,79 +37,79 @@ function init()
 end
 
 function set_inv(filter, player)
-    local inv = minetest.get_inventory({type="detached", name="creative"})
+    local inv = multicraft.get_inventory({type="detached", name="creative"})
     inv:set_size("main", 0)
     local creative_list = {}
-    for name,def in pairs(minetest.registered_items) do
+    for name,def in pairs(multicraft.registered_items) do
         if (not def.groups.not_in_creative_inventory or def.groups.not_in_creative_inventory == 0) and def.description and def.description ~= "" then
             if filter ~= "" then
                 if filter == "#blocks" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.building
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.building
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#deco" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.decorative
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.decorative
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#mese" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.mese
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.mese
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#rail" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.rail
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.rail
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#misc" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.misc
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.misc
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#food" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.foodstuffs
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.foodstuffs
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#tools" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.tools
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.tools
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#combat" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.combat
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.combat
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#matr" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.materials
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.materials
                     then
                         table.insert(creative_list, name)
                     end
                 elseif filter == "#brew" then
-                    if  minetest.registered_items[def.name]
-                    and minetest.registered_items[def.name].groups
-                    and minetest.registered_items[def.name].groups.brewing
+                    if  multicraft.registered_items[def.name]
+                    and multicraft.registered_items[def.name].groups
+                    and multicraft.registered_items[def.name].groups.brewing
                     then
                         table.insert(creative_list, name)
                     end
@@ -133,9 +133,9 @@ function set_inv(filter, player)
 end
 
 -- Create the trash field
-local trash = minetest.create_detached_inventory("creative_trash", {
+local trash = multicraft.create_detached_inventory("creative_trash", {
     allow_put = function(inv, listname, index, stack, player)
-        if minetest.setting_getbool("creative_mode") then
+        if multicraft.setting_getbool("creative_mode") then
             return stack:get_count()
         else
             return 0
@@ -149,7 +149,7 @@ trash:set_size("main", 1)
 
 
 -- Create detached creative inventory after loading all mods
-minetest.after(0, init)
+multicraft.after(0, init)
 
 local offset = {}
 local hoch = {}
@@ -256,19 +256,19 @@ crafting.set_creative_formspec = function(player, start_i, pagenum, show, page, 
     player:set_inventory_formspec(formspec)
 end
 
-minetest.register_on_player_receive_fields(function(player, formname, fields)
+multicraft.register_on_player_receive_fields(function(player, formname, fields)
     local page = nil
-    if not minetest.setting_getbool("creative_mode") then
+    if not multicraft.setting_getbool("creative_mode") then
         return
     end
 
     if fields.bgcolor then
-      --  minetest.chat_send_all("jupp")
+      --  multicraft.chat_send_all("jupp")
     end
     if fields.suche ~= nil and fields.suche ~= "" then
         set_inv(string.lower(fields.suche))
-        minetest.after(0, function()
-            minetest.show_formspec(player:get_player_name(), "detached:creative",  player:get_inventory_formspec())
+        multicraft.after(0, function()
+            multicraft.show_formspec(player:get_player_name(), "detached:creative",  player:get_inventory_formspec())
         end)
     end
 
@@ -337,7 +337,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
     --if marker ~= nil and marker == "p" then
        --local ppage = string.sub(formspec,size)
       -- print('ppage ' .. (ppage or 'nope'))
-        --minetest.chat_send_all(page)
+        --multicraft.chat_send_all(page)
         --start_i = ppage - 1
     --end
     --start_i = tonumber(start_i) or 0
@@ -357,8 +357,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 
-if minetest.setting_getbool("creative_mode") then
-    minetest.register_item(":", {
+if multicraft.setting_getbool("creative_mode") then
+    multicraft.register_item(":", {
         type = "none",
         wield_image = "wieldhand.png",
         wield_scale = {x=1,y=1,z=2.5},
@@ -375,11 +375,11 @@ if minetest.setting_getbool("creative_mode") then
         }
     })
 
-    minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
+    multicraft.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
         return true
     end)
 
-    function minetest.handle_node_drops(pos, drops, digger)
+    function multicraft.handle_node_drops(pos, drops, digger)
         if not digger or not digger:is_player() then
             return
         end

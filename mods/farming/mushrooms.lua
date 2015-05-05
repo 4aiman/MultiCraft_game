@@ -1,4 +1,4 @@
-minetest.register_node("farming:mushroom_brown", {
+multicraft.register_node("farming:mushroom_brown", {
     description = "Brown Mushroom",
     drawtype = "plantlike",
     tiles = { "farming_mushroom_brown.png" },
@@ -15,7 +15,7 @@ minetest.register_node("farming:mushroom_brown", {
     },
 })
 
-minetest.register_node("farming:mushroom_red", {
+multicraft.register_node("farming:mushroom_red", {
     description = "Red Mushroom",
     drawtype = "plantlike",
     tiles = { "farming_mushroom_red.png" },
@@ -32,15 +32,15 @@ minetest.register_node("farming:mushroom_red", {
     },
 })
 
-minetest.register_craftitem("farming:mushroom_stew", {
+multicraft.register_craftitem("farming:mushroom_stew", {
     description = "Mushroom Stew",
     inventory_image = "farming_mushroom_stew.png",
-    on_use = minetest.item_eat(6),
+    on_use = multicraft.item_eat(6),
     stack_max = 64,
     groups = {foodstuffs = 1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     type = "shapeless",
     output = "farming:mushroom_stew",
     recipe = {'default:bowl', 'farming:mushroom_brown', 'farming:mushroom_red'}

@@ -97,7 +97,7 @@
 - switched to changed native hotbar image support
 - fixed revival of player when drown
 - hunger bar is not shown anymore if hunger is disabled
-- hunger can be disabled by minetest.conf ("hud_hunger_enable = false")
+- hunger can be disabled by multicraft.conf ("hud_hunger_enable = false")
 
 0.5 Beta
 ----------

@@ -1,4 +1,4 @@
-minetest.register_craftitem("farming:wheat_seed", {
+multicraft.register_craftitem("farming:wheat_seed", {
     description = "Wheat Seeds",
     inventory_image = "farming_wheat_seed.png",
     groups = {materials=1},
@@ -7,7 +7,7 @@ minetest.register_craftitem("farming:wheat_seed", {
     end
 })
 
-minetest.register_node("farming:wheat_1", {
+multicraft.register_node("farming:wheat_1", {
     paramtype = "light",
     sunlight_propagates = true,
     walkable = false,
@@ -23,7 +23,7 @@ minetest.register_node("farming:wheat_1", {
     groups = {snappy=3, flammable=2, not_in_creative_inventory=1,dig_by_water=1},
 })
 
-minetest.register_node("farming:wheat_2", {
+multicraft.register_node("farming:wheat_2", {
     sunlight_propagates = true,
     paramtype = "light",
     walkable = false,
@@ -39,7 +39,7 @@ minetest.register_node("farming:wheat_2", {
     groups = {snappy=3, flammable=2, not_in_creative_inventory=1,dig_by_water=1},
 })
 
-minetest.register_node("farming:wheat_3", {
+multicraft.register_node("farming:wheat_3", {
     sunlight_propagates = true,
     paramtype = "light",
     walkable = false,
@@ -55,7 +55,7 @@ minetest.register_node("farming:wheat_3", {
     groups = {snappy=3, flammable=2, not_in_creative_inventory=1,dig_by_water=1},
 })
 
-minetest.register_node("farming:wheat", {
+multicraft.register_node("farming:wheat", {
     sunlight_propagates = true,
     paramtype = "light",
     walkable = false,
@@ -75,49 +75,49 @@ minetest.register_node("farming:wheat", {
 
 farming:add_plant("farming:wheat", {"farming:wheat_1", "farming:wheat_2", "farming:wheat_3"}, 50, 20)
 
-minetest.register_craftitem("farming:wheat_harvested", {
+multicraft.register_craftitem("farming:wheat_harvested", {
     description = "Harvested Wheat",
     inventory_image = "farming_wheat_harvested.png",
     groups = {materials=1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:bread",
     recipe = {
         {'farming:wheat_harvested', 'farming:wheat_harvested', 'farming:wheat_harvested'},
     }
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:cookie",
     recipe = {
         {'farming:wheat_harvested', 'dye:brown', 'farming:wheat_harvested'},
     }
 })
 
-minetest.register_craftitem("farming:cookie", {
+multicraft.register_craftitem("farming:cookie", {
     description = "Cookie",
     inventory_image = "farming_cookie.png",
     groups = {food=2, foodstuffs = 1},
-    on_use = minetest.item_eat(2)
+    on_use = multicraft.item_eat(2)
 })
 
 
-minetest.register_craftitem("farming:bread", {
+multicraft.register_craftitem("farming:bread", {
     description = "Bread",
     inventory_image = "farming_bread.png",
     groups = {food=2, foodstuffs = 1},
-    on_use = minetest.item_eat(5)
+    on_use = multicraft.item_eat(5)
 })
 
 -- ========= FUEL =========
-minetest.register_craft({
+multicraft.register_craft({
     type = "fuel",
     recipe = "farming:wheat_seed",
     burntime = 1
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     type = "fuel",
     recipe = "farming:wheat_harvested",
     burntime = 2

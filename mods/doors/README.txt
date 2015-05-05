@@ -1,4 +1,4 @@
-Minetest 0.4 mod: doors
+multicraft 0.4 mod: doors
 =======================
 version: 1.2.2
 

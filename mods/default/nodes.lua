@@ -4,7 +4,7 @@
 -- Node definitions
 --
 
-minetest.register_node("default:stone", {
+multicraft.register_node("default:stone", {
     description = "Stone",
     tiles = {"default_stone.png"},
     is_ground_content = true,
@@ -15,7 +15,7 @@ minetest.register_node("default:stone", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stone_with_coal", {
+multicraft.register_node("default:stone_with_coal", {
     description = "Coal Ore",
     tiles = {"default_stone.png^default_mineral_coal.png"},
     is_ground_content = true,
@@ -25,7 +25,7 @@ minetest.register_node("default:stone_with_coal", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stone_with_iron", {
+multicraft.register_node("default:stone_with_iron", {
     description = "Iron Ore",
     tiles = {"default_stone.png^default_mineral_iron.png"},
     is_ground_content = true,
@@ -36,7 +36,7 @@ minetest.register_node("default:stone_with_iron", {
 })
 
 
-minetest.register_node("default:stone_with_gold", {
+multicraft.register_node("default:stone_with_gold", {
     description = "Gold Ore",
     tiles = {"default_stone.png^default_mineral_gold.png"},
     is_ground_content = true,
@@ -47,7 +47,7 @@ minetest.register_node("default:stone_with_gold", {
 })
 
 
-minetest.register_node("default:stone_with_redstone", {
+multicraft.register_node("default:stone_with_redstone", {
     description = "Redstone Ore",
     tiles = {"default_stone.png^default_mineral_redstone.png"},
     is_ground_content = true,
@@ -57,7 +57,7 @@ minetest.register_node("default:stone_with_redstone", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stone_with_lapis", {
+multicraft.register_node("default:stone_with_lapis", {
     description = "Lapis Lazuli Ore",
     tiles = {"default_stone.png^default_mineral_lapis.png"},
     is_ground_content = true,
@@ -76,7 +76,7 @@ minetest.register_node("default:stone_with_lapis", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stone_with_emerald", {
+multicraft.register_node("default:stone_with_emerald", {
     description = "Emerald Ore",
     tiles = {"default_stone.png^default_mineral_emerald.png"},
     is_ground_content = true,
@@ -93,7 +93,7 @@ minetest.register_node("default:stone_with_emerald", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stone_with_diamond", {
+multicraft.register_node("default:stone_with_diamond", {
     description = "Diamonds in Stone",
     tiles = {"default_stone.png^default_mineral_diamond.png"},
     is_ground_content = true,
@@ -103,7 +103,7 @@ minetest.register_node("default:stone_with_diamond", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stonebrick", {
+multicraft.register_node("default:stonebrick", {
     description = "Stone Brick",
     tiles = {"default_stone_brick.png"},
     stack_max = 64,
@@ -111,7 +111,7 @@ minetest.register_node("default:stonebrick", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stonebrickcarved", {
+multicraft.register_node("default:stonebrickcarved", {
     description = "Stone Brick Carved",
     tiles = {"default_stonebrick_carved.png"},
     stack_max = 64,
@@ -119,7 +119,7 @@ minetest.register_node("default:stonebrickcarved", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stonebrickcracked", {
+multicraft.register_node("default:stonebrickcracked", {
     description = "Stone Brick Cracked",
     tiles = {"default_stonebrick_cracked.png"},
     stack_max = 64,
@@ -127,7 +127,7 @@ minetest.register_node("default:stonebrickcracked", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:stonebrickmossy", {
+multicraft.register_node("default:stonebrickmossy", {
     description = "Mossy Stone Brick",
     tiles = {"default_stonebrick_mossy.png"},
     stack_max = 64,
@@ -135,7 +135,7 @@ minetest.register_node("default:stonebrickmossy", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:dirt_with_grass", {
+multicraft.register_node("default:dirt_with_grass", {
     description = "Dirt with Grass",
     tiles = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
     is_ground_content = true,
@@ -147,7 +147,7 @@ minetest.register_node("default:dirt_with_grass", {
     }),
 })
 
-minetest.register_node("default:dirt_with_grass_footsteps", {
+multicraft.register_node("default:dirt_with_grass_footsteps", {
     description = "Dirt with Grass and Footsteps",
     tiles = {"default_grass_footsteps.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
     is_ground_content = true,
@@ -159,7 +159,7 @@ minetest.register_node("default:dirt_with_grass_footsteps", {
     }),
 })
 
-minetest.register_node("default:dirt_with_snow", {
+multicraft.register_node("default:dirt_with_snow", {
     description = "Dirt with Snow",
     tiles = {"default_snow.png", "default_dirt.png", "default_dirt.png^default_snow_side.png"},
     is_ground_content = true,
@@ -171,7 +171,7 @@ minetest.register_node("default:dirt_with_snow", {
     }),
 })
 
-minetest.register_node("default:dirt", {
+multicraft.register_node("default:dirt", {
     description = "Dirt",
     tiles = {"default_dirt.png"},
     is_ground_content = true,
@@ -181,7 +181,7 @@ minetest.register_node("default:dirt", {
 })
 
 
-minetest.register_node("default:gravel", {
+multicraft.register_node("default:gravel", {
     description = "Gravel",
     tiles = {"default_gravel.png"},
     is_ground_content = true,
@@ -200,7 +200,7 @@ minetest.register_node("default:gravel", {
 })
 
 -- sandstone --
-minetest.register_node("default:sand", {
+multicraft.register_node("default:sand", {
     description = "Sand",
     tiles = {"default_sand.png"},
     is_ground_content = true,
@@ -209,7 +209,7 @@ minetest.register_node("default:sand", {
     sounds = default.node_sound_sand_defaults(),
 })
 
-minetest.register_node("default:sandstone", {
+multicraft.register_node("default:sandstone", {
     description = "Sandstone",
     tiles = {"default_sandstone_top.png", "default_sandstone_bottom.png", "default_sandstone_normal.png"},
     is_ground_content = true,
@@ -218,7 +218,7 @@ minetest.register_node("default:sandstone", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:sandstonesmooth", {
+multicraft.register_node("default:sandstonesmooth", {
     description = "Sandstone Smooth",
     tiles = {"default_sandstone_top.png", "default_sandstone_bottom.png", "default_sandstone_smooth.png"},
     is_ground_content = true,
@@ -227,7 +227,7 @@ minetest.register_node("default:sandstonesmooth", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:sandstonecarved", {
+multicraft.register_node("default:sandstonecarved", {
     description = "Sandstone Carved",
     tiles = {"default_sandstone_top.png", "default_sandstone_bottom.png", "default_sandstone_carved.png"},
     is_ground_content = true,
@@ -238,7 +238,7 @@ minetest.register_node("default:sandstonecarved", {
 
 -- red sandstone --
 
-minetest.register_node("default:redsand", {
+multicraft.register_node("default:redsand", {
     description = "Red Sand",
     tiles = {"default_red_sand.png"},
     is_ground_content = true,
@@ -247,7 +247,7 @@ minetest.register_node("default:redsand", {
     sounds = default.node_sound_sand_defaults(),
 })
 
-minetest.register_node("default:redsandstone", {
+multicraft.register_node("default:redsandstone", {
     description = "Red SandStone",
     tiles = {"default_redsandstone_top.png", "default_redsandstone_bottom.png", "default_redsandstone_normal.png"},
     is_ground_content = true,
@@ -256,7 +256,7 @@ minetest.register_node("default:redsandstone", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:redsandstonesmooth", {
+multicraft.register_node("default:redsandstonesmooth", {
     description = "Red SandStone Smooth",
     tiles = {"default_redsandstone_top.png", "default_redsandstone_bottom.png", "default_redsandstone_smooth.png"},
     is_ground_content = true,
@@ -265,7 +265,7 @@ minetest.register_node("default:redsandstonesmooth", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:redsandstonecarved", {
+multicraft.register_node("default:redsandstonecarved", {
     description = "Red SandStone Carved",
     tiles = {"default_redsandstone_top.png", "default_redsandstone_bottom.png", "default_redsandstone_carved.png"},
     is_ground_content = true,
@@ -276,7 +276,7 @@ minetest.register_node("default:redsandstonecarved", {
 
 ---
 
-minetest.register_node("default:clay", {
+multicraft.register_node("default:clay", {
     description = "Clay",
     tiles = {"default_clay.png"},
     is_ground_content = true,
@@ -288,7 +288,7 @@ minetest.register_node("default:clay", {
     }),
 })
 
-minetest.register_node("default:brick", {
+multicraft.register_node("default:brick", {
     description = "Brick Block",
     tiles = {"default_brick.png"},
     stack_max = 64,
@@ -296,18 +296,18 @@ minetest.register_node("default:brick", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:haybale", {
+multicraft.register_node("default:haybale", {
     description = "Hay Bale",
     tiles = {"default_hayblock_top.png", "default_hayblock_top.png", "default_hayblock_side.png"},
     stack_max = 64,
     paramtype2 = "facedir",
     is_ground_content = false,
-    on_place = minetest.rotate_node,
+    on_place = multicraft.rotate_node,
     groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2, building = 1},
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:sea_lantern", {
+multicraft.register_node("default:sea_lantern", {
     description = "Sea Lantern",
     paramtype2 = "facedir",
     stack_max = 64,
@@ -323,21 +323,21 @@ minetest.register_node("default:sea_lantern", {
     groups = {oddly_breakable_by_hand=3, building = 1},
 })
 
-minetest.register_node("default:prismarine", {
+multicraft.register_node("default:prismarine", {
      description = "Prismarine",
      stack_max = 64,
      tiles = {{name="default_prismarine_anim.png", animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=45.0}}},
      groups = {cracky=3, building = 1},
 })
 
-minetest.register_node("default:prismarine_brick", {
+multicraft.register_node("default:prismarine_brick", {
      description = "Prismarine Brick",
      stack_max = 64,
      tiles = {"default_prismarine_bricks.png"},
      groups = {cracky=2, building = 1},
 })
 
-minetest.register_node("default:prismarine_dark", {
+multicraft.register_node("default:prismarine_dark", {
      description = "Dark Prismarine",
      stack_max = 64,
      tiles = {"default_prismarine_dark.png"},
@@ -348,18 +348,18 @@ minetest.register_node("default:prismarine_dark", {
 
 
 -- Normal tree --
-minetest.register_node("default:tree", {
+multicraft.register_node("default:tree", {
     description = "Tree",
     tiles = {"default_tree_top.png", "default_tree_top.png", "default_tree.png"},
     paramtype2 = "facedir",
     is_ground_content = false,
-    on_place = minetest.rotate_node,
+    on_place = multicraft.rotate_node,
     stack_max = 64,
     groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2, building = 1},
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:sapling", {
+multicraft.register_node("default:sapling", {
     description = "Sapling",
     drawtype = "plantlike",
     visual_scale = 1.0,
@@ -377,7 +377,7 @@ minetest.register_node("default:sapling", {
     sounds = default.node_sound_defaults(),
 })
 
-minetest.register_node("default:leaves", {
+multicraft.register_node("default:leaves", {
     description = "Leaves",
     drawtype = "allfaces_optional",
     visual_scale = 1.3,
@@ -410,18 +410,18 @@ minetest.register_node("default:leaves", {
 
 -- Jungle Tree --
 
-minetest.register_node("default:jungletree", {
+multicraft.register_node("default:jungletree", {
     description = "Jungle Tree",
     tiles = {"default_jungletree_top.png", "default_jungletree_top.png", "default_jungletree.png"},
     stack_max = 64,
     paramtype2 = "facedir",
     is_ground_content = false,
-    on_place = minetest.rotate_node,
+    on_place = multicraft.rotate_node,
     groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2, building = 1},
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:junglewood", {
+multicraft.register_node("default:junglewood", {
     description = "Junglewood Planks",
     tiles = {"default_junglewood.png"},
     stack_max = 64,
@@ -429,7 +429,7 @@ minetest.register_node("default:junglewood", {
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:jungleleaves", {
+multicraft.register_node("default:jungleleaves", {
     description = "Jungle Leaves",
     drawtype = "allfaces_optional",
     visual_scale = 1.3,
@@ -455,7 +455,7 @@ minetest.register_node("default:jungleleaves", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("default:junglesapling", {
+multicraft.register_node("default:junglesapling", {
     description = "Jungle Sapling",
     drawtype = "plantlike",
     visual_scale = 1.0,
@@ -476,18 +476,18 @@ minetest.register_node("default:junglesapling", {
 
 -- Accacia Tree --
 
-minetest.register_node("default:acaciatree", {
+multicraft.register_node("default:acaciatree", {
     description = "Acacia Tree",
     tiles = {"default_acaciatree_top.png", "default_acaciatree_top.png", "default_acaciatree.png"},
     stack_max = 64,
     paramtype2 = "facedir",
     is_ground_content = false,
-    on_place = minetest.rotate_node,
+    on_place = multicraft.rotate_node,
     groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2, building = 1},
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:acaciawood", {
+multicraft.register_node("default:acaciawood", {
     description = "Acaciawood Planks",
     tiles = {"default_acaciawood.png"},
     stack_max = 64,
@@ -495,7 +495,7 @@ minetest.register_node("default:acaciawood", {
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:acacialeaves", {
+multicraft.register_node("default:acacialeaves", {
     description = "Acacia Leaves",
     drawtype = "allfaces_optional",
     visual_scale = 1.3,
@@ -521,7 +521,7 @@ minetest.register_node("default:acacialeaves", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("default:acaciasapling", {
+multicraft.register_node("default:acaciasapling", {
     description = "Acacia Sapling",
     drawtype = "plantlike",
     visual_scale = 1.0,
@@ -541,18 +541,18 @@ minetest.register_node("default:acaciasapling", {
 
 -- Spruce Tree --
 
-minetest.register_node("default:sprucetree", {
+multicraft.register_node("default:sprucetree", {
     description = "Spruce Tree",
     tiles = {"default_sprucetree_top.png", "default_sprucetree_top.png", "default_sprucetree.png"},
     stack_max = 64,
     paramtype2 = "facedir",
     is_ground_content = false,
-    on_place = minetest.rotate_node,
+    on_place = multicraft.rotate_node,
     groups = {tree=1,choppy=2,oddly_breakable_by_hand=1,flammable=2, building = 1},
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:sprucewood", {
+multicraft.register_node("default:sprucewood", {
     description = "Sprucewood Planks",
     tiles = {"default_sprucewood.png"},
     stack_max = 64,
@@ -560,7 +560,7 @@ minetest.register_node("default:sprucewood", {
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:spruceleaves", {
+multicraft.register_node("default:spruceleaves", {
     description = "Spruce Leaves",
     drawtype = "allfaces_optional",
     visual_scale = 1.3,
@@ -586,7 +586,7 @@ minetest.register_node("default:spruceleaves", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("default:sprucesapling", {
+multicraft.register_node("default:sprucesapling", {
     description = "Spruce Sapling",
     drawtype = "plantlike",
     visual_scale = 1.0,
@@ -606,12 +606,12 @@ minetest.register_node("default:sprucesapling", {
 
 
 -- aliases
-minetest.register_alias("sapling", "default:sapling")
-minetest.register_alias("junglesapling", "default:junglesapling")
-minetest.register_alias("acaciasapling", "default:acaciasapling")
-minetest.register_alias("sprucesapling", "default:sprucesapling")
+multicraft.register_alias("sapling", "default:sapling")
+multicraft.register_alias("junglesapling", "default:junglesapling")
+multicraft.register_alias("acaciasapling", "default:acaciasapling")
+multicraft.register_alias("sprucesapling", "default:sprucesapling")
 
-minetest.register_node("default:junglegrass", {
+multicraft.register_node("default:junglegrass", {
     description = "Jungle Grass",
     drawtype = "plantlike",
     visual_scale = 1.3,
@@ -631,7 +631,7 @@ minetest.register_node("default:junglegrass", {
     },
 })
 
-minetest.register_node("default:cactus", {
+multicraft.register_node("default:cactus", {
     description = "Cactus",
     drawtype = "nodebox",
     tiles = {"default_cactus_top.png", "default_cactus_bottom.png", "default_cactus_side.png","default_cactus_side.png","default_cactus_side.png","default_cactus_side.png"},
@@ -660,7 +660,7 @@ minetest.register_node("default:cactus", {
 
 })
 
-minetest.register_node("default:reeds", {
+multicraft.register_node("default:reeds", {
     description = "Sugarcane",
     drawtype = "plantlike",
     tiles = {"default_papyrus.png"},
@@ -691,7 +691,7 @@ minetest.register_node("default:reeds", {
 })
 
 
-minetest.register_node("default:quartz_ore", {
+multicraft.register_node("default:quartz_ore", {
     description = "Quartz Ore",
     stack_max = 64,
     tiles = {"default_quartz_ore.png"},
@@ -700,7 +700,7 @@ minetest.register_node("default:quartz_ore", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:quartz_block", {
+multicraft.register_node("default:quartz_block", {
     description = "Quartz Block",
     stack_max = 64,
     tiles = {"default_quartz_block_top.png", "default_quartz_block_bottom.png", "default_quartz_block_side.png"},
@@ -708,7 +708,7 @@ minetest.register_node("default:quartz_block", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:quartz_chiseled", {
+multicraft.register_node("default:quartz_chiseled", {
     description = "Chiseled Quartz",
     stack_max = 64,
     tiles = {"default_quartz_chiseled_top.png", "default_quartz_chiseled_top.png", "default_quartz_chiseled_side.png"},
@@ -716,17 +716,17 @@ minetest.register_node("default:quartz_chiseled", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:quartz_pillar", {
+multicraft.register_node("default:quartz_pillar", {
     description = "Quartz Pillar",
     stack_max = 64,
     paramtype2 = "facedir",
-    on_place = minetest.rotate_node,
+    on_place = multicraft.rotate_node,
     tiles = {"default_quartz_pillar_top.png", "default_quartz_pillar_top.png", "default_quartz_pillar_side.png"},
     groups = {snappy=1,bendy=2,cracky=1,level=2, building = 1},
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:bedrock", {
+multicraft.register_node("default:bedrock", {
     description = "Bedrock",
     tiles = {"default_bedrock.png"},
     stack_max = 64,
@@ -734,7 +734,7 @@ minetest.register_node("default:bedrock", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:bookshelf", {
+multicraft.register_node("default:bookshelf", {
     description = "Bookshelf",
     tiles = {"default_wood.png", "default_wood.png", "default_bookshelf.png"},
     stack_max = 64,
@@ -742,7 +742,7 @@ minetest.register_node("default:bookshelf", {
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:slimeblock", {
+multicraft.register_node("default:slimeblock", {
     description = "Slime Block",
     drawtype = "nodebox",
     paramtype = "light",
@@ -754,7 +754,7 @@ minetest.register_node("default:slimeblock", {
         }
     },
     tiles = {"default_slimeblock.png"},
-    inventory_image = minetest.inventorycube("default_slimeblock.png"),
+    inventory_image = multicraft.inventorycube("default_slimeblock.png"),
     paramtype = "light",
     use_texture_alpha = true,
     sunlight_propagates = true,
@@ -762,11 +762,11 @@ minetest.register_node("default:slimeblock", {
     groups = {oddly_breakable_by_hand=3,dig_immediate=2,bouncy=70,disable_jump=1, fall_damage_add_percent=-100, building = 1},
 })
 
-minetest.register_node("default:glass", {
+multicraft.register_node("default:glass", {
     description = "Glass",
     drawtype = "glasslike",
     tiles = {"default_glass.png"},
-    inventory_image = minetest.inventorycube("default_glass.png"),
+    inventory_image = multicraft.inventorycube("default_glass.png"),
     paramtype = "light",
     sunlight_propagates = true,
     stack_max = 64,
@@ -792,7 +792,7 @@ AddGlass( "Glass Silver",  "basecolor_grey", "_silver")
 AddGlass( "Glass Magenta",  "basecolor_magenta", "_magenta")
 AddGlass( "Glass Purple",  "excolor_violet", "_purple")
 
-minetest.register_node("default:rail", {
+multicraft.register_node("default:rail", {
     description = "Rail",
     drawtype = "raillike",
     tiles = {"default_rail.png", "default_rail_curved.png", "default_rail_t_junction.png", "default_rail_crossing.png"},
@@ -809,7 +809,7 @@ minetest.register_node("default:rail", {
     groups = {bendy=2,dig_immediate=2,attached_node=1, rail = 1},
 })
 
-minetest.register_node("default:ladder", {
+multicraft.register_node("default:ladder", {
     description = "Ladder",
     drawtype = "signlike",
     tiles = {"default_ladder.png"},
@@ -832,7 +832,7 @@ minetest.register_node("default:ladder", {
 })
 
 
-minetest.register_node("default:vine", {
+multicraft.register_node("default:vine", {
     description = "Vine",
     drawtype = "signlike",
     tiles = {"default_vine.png"},
@@ -859,7 +859,7 @@ minetest.register_node("default:vine", {
         local ptr = 1
         while next_find == true do
             local pos2 = {x=pos.x, y=pos.y-ptr, z=pos.z}
-            local node = minetest.env:get_node(pos2)
+            local node = multicraft.env:get_node(pos2)
             if node.name == "default:vine" and check_attached_node(pos2, node) == false then
                 drop_attached_node(pos2)
                 nodeupdate(pos2)
@@ -873,7 +873,7 @@ minetest.register_node("default:vine", {
 
 
 
-minetest.register_node("default:wood", {
+multicraft.register_node("default:wood", {
     description = "Wooden Planks",
     tiles = {"default_wood.png"},
     stack_max = 64,
@@ -881,7 +881,7 @@ minetest.register_node("default:wood", {
     sounds = default.node_sound_wood_defaults(),
 })
 
-minetest.register_node("default:cloud", {
+multicraft.register_node("default:cloud", {
     description = "Cloud",
     tiles = {"default_cloud.png"},
     stack_max = 64,
@@ -889,9 +889,9 @@ minetest.register_node("default:cloud", {
     groups = {not_in_creative_inventory=1},
 })
 
-minetest.register_node("default:water_flowing", {
+multicraft.register_node("default:water_flowing", {
     description = "Flowing Water",
-    inventory_image = minetest.inventorycube("default_water.png"),
+    inventory_image = multicraft.inventorycube("default_water.png"),
     drawtype = "flowingliquid",
     tiles = {name="default_water_flowing_animated.png", animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=5.0}},
     special_tiles = {
@@ -925,9 +925,9 @@ minetest.register_node("default:water_flowing", {
     groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1},
 })
 
-minetest.register_node("default:water_source", {
+multicraft.register_node("default:water_source", {
     description = "Water Source",
-    inventory_image = minetest.inventorycube("default_water.png"),
+    inventory_image = multicraft.inventorycube("default_water.png"),
     drawtype = "liquid",
     tiles = {
         {name="default_water_source_animated.png", animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=5.0}}
@@ -959,9 +959,9 @@ minetest.register_node("default:water_source", {
     groups = {water=3, liquid=3, puts_out_fire=1, freezes=1},
 })
 
-minetest.register_node("default:lava_flowing", {
+multicraft.register_node("default:lava_flowing", {
     description = "Flowing Lava",
-    inventory_image = minetest.inventorycube("default_lava.png"),
+    inventory_image = multicraft.inventorycube("default_lava.png"),
     drawtype = "flowingliquid",
     tiles = {"default_lava.png"},
     special_tiles = {
@@ -996,9 +996,9 @@ minetest.register_node("default:lava_flowing", {
     groups = {lava=3, liquid=2, hot=3, igniter=1, not_in_creative_inventory=1},
 })
 
-minetest.register_node("default:lava_source", {
+multicraft.register_node("default:lava_source", {
     description = "Lava Source",
-    inventory_image = minetest.inventorycube("default_lava.png"),
+    inventory_image = multicraft.inventorycube("default_lava.png"),
     drawtype = "liquid",
     tiles = {
         {name="default_lava_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
@@ -1031,7 +1031,7 @@ minetest.register_node("default:lava_source", {
     groups = {lava=3, liquid=2, hot=3, igniter=1},
 })
 
-minetest.register_node("default:torch", {
+multicraft.register_node("default:torch", {
     description = "Torch",
     drawtype = "torchlike",
     --tiles = {"default_torch_on_floor.png", "default_torch_on_ceiling.png", "default_torch.png"},
@@ -1087,20 +1087,20 @@ local function get_chest_neighborpos(pos, param2, side)
 end
 
 local function hacky_swap_node(pos,name, param2)
-    local node = minetest.env:get_node(pos)
-    local meta = minetest.env:get_meta(pos)
+    local node = multicraft.env:get_node(pos)
+    local meta = multicraft.env:get_meta(pos)
     if node.name == name then
         return
     end
     node.name = name
     node.param2 = param2 or node.param2
     local meta0 = meta:to_table()
-    minetest.env:set_node(pos,node)
-    meta = minetest.env:get_meta(pos)
+    multicraft.env:set_node(pos,node)
+    meta = multicraft.env:get_meta(pos)
     meta:from_table(meta0)
 end
 
-minetest.register_node("default:chest", {
+multicraft.register_node("default:chest", {
     description = "Chest",
     tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
         "default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
@@ -1110,10 +1110,10 @@ minetest.register_node("default:chest", {
     legacy_facedir_simple = true,
     sounds = default.node_sound_wood_defaults(),
     on_construct = function(pos)
-        local param2 = minetest.env:get_node(pos).param2
-        local meta = minetest.env:get_meta(pos)
-        if minetest.env:get_node(get_chest_neighborpos(pos, param2, "right")).name == "default:chest" then
-            minetest.env:set_node(pos, {name="default:chest_right",param2=param2})
+        local param2 = multicraft.env:get_node(pos).param2
+        local meta = multicraft.env:get_meta(pos)
+        if multicraft.env:get_node(get_chest_neighborpos(pos, param2, "right")).name == "default:chest" then
+            multicraft.env:set_node(pos, {name="default:chest_right",param2=param2})
             local p = get_chest_neighborpos(pos, param2, "right")
             meta:set_string("formspec",
                     "size[9,11.5]"..
@@ -1123,7 +1123,7 @@ minetest.register_node("default:chest", {
                     "list[current_player;main;0,10.5;9,1;]")
             meta:set_string("infotext", "Large Chest")
             hacky_swap_node(p, "default:chest_left", param2)
-            local m = minetest.env:get_meta(p)
+            local m = multicraft.env:get_meta(p)
             m:set_string("formspec",
                     "size[9,11.5]"..
                     "list[current_name;main;0,0;9,3;]"..
@@ -1131,8 +1131,8 @@ minetest.register_node("default:chest", {
                     "list[current_player;main;0,7;9,3;9]"..
                     "list[current_player;main;0,10.5;9,1;]")
             m:set_string("infotext", "Large Chest")
-        elseif minetest.env:get_node(get_chest_neighborpos(pos, param2, "left")).name == "default:chest" then
-            minetest.env:set_node(pos, {name="default:chest_left",param2=param2})
+        elseif multicraft.env:get_node(get_chest_neighborpos(pos, param2, "left")).name == "default:chest" then
+            multicraft.env:set_node(pos, {name="default:chest_left",param2=param2})
             local p = get_chest_neighborpos(pos, param2, "left")
             meta:set_string("formspec",
                     "size[9,11.5]"..
@@ -1142,7 +1142,7 @@ minetest.register_node("default:chest", {
                     "list[current_player;main;0,10.5;9,1;]")
             meta:set_string("infotext", "Large Chest")
             hacky_swap_node(p, "default:chest_right", param2)
-            local m = minetest.env:get_meta(p)
+            local m = multicraft.env:get_meta(p)
             m:set_string("formspec",
                     "size[9,11.5]"..
                     "list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0,0;9,3;]"..
@@ -1162,7 +1162,7 @@ minetest.register_node("default:chest", {
         inv:set_size("main", 9*3)
     end,
     after_dig_node = function(pos, oldnode, oldmetadata, digger)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         local meta2 = meta
         meta:from_table(oldmetadata)
         local inv = meta:get_inventory()
@@ -1170,26 +1170,26 @@ minetest.register_node("default:chest", {
             local stack = inv:get_stack("main", i)
             if not stack:is_empty() then
                 local p = {x=pos.x+math.random(0, 10)/10-0.5, y=pos.y, z=pos.z+math.random(0, 10)/10-0.5}
-                minetest.env:add_item(p, stack)
+                multicraft.env:add_item(p, stack)
             end
         end
         meta:from_table(meta2:to_table())
     end,
     on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-        minetest.log("action", player:get_player_name()..
-                " moves stuff in chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " moves stuff in chest at "..multicraft.pos_to_string(pos))
     end,
     on_metadata_inventory_put = function(pos, listname, index, stack, player)
-        minetest.log("action", player:get_player_name()..
-                " moves stuff to chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " moves stuff to chest at "..multicraft.pos_to_string(pos))
     end,
     on_metadata_inventory_take = function(pos, listname, index, stack, player)
-        minetest.log("action", player:get_player_name()..
-                " takes stuff from chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " takes stuff from chest at "..multicraft.pos_to_string(pos))
     end,
 })
 
-minetest.register_node("default:chest_left", {
+multicraft.register_node("default:chest_left", {
     tiles = {"default_chest_top_big.png", "default_chest_top_big.png", "default_chest_side.png",
         "default_chest_side.png", "default_chest_side_big.png^[transformFX", "default_chest_front_big.png"},
     paramtype2 = "facedir",
@@ -1197,16 +1197,16 @@ minetest.register_node("default:chest_left", {
     drop = "default:chest",
     sounds = default.node_sound_wood_defaults(),
     on_destruct = function(pos)
-        local m = minetest.env:get_meta(pos)
+        local m = multicraft.env:get_meta(pos)
         if m:get_string("infotext") == "Chest" then
             return
         end
-        local param2 = minetest.env:get_node(pos).param2
+        local param2 = multicraft.env:get_node(pos).param2
         local p = get_chest_neighborpos(pos, param2, "left")
-        if not p or minetest.env:get_node(p).name ~= "default:chest_right" then
+        if not p or multicraft.env:get_node(p).name ~= "default:chest_right" then
             return
         end
-        local meta = minetest.env:get_meta(p)
+        local meta = multicraft.env:get_meta(p)
         meta:set_string("formspec",
                 "size[9,8.5]"..
                 "list[current_name;main;0,0;9,3;]"..
@@ -1216,7 +1216,7 @@ minetest.register_node("default:chest_left", {
         hacky_swap_node(p, "default:chest")
     end,
     after_dig_node = function(pos, oldnode, oldmetadata, digger)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         local meta2 = meta
         meta:from_table(oldmetadata)
         local inv = meta:get_inventory()
@@ -1224,26 +1224,26 @@ minetest.register_node("default:chest_left", {
             local stack = inv:get_stack("main", i)
             if not stack:is_empty() then
                 local p = {x=pos.x+math.random(0, 10)/10-0.5, y=pos.y, z=pos.z+math.random(0, 10)/10-0.5}
-                minetest.env:add_item(p, stack)
+                multicraft.env:add_item(p, stack)
             end
         end
         meta:from_table(meta2:to_table())
     end,
     on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-        minetest.log("action", player:get_player_name()..
-                " moves stuff in chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " moves stuff in chest at "..multicraft.pos_to_string(pos))
     end,
     on_metadata_inventory_put = function(pos, listname, index, stack, player)
-        minetest.log("action", player:get_player_name()..
-                " moves stuff to chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " moves stuff to chest at "..multicraft.pos_to_string(pos))
     end,
     on_metadata_inventory_take = function(pos, listname, index, stack, player)
-        minetest.log("action", player:get_player_name()..
-                " takes stuff from chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " takes stuff from chest at "..multicraft.pos_to_string(pos))
     end,
 })
 
-minetest.register_node("default:chest_right", {
+multicraft.register_node("default:chest_right", {
     tiles = {"default_chest_top_big.png^[transformFX", "default_chest_top_big.png^[transformFX", "default_chest_side.png",
         "default_chest_side.png", "default_chest_side_big.png", "default_chest_front_big.png^[transformFX"},
     paramtype2 = "facedir",
@@ -1251,16 +1251,16 @@ minetest.register_node("default:chest_right", {
     drop = "default:chest",
     sounds = default.node_sound_wood_defaults(),
     on_destruct = function(pos)
-        local m = minetest.env:get_meta(pos)
+        local m = multicraft.env:get_meta(pos)
         if m:get_string("infotext") == "Chest" then
             return
         end
-        local param2 = minetest.env:get_node(pos).param2
+        local param2 = multicraft.env:get_node(pos).param2
         local p = get_chest_neighborpos(pos, param2, "right")
-        if not p or minetest.env:get_node(p).name ~= "default:chest_left" then
+        if not p or multicraft.env:get_node(p).name ~= "default:chest_left" then
             return
         end
-        local meta = minetest.env:get_meta(p)
+        local meta = multicraft.env:get_meta(p)
         meta:set_string("formspec",
                 "size[9,8.5]"..
                 "list[current_name;main;0,0;9,3;]"..
@@ -1270,7 +1270,7 @@ minetest.register_node("default:chest_right", {
         hacky_swap_node(p, "default:chest")
     end,
     after_dig_node = function(pos, oldnode, oldmetadata, digger)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         local meta2 = meta
         meta:from_table(oldmetadata)
         local inv = meta:get_inventory()
@@ -1278,22 +1278,22 @@ minetest.register_node("default:chest_right", {
             local stack = inv:get_stack("main", i)
             if not stack:is_empty() then
                 local p = {x=pos.x+math.random(0, 10)/10-0.5, y=pos.y, z=pos.z+math.random(0, 10)/10-0.5}
-                minetest.env:add_item(p, stack)
+                multicraft.env:add_item(p, stack)
             end
         end
         meta:from_table(meta2:to_table())
     end,
     on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-        minetest.log("action", player:get_player_name()..
-                " moves stuff in chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " moves stuff in chest at "..multicraft.pos_to_string(pos))
     end,
     on_metadata_inventory_put = function(pos, listname, index, stack, player)
-        minetest.log("action", player:get_player_name()..
-                " moves stuff to chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " moves stuff to chest at "..multicraft.pos_to_string(pos))
     end,
     on_metadata_inventory_take = function(pos, listname, index, stack, player)
-        minetest.log("action", player:get_player_name()..
-                " takes stuff from chest at "..minetest.pos_to_string(pos))
+        multicraft.log("action", player:get_player_name()..
+                " takes stuff from chest at "..multicraft.pos_to_string(pos))
     end,
 })
 
@@ -1305,7 +1305,7 @@ default.furnace_inactive_formspec =
     "list[current_name;dst;5,1;2,2;]"..
     "list[current_player;main;0,5;9,4;]"
 
-minetest.register_node("default:furnace", {
+multicraft.register_node("default:furnace", {
     description = "Furnace",
     tiles = {"default_furnace_top.png", "default_furnace_bottom.png", "default_furnace_side.png",
         "default_furnace_side.png", "default_furnace_side.png", "default_furnace_front.png"},
@@ -1315,7 +1315,7 @@ minetest.register_node("default:furnace", {
     legacy_facedir_simple = true,
     sounds = default.node_sound_stone_defaults(),
     on_construct = function(pos)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         meta:set_string("formspec", default.furnace_inactive_formspec)
         meta:set_string("infotext", "Furnace")
         local inv = meta:get_inventory()
@@ -1324,7 +1324,7 @@ minetest.register_node("default:furnace", {
         inv:set_size("dst", 4)
     end,
     can_dig = function(pos,player)
-        local meta = minetest.env:get_meta(pos);
+        local meta = multicraft.env:get_meta(pos);
         local inv = meta:get_inventory()
         if not inv:is_empty("fuel") then
             return false
@@ -1336,10 +1336,10 @@ minetest.register_node("default:furnace", {
         return true
     end,
     allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         local inv = meta:get_inventory()
         if listname == "fuel" then
-            if minetest.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
+            if multicraft.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
                 if inv:is_empty("src") then
                     meta:set_string("infotext","Furnace is empty")
                 end
@@ -1354,11 +1354,11 @@ minetest.register_node("default:furnace", {
         end
     end,
     allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         local inv = meta:get_inventory()
         local stack = inv:get_stack(from_list, from_index)
         if to_list == "fuel" then
-            if minetest.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
+            if multicraft.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
                 if inv:is_empty("src") then
                     meta:set_string("infotext","Furnace is empty")
                 end
@@ -1374,7 +1374,7 @@ minetest.register_node("default:furnace", {
     end,
 })
 
-minetest.register_node("default:furnace_active", {
+multicraft.register_node("default:furnace_active", {
     description = "Furnace",
     tiles = {"default_furnace_top.png", "default_furnace_bottom.png", "default_furnace_side.png",
         "default_furnace_side.png", "default_furnace_side.png", "default_furnace_front_active.png"},
@@ -1385,7 +1385,7 @@ minetest.register_node("default:furnace_active", {
     legacy_facedir_simple = true,
     sounds = default.node_sound_stone_defaults(),
     on_construct = function(pos)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         meta:set_string("formspec", default.furnace_inactive_formspec)
         meta:set_string("infotext", "Furnace");
         local inv = meta:get_inventory()
@@ -1394,7 +1394,7 @@ minetest.register_node("default:furnace_active", {
         inv:set_size("dst", 4)
     end,
     can_dig = function(pos,player)
-        local meta = minetest.env:get_meta(pos);
+        local meta = multicraft.env:get_meta(pos);
         local inv = meta:get_inventory()
         if not inv:is_empty("fuel") then
             return false
@@ -1406,10 +1406,10 @@ minetest.register_node("default:furnace_active", {
         return true
     end,
     allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         local inv = meta:get_inventory()
         if listname == "fuel" then
-            if minetest.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
+            if multicraft.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
                 if inv:is_empty("src") then
                     meta:set_string("infotext","Furnace is empty")
                 end
@@ -1424,11 +1424,11 @@ minetest.register_node("default:furnace_active", {
         end
     end,
     allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         local inv = meta:get_inventory()
         local stack = inv:get_stack(from_list, from_index)
         if to_list == "fuel" then
-            if minetest.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
+            if multicraft.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
                 if inv:is_empty("src") then
                     meta:set_string("infotext","Furnace is empty")
                 end
@@ -1445,25 +1445,25 @@ minetest.register_node("default:furnace_active", {
 })
 
 function hacky_swap_node(pos,name)
-    local node = minetest.env:get_node(pos)
-    local meta = minetest.env:get_meta(pos)
+    local node = multicraft.env:get_node(pos)
+    local meta = multicraft.env:get_meta(pos)
     local meta0 = meta:to_table()
     if node.name == name then
         return
     end
     node.name = name
     local meta0 = meta:to_table()
-    minetest.env:set_node(pos,node)
-    meta = minetest.env:get_meta(pos)
+    multicraft.env:set_node(pos,node)
+    meta = multicraft.env:get_meta(pos)
     meta:from_table(meta0)
 end
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:furnace","default:furnace_active"},
     interval = 1.0,
     chance = 1,
     action = function(pos, node, active_object_count, active_object_count_wider)
-        local meta = minetest.env:get_meta(pos)
+        local meta = multicraft.env:get_meta(pos)
         for i, name in ipairs({
                 "fuel_totaltime",
                 "fuel_time",
@@ -1482,7 +1482,7 @@ minetest.register_abm({
         local aftercooked
 
         if srclist then
-            cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
+            cooked, aftercooked = multicraft.get_craft_result({method = "cooking", width = 1, items = srclist})
         end
 
         local was_active = false
@@ -1528,10 +1528,10 @@ minetest.register_abm({
         local srclist = inv:get_list("src")
 
         if srclist then
-            cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
+            cooked = multicraft.get_craft_result({method = "cooking", width = 1, items = srclist})
         end
         if fuellist then
-            fuel, afterfuel = minetest.get_craft_result({method = "fuel", width = 1, items = fuellist})
+            fuel, afterfuel = multicraft.get_craft_result({method = "fuel", width = 1, items = fuellist})
         end
 
         if fuel.time <= 0 then
@@ -1557,7 +1557,7 @@ minetest.register_abm({
     end,
 })
 
-minetest.register_node("default:cobble", {
+multicraft.register_node("default:cobble", {
     description = "Cobblestone",
     tiles = {"default_cobble.png"},
     is_ground_content = true,
@@ -1566,7 +1566,7 @@ minetest.register_node("default:cobble", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:mossycobble", {
+multicraft.register_node("default:mossycobble", {
     description = "Mossy Cobblestone",
     tiles = {"default_mossycobble.png"},
     is_ground_content = true,
@@ -1575,7 +1575,7 @@ minetest.register_node("default:mossycobble", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:steelblock", {
+multicraft.register_node("default:steelblock", {
     description = "Steel Block",
     tiles = {"default_steel_block.png"},
     is_ground_content = true,
@@ -1584,7 +1584,7 @@ minetest.register_node("default:steelblock", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:goldblock", {
+multicraft.register_node("default:goldblock", {
     description = "Gold Block",
     tiles = {"default_gold_block.png"},
     is_ground_content = true,
@@ -1593,7 +1593,7 @@ minetest.register_node("default:goldblock", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:diamondblock", {
+multicraft.register_node("default:diamondblock", {
     description = "Diamond Block",
     tiles = {"default_diamond_block.png"},
     is_ground_content = true,
@@ -1602,7 +1602,7 @@ minetest.register_node("default:diamondblock", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:lapisblock", {
+multicraft.register_node("default:lapisblock", {
     description = "Lapis Lazul Block",
     tiles = {"default_lapis_block.png"},
     stack_max = 64,
@@ -1610,7 +1610,7 @@ minetest.register_node("default:lapisblock", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:emeraldblock", {
+multicraft.register_node("default:emeraldblock", {
     description = "Emerald Block",
     tiles = {"default_emerald_block.png"},
     stack_max = 64,
@@ -1618,7 +1618,7 @@ minetest.register_node("default:emeraldblock", {
     sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("default:obsidian", {
+multicraft.register_node("default:obsidian", {
     description = "Obsidian",
     tiles = {"default_obsidian.png"},
     is_ground_content = true,
@@ -1627,7 +1627,7 @@ minetest.register_node("default:obsidian", {
     groups = {cracky=4,level=2,oddly_breakable_by_hand=4, building = 1},
 })
 
-minetest.register_node("default:apple", {
+multicraft.register_node("default:apple", {
     description = "Apple",
     drawtype = "plantlike",
     visual_scale = 1.0,
@@ -1642,11 +1642,11 @@ minetest.register_node("default:apple", {
     },
     stack_max = 64,
     groups = {fleshy=3,dig_immediate=3,flammable=2, foodstuffs = 1},
-    on_use = minetest.item_eat(4),
+    on_use = multicraft.item_eat(4),
     sounds = default.node_sound_defaults(),
 })
 
-minetest.register_node("default:apple_gold", {
+multicraft.register_node("default:apple_gold", {
     description = "Golden Apple",
     drawtype = "plantlike",
     visual_scale = 1.0,
@@ -1661,11 +1661,11 @@ minetest.register_node("default:apple_gold", {
     },
     stack_max = 64,
     groups = {fleshy=3,dig_immediate=3,flammable=2, foodstuffs = 1},
-    on_use = minetest.item_eat(8),
+    on_use = multicraft.item_eat(8),
     sounds = default.node_sound_defaults(),
 })
 
-minetest.register_node("default:dry_shrub", {
+multicraft.register_node("default:dry_shrub", {
     description = "Dry Shrub",
     drawtype = "plantlike",
     visual_scale = 1.0,
@@ -1683,7 +1683,7 @@ minetest.register_node("default:dry_shrub", {
     },
 })
 
-minetest.register_node("default:grass", {
+multicraft.register_node("default:grass", {
     description = "Grass",
     drawtype = "plantlike",
     tiles = {"default_tallgrass.png"},
@@ -1718,7 +1718,7 @@ minetest.register_node("default:grass", {
     end
 })
 
-minetest.register_node("default:glowstone", {
+multicraft.register_node("default:glowstone", {
     description = "Glowstone",
     tiles = {"default_glowstone.png"},
     is_ground_content = true,
@@ -1737,7 +1737,7 @@ minetest.register_node("default:glowstone", {
     light_source = 12,
 })
 
-minetest.register_node("default:sponge", {
+multicraft.register_node("default:sponge", {
     description = "Sponge",
     drawtype = "normal",
     tiles = {"default_sponge.png"},
@@ -1753,20 +1753,20 @@ minetest.register_node("default:sponge", {
         if pointed_thing.type ~= "node" then
             return itemstack
         end
-        if minetest.is_protected(pointed_thing.above, pn) then
+        if multicraft.is_protected(pointed_thing.above, pn) then
             return itemstack
         end
             local change = false
             local on_water = false
             local pos = pointed_thing.above
         -- verifier si il est dans l'eau ou a cotée
-        if string.find(minetest.env:get_node(pointed_thing.above).name, "water_source")
-        or  string.find(minetest.env:get_node(pointed_thing.above).name, "water_flowing") then
+        if string.find(multicraft.env:get_node(pointed_thing.above).name, "water_source")
+        or  string.find(multicraft.env:get_node(pointed_thing.above).name, "water_flowing") then
             on_water = true
         end
         for i=-1,1 do
             p = {x=pos.x+i, y=pos.y, z=pos.z}
-            n = minetest.env:get_node(p)
+            n = multicraft.env:get_node(p)
             -- On verifie si il y a de l'eau
             if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
                 on_water = true
@@ -1774,7 +1774,7 @@ minetest.register_node("default:sponge", {
         end
         for i=-1,1 do
             p = {x=pos.x, y=pos.y+i, z=pos.z}
-            n = minetest.env:get_node(p)
+            n = multicraft.env:get_node(p)
             -- On verifie si il y a de l'eau
             if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
                 on_water = true
@@ -1782,7 +1782,7 @@ minetest.register_node("default:sponge", {
         end
         for i=-1,1 do
             p = {x=pos.x, y=pos.y, z=pos.z+i}
-            n = minetest.env:get_node(p)
+            n = multicraft.env:get_node(p)
             -- On verifie si il y a de l'eau
             if (n.name=="default:water_flowing") or (n.name == "default:water_source") then
                 on_water = true
@@ -1794,10 +1794,10 @@ minetest.register_node("default:sponge", {
                     for j=-3,3 do
                         for k=-3,3 do
                             p = {x=pos.x+i, y=pos.y+j, z=pos.z+k}
-                            n = minetest.env:get_node(p)
+                            n = multicraft.env:get_node(p)
                             -- On Supprime l'eau
                             if (n.name=="default:water_flowing") or (n.name == "default:water_source")then
-                                minetest.env:add_node(p, {name="air"})
+                                multicraft.env:add_node(p, {name="air"})
                                 change = true
                             end
                         end
@@ -1805,18 +1805,18 @@ minetest.register_node("default:sponge", {
                 end
             end
             p = {x=pos.x, y=pos.y, z=pos.z}
-            n = minetest.env:get_node(p)
+            n = multicraft.env:get_node(p)
             if change == true then
-                minetest.env:add_node(pointed_thing.above, {name = "default:sponge_wet"})
+                multicraft.env:add_node(pointed_thing.above, {name = "default:sponge_wet"})
             else
-                minetest.env:add_node(pointed_thing.above, {name = "default:sponge"})
+                multicraft.env:add_node(pointed_thing.above, {name = "default:sponge"})
             end
         return itemstack
 
     end
 })
 
-minetest.register_node("default:sponge_wet", {
+multicraft.register_node("default:sponge_wet", {
     description = "Wet Sponge",
     drawtype = "normal",
     tiles = {"default_sponge_wet.png"},
@@ -1830,10 +1830,10 @@ minetest.register_node("default:sponge_wet", {
 })
 
 
-minetest.register_node("default:ice", {
+multicraft.register_node("default:ice", {
     description = "Ice",
     drawtype = "glasslike",
-    inventory_image = minetest.inventorycube("default_ice.png"),
+    inventory_image = multicraft.inventorycube("default_ice.png"),
     tiles = {"default_ice.png"},
     is_ground_content = true,
     paramtype = "light",
@@ -1843,10 +1843,10 @@ minetest.register_node("default:ice", {
     sounds = default.node_sound_glass_defaults(),
 })
 
-minetest.register_node("default:packedice", {
+multicraft.register_node("default:packedice", {
     description = "Packed Ice",
     drawtype = "glasslike",
-    inventory_image = minetest.inventorycube("default_ice_packed.png"),
+    inventory_image = multicraft.inventorycube("default_ice_packed.png"),
     tiles = {"default_ice_packed.png"},
     is_ground_content = true,
     paramtype = "light",
@@ -1856,7 +1856,7 @@ minetest.register_node("default:packedice", {
     sounds = default.node_sound_glass_defaults(),
 })
 
-minetest.register_node("default:snow", {
+multicraft.register_node("default:snow", {
     description = "Snow",
     tiles = {"default_snow.png"},
     inventory_image = "default_snowball.png",
@@ -1879,13 +1879,13 @@ minetest.register_node("default:snow", {
     on_use = snow_shoot_snowball,
     on_construct = function(pos)
     pos.y = pos.y - 1
-        if minetest.env:get_node(pos).name == "default:dirt_with_grass" then
-            minetest.env:set_node(pos, {name="default:dirt_with_snow"})
+        if multicraft.env:get_node(pos).name == "default:dirt_with_grass" then
+            multicraft.env:set_node(pos, {name="default:dirt_with_snow"})
         end
     end,
 })
 
-minetest.register_node("default:snowblock", {
+multicraft.register_node("default:snowblock", {
     description = "Snow Block",
     tiles = {"default_snow.png"},
     is_ground_content = true,
@@ -1897,7 +1897,7 @@ minetest.register_node("default:snowblock", {
     drop = "default:snow 4",
 })
 
-minetest.register_node("default:cobweb", {
+multicraft.register_node("default:cobweb", {
        description = "Cobweb",
        drawtype = "plantlike",
        visual_scale = 1.1,
@@ -1917,5 +1917,5 @@ minetest.register_node("default:cobweb", {
        drop = "farming:string",
 })
 
-minetest.register_alias('mobs:cobweb','default:cobweb')
+multicraft.register_alias('mobs:cobweb','default:cobweb')
 

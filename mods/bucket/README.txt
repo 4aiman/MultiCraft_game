@@ -1,4 +1,4 @@
-Minetest 0.4 mod: bucket
+multicraft 0.4 mod: bucket
 =========================
 
 License of source code:

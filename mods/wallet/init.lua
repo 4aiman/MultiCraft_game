@@ -1,4 +1,4 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 local function rshift(x, by)
   return math.floor(x / 2 ^ by)
@@ -15,10 +15,10 @@ local directions = {
 function update_wall(pos)
         local typewall = 0
 
-    if minetest.get_node(pos).name:find("wallet:wall") == 1 then
+    if multicraft.get_node(pos).name:find("wallet:wall") == 1 then
                 typewall = typewall + 1
     end
-        if minetest.get_node(pos).name:find("wallet:wallmossy") == 1 then
+        if multicraft.get_node(pos).name:find("wallet:wallmossy") == 1 then
                 typewall = typewall + 1
         end
 
@@ -28,15 +28,15 @@ function update_wall(pos)
 
     local sum = 0
     for i = 1, 4 do
-        local node = minetest.get_node({x = pos.x + directions[i].x, y = pos.y + directions[i].y, z = pos.z + directions[i].z})
-        if minetest.registered_nodes[node.name].walkable then
+        local node = multicraft.get_node({x = pos.x + directions[i].x, y = pos.y + directions[i].y, z = pos.z + directions[i].z})
+        if multicraft.registered_nodes[node.name].walkable then
             sum = sum + 2 ^ (i - 1)
         end
     end
 
-    local node = minetest.get_node({x = pos.x, y = pos.y+1, z = pos.z})
+    local node = multicraft.get_node({x = pos.x, y = pos.y+1, z = pos.z})
     if sum == 5 or sum == 10 then
-        if minetest.registered_nodes[node.name].walkable or node.name == "torches:floor" then
+        if multicraft.registered_nodes[node.name].walkable or node.name == "torches:floor" then
             sum = sum + 11
         end
     end
@@ -46,9 +46,9 @@ function update_wall(pos)
     end
 
         if typewall == 1 then
-                minetest.add_node(pos, {name = "wallet:wall_"..sum})
+                multicraft.add_node(pos, {name = "wallet:wall_"..sum})
         else
-                minetest.add_node(pos, {name = "wallet:wallmossy_"..sum})
+                multicraft.add_node(pos, {name = "wallet:wallmossy_"..sum})
         end
 
 end
@@ -100,7 +100,7 @@ for i = 0, 15 do
     if i == 15 or i == 0 then need_pillar = true end
     if need_pillar then table.insert(take, pillar) end
 
-    minetest.register_node("wallet:wall_"..i, {
+    multicraft.register_node("wallet:wall_"..i, {
                 collision_box = {
                         type = 'fixed',
                         fixed = {-4/16, -1, -4/16, 4/16, 1, 4/16}
@@ -117,7 +117,7 @@ for i = 0, 15 do
     })
 end
 
-minetest.register_node("wallet:wall_0", {
+multicraft.register_node("wallet:wall_0", {
     drawtype = "nodebox",
         collision_box = {
                         type = 'fixed',
@@ -133,7 +133,7 @@ minetest.register_node("wallet:wall_0", {
     },
 })
 
-minetest.register_node("wallet:wall_16", {
+multicraft.register_node("wallet:wall_16", {
     drawtype = "nodebox",
         collision_box = {
                         type = 'fixed',
@@ -149,7 +149,7 @@ minetest.register_node("wallet:wall_16", {
     },
 })
 
-minetest.register_node("wallet:wall_21", {
+multicraft.register_node("wallet:wall_21", {
     drawtype = "nodebox",
         collision_box = {
                         type = 'fixed',
@@ -165,7 +165,7 @@ minetest.register_node("wallet:wall_21", {
     },
 })
 
-minetest.register_node("wallet:wall", {
+multicraft.register_node("wallet:wall", {
     description = "Cobblestone Wall",
         paramtype = "light",
     tile_images = {"default_cobble.png"},
@@ -186,7 +186,7 @@ minetest.register_node("wallet:wall", {
 })
 
 
-minetest.register_craft({
+multicraft.register_craft({
         output = 'wallet:wall 6',
         recipe = {
                 {'default:cobble', 'default:cobble', 'default:cobble'},
@@ -223,7 +223,7 @@ for i = 0, 15 do
     if i == 15 or i == 0 then need_pillar = true end
     if need_pillar then table.insert(take, pillar) end
 
-    minetest.register_node("wallet:wallmossy_"..i, {
+    multicraft.register_node("wallet:wallmossy_"..i, {
         drawtype = "nodebox",
                 collision_box = {
                         type = 'fixed',
@@ -240,7 +240,7 @@ for i = 0, 15 do
     })
 end
 
-minetest.register_node("wallet:wallmossy_0", {
+multicraft.register_node("wallet:wallmossy_0", {
     drawtype = "nodebox",
         collision_box = {
                         type = 'fixed',
@@ -256,7 +256,7 @@ minetest.register_node("wallet:wallmossy_0", {
     },
 })
 
-minetest.register_node("wallet:wallmossy_16", {
+multicraft.register_node("wallet:wallmossy_16", {
     drawtype = "nodebox",
         collision_box = {
                         type = 'fixed',
@@ -272,7 +272,7 @@ minetest.register_node("wallet:wallmossy_16", {
     },
 })
 
-minetest.register_node("wallet:wallmossy_21", {
+multicraft.register_node("wallet:wallmossy_21", {
     drawtype = "nodebox",
         collision_box = {
                         type = 'fixed',
@@ -288,7 +288,7 @@ minetest.register_node("wallet:wallmossy_21", {
     },
 })
 
-minetest.register_node("wallet:wallmossy", {
+multicraft.register_node("wallet:wallmossy", {
     description = "Mossy Cobblestone Wall",
         paramtype = "light",
         collision_box = {
@@ -307,7 +307,7 @@ minetest.register_node("wallet:wallmossy", {
         collisionbox = {-0.2, 0, -0.2, 0.2, 1.4, 0.2},
     on_construct = update_wall
 })
-minetest.register_craft({
+multicraft.register_craft({
         output = 'wallet:wallmossy 6',
         recipe = {
                 {'default:mossycobble', 'default:mossycobble', 'default:mossycobble'},
@@ -316,5 +316,5 @@ minetest.register_craft({
 })
 
 
-minetest.register_on_placenode(update_wall_global)
-minetest.register_on_dignode(update_wall_global)
+multicraft.register_on_placenode(update_wall_global)
+multicraft.register_on_dignode(update_wall_global)

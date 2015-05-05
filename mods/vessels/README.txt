@@ -1,4 +1,4 @@
-Minetest 0.4 mod: vessels
+multicraft 0.4 mod: vessels
 ==========================
 
 Crafts

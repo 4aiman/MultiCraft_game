@@ -1,4 +1,4 @@
-minetest.register_node("farming:potato_1", {
+multicraft.register_node("farming:potato_1", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -14,7 +14,7 @@ minetest.register_node("farming:potato_1", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:potato_2", {
+multicraft.register_node("farming:potato_2", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -30,7 +30,7 @@ minetest.register_node("farming:potato_2", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:potato", {
+multicraft.register_node("farming:potato", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -47,10 +47,10 @@ minetest.register_node("farming:potato", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_craftitem("farming:potato_item", {
+multicraft.register_craftitem("farming:potato_item", {
     description = "Potato",
     inventory_image = "farming_potato.png",
-    on_use = minetest.item_eat(1),
+    on_use = multicraft.item_eat(1),
     stack_max = 64,
     groups = {foodstuffs=1},
     on_place = function(itemstack, placer, pointed_thing)
@@ -58,23 +58,23 @@ minetest.register_craftitem("farming:potato_item", {
     end,
 })
 
-minetest.register_craftitem("farming:potato_item_baked", {
+multicraft.register_craftitem("farming:potato_item_baked", {
     description = "Baked Potato",
     stack_max = 64,
     inventory_image = "farming_potato_baked.png",
-    on_use = minetest.item_eat(6),
+    on_use = multicraft.item_eat(6),
     groups = {foodstuffs=1},
 })
 
-minetest.register_craftitem("farming:potato_item_poison", {
+multicraft.register_craftitem("farming:potato_item_poison", {
     description = "Poisonous Potato",
     stack_max = 64,
     inventory_image = "farming_potato_poison.png",
-    on_use = minetest.item_eat(2),
+    on_use = multicraft.item_eat(2),
     groups = {foodstuffs=1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     type = "cooking",
     output = "farming:potato_item_baked",
     recipe = "farming:potato_item",

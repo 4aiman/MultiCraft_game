@@ -1,4 +1,4 @@
--- Minetest 0.4 mod: player
+-- multicraft 0.4 mod: player
 -- See README.txt for licensing and other information.
 
 --[[
@@ -140,14 +140,14 @@ function default.player_set_animation(player, anim_name, speed)
 end
 
 -- Update appearance when the player joins
-minetest.register_on_joinplayer(function(player)
+multicraft.register_on_joinplayer(function(player)
 	default.player_attached[player:get_player_name()] = false
 	default.player_set_model(player, "character.x")
 	player:set_physics_override({sneak_glitch=false})
 	player:set_local_animation({x=0, y=79}, {x=168, y=187}, {x=189, y=198}, {x=200, y=219}, 30)
 end)
 
-minetest.register_on_leaveplayer(function(player)
+multicraft.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 	player_model[name] = nil
 	player_anim[name] = nil
@@ -158,8 +158,8 @@ end)
 local player_set_animation = default.player_set_animation
 
 -- Check each player and apply animations
-minetest.register_globalstep(function(dtime)
-	for _, player in pairs(minetest.get_connected_players()) do
+multicraft.register_globalstep(function(dtime)
+	for _, player in pairs(multicraft.get_connected_players()) do
 		local name = player:get_player_name()
 		local model_name = player_model[name]
 		local model = model_name and models[model_name]

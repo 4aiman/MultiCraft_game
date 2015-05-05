@@ -1,22 +1,22 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 farming = {}
 farming.seeds = {}
 function farming:add_plant(full_grown, names, interval, chance)
-    minetest.register_abm({
+    multicraft.register_abm({
         nodenames = names,
         interval = interval,
         chance = chance,
         action = function(pos, node)
             pos.y = pos.y-1
-            if minetest.get_node(pos).name ~= "farming:soil_wet" and math.random(0, 9) > 0 then
+            if multicraft.get_node(pos).name ~= "farming:soil_wet" and math.random(0, 9) > 0 then
                 return
             end
             pos.y = pos.y+1
-            if not minetest.get_node_light(pos) then
+            if not multicraft.get_node_light(pos) then
                 return
             end
-            if minetest.get_node_light(pos) < 10 then
+            if multicraft.get_node_light(pos) < 10 then
                 return
             end
             local step = nil
@@ -33,7 +33,7 @@ function farming:add_plant(full_grown, names, interval, chance)
             if new_node.name == nil then
                 new_node.name = full_grown
             end
-            minetest.set_node(pos, new_node)
+            multicraft.set_node(pos, new_node)
         end
 }   )
 end
@@ -49,25 +49,25 @@ function farming:place_seed(itemstack, placer, pointed_thing, plantname)
     end
 
     local pos = {x=pt.above.x, y=pt.above.y-1, z=pt.above.z}
-    local farmland = minetest.get_node(pos)
+    local farmland = multicraft.get_node(pos)
     pos= {x=pt.above.x, y=pt.above.y, z=pt.above.z}
-    local place_s = minetest.get_node(pos)
+    local place_s = multicraft.get_node(pos)
 
 
     if string.find(farmland.name, "farming:soil") and string.find(place_s.name, "air")  then
-        minetest.add_node(pos, {name=plantname})
+        multicraft.add_node(pos, {name=plantname})
     else
         return
     end
 
-    if not minetest.setting_getbool("creative_mode") then
+    if not multicraft.setting_getbool("creative_mode") then
         itemstack:take_item()
     end
     return itemstack
 end
 
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"group:dig_by_water"},
     neighbors = {"group:water"},
     interval = 1,
@@ -76,11 +76,11 @@ minetest.register_abm({
         for xp=-1,1 do
             for zp=-1,1 do
                 p = {x=pos.x+xp, y=pos.y, z=pos.z+zp}
-                n = minetest.get_node(p)
+                n = multicraft.get_node(p)
                 -- On verifie si il y a de l'eau
                 if (n.name=="default:water_flowing") then
                         drop_attached_node(pos)
-                        minetest.dig_node(pos)
+                        multicraft.dig_node(pos)
                         break
                 end
             end
@@ -90,27 +90,27 @@ minetest.register_abm({
 })
 
 -- ========= SOIL =========
-dofile(minetest.get_modpath("farming").."/soil.lua")
+dofile(multicraft.get_modpath("farming").."/soil.lua")
 
 -- ========= HOES =========
-dofile(minetest.get_modpath("farming").."/hoes.lua")
+dofile(multicraft.get_modpath("farming").."/hoes.lua")
 
 -- ========= WHEAT =========
-dofile(minetest.get_modpath("farming").."/wheat.lua")
+dofile(multicraft.get_modpath("farming").."/wheat.lua")
 
 -- ========= PUMPKIN =========
-dofile(minetest.get_modpath("farming").."/pumpkin.lua")
+dofile(multicraft.get_modpath("farming").."/pumpkin.lua")
 
 -- ========= MELON =========
-dofile(minetest.get_modpath("farming").."/melon.lua")
+dofile(multicraft.get_modpath("farming").."/melon.lua")
 
 -- ========= CARROT =========
-dofile(minetest.get_modpath("farming").."/carrots.lua")
+dofile(multicraft.get_modpath("farming").."/carrots.lua")
 
 -- ========= POTATOES =========
-dofile(minetest.get_modpath("farming").."/potatoes.lua")
+dofile(multicraft.get_modpath("farming").."/potatoes.lua")
 
 -- ========= MUSHROOMS =========
-dofile(minetest.get_modpath("farming").."/mushrooms.lua")
+dofile(multicraft.get_modpath("farming").."/mushrooms.lua")
 
 

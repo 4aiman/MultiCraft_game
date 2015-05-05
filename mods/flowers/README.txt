@@ -1,4 +1,4 @@
-Minetest 0.4 mod: flowers
+multicraft 0.4 mod: flowers
 =========================
 
 License of source code:

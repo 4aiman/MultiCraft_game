@@ -1,4 +1,4 @@
-Player Textures Mod for Minetest
+Player Textures Mod for multicraft
 ================================
 
 This mod allows players to use different textures. Just place the texture in

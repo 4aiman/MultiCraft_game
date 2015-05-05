@@ -1,4 +1,4 @@
-Minetest mod "Beds"
+multicraft mod "Beds"
 =======================
 version: 1.1
 

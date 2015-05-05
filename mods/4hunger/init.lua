@@ -112,7 +112,7 @@ local function math_round(num)
 end
 
 local function save_4hunger()
-    local output = io.open(minetest.get_worldpath().."/4hunger.lua", "w")
+    local output = io.open(multicraft.get_worldpath().."/4hunger.lua", "w")
     if output then
        local list = {
                     [1]='foodTickTimerMax',
@@ -135,12 +135,12 @@ local function save_4hunger()
                     [19]='death_timer',
                     }
          for i,var in ipairs(list) do
-           local o  = minetest.serialize(_G[var])
+           local o  = multicraft.serialize(_G[var])
            local j  = string.find(o, "return")
            local oo1 = string.sub(o, 1, j-1)
            local oo2 = string.sub(o, j-1, -1)
            output:write(oo1 .. "\n")
-           output:write(var .." = minetest.deserialize('" .. oo2 .. "')\n")
+           output:write(var .." = multicraft.deserialize('" .. oo2 .. "')\n")
          end
 
        io.close(output)
@@ -148,10 +148,10 @@ local function save_4hunger()
 end
 
 local function load_4hunger()
-   local input = io.open(minetest.get_worldpath().."/4hunger.lua", "r")
+   local input = io.open(multicraft.get_worldpath().."/4hunger.lua", "r")
    if input then
       io.close(input)
-      dofile(minetest.get_worldpath().."/4hunger.lua")
+      dofile(multicraft.get_worldpath().."/4hunger.lua")
    end
 end
 
@@ -235,9 +235,9 @@ local function get_points(item) -- ToDo: redo to use groups!
     end
 end
 
-local old_eat=minetest.item_eat
+local old_eat=multicraft.item_eat
 
-function minetest.item_eat(food_points, saturation_points, replace_with_item)
+function multicraft.item_eat(food_points, saturation_points, replace_with_item)
      return function(itemstack, user, pointed_thing)
         if itemstack then
            local f = food_points
@@ -302,7 +302,7 @@ function init_hunger(player)
      if not timers[pll] then timers[pll] = -1 end
      if not keypress_track[pll] then keypress_track[pll] = {} end
 
-     minetest.after(0, function()
+     multicraft.after(0, function()
      if not player then return end
      hungerhudb[pll]=player:hud_add({
         hud_elem_type = "statbar",
@@ -326,15 +326,15 @@ function init_hunger(player)
   end
 end
 
-minetest.register_on_joinplayer(function(player)
+multicraft.register_on_joinplayer(function(player)
    init_hunger(player)
 end)
 
 local function get_field(item,field)
-    if minetest.registered_nodes[item] then return minetest.registered_nodes[item][field] end
-    if minetest.registered_items[item] then return minetest.registered_items[item][field] end
-    if minetest.registered_craftitems[item] then return minetest.registered_craftitems[item][field] end
-    if minetest.registered_tools[item] then return minetest.registered_tools[item][field] end
+    if multicraft.registered_nodes[item] then return multicraft.registered_nodes[item][field] end
+    if multicraft.registered_items[item] then return multicraft.registered_items[item][field] end
+    if multicraft.registered_craftitems[item] then return multicraft.registered_craftitems[item][field] end
+    if multicraft.registered_tools[item] then return multicraft.registered_tools[item][field] end
     return ""
 end
 
@@ -342,10 +342,10 @@ local function get_on_eat(item)
     return get_field(item,"on_eat")
 end
 
-minetest.after(0, function(dtime)
+multicraft.after(0, function(dtime)
 local global_dtime = 0
 local doit = false
-    minetest.register_globalstep(function(dtime)
+    multicraft.register_globalstep(function(dtime)
        global_dtime = global_dtime + dtime
        if global_dtime>1 then
           doit = true
@@ -357,7 +357,7 @@ local doit = false
        else
           save_time=save_time+dtime
        end
-       local players = minetest.get_connected_players()
+       local players = multicraft.get_connected_players()
        for i,player in ipairs(players) do
            local pll = player:get_player_name()
                local pos = player:getpos()
@@ -372,7 +372,7 @@ local doit = false
              if not food_level[pll] then init_hunger(player) end
              if (death_timer[pll] or 0) > max_being_hungry_time then
                 death_timer[pll] = 0
-                minetest.chat_send_all(death_message .. pll)
+                multicraft.chat_send_all(death_message .. pll)
                 food_level[pll] = max_drumsticks
                 food_saturation[pll] = max_drumsticks
                 food_exhaustion[pll] = 0
@@ -418,7 +418,7 @@ local doit = false
                oldHPs[pll] = hp
                local dist = distance(oldpos[pll],pos)
                if not jumped[pll] then
-                  local node = minetest.get_node(pos)
+                  local node = multicraft.get_node(pos)
                   local name = node.name
                   if name:find("air") then
                      if state[pll] == 1 then
@@ -439,9 +439,9 @@ local doit = false
                   end
                end
                pos.y=pos.y+1
-               local node = minetest.get_node(pos)
+               local node = multicraft.get_node(pos)
                local name = node.name
-               if minetest.get_item_group(name, "water") ~= 0 then
+               if multicraft.get_item_group(name, "water") ~= 0 then
                   state[pll] = 2
                end
                if food_level[pll]<=0 then food_level[pll] = 0 end
@@ -505,7 +505,7 @@ local doit = false
 end)
 
 
-minetest.register_on_dignode(function(pos, oldnode, digger)
+multicraft.register_on_dignode(function(pos, oldnode, digger)
   if not digger then return end
   local pll = digger:get_player_name()
   state[pll]=9
@@ -516,16 +516,16 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
   end
 end)
 
-minetest.after(0,function(dtime)
-    for cou,def in pairs(minetest.registered_items) do
+multicraft.after(0,function(dtime)
+    for cou,def in pairs(multicraft.registered_items) do
        if get_points(def['name']) ~= false then
-          def['on_use'] = minetest.item_eat(1)
-          minetest.register_item(':' .. def.name, def)
+          def['on_use'] = multicraft.item_eat(1)
+          multicraft.register_item(':' .. def.name, def)
        end
     end
 end )
 
-minetest.register_chatcommand("hunger", {
+multicraft.register_chatcommand("hunger", {
     func = function(name, param)
         food_level[name] = 0
         food_saturation[name] = 0

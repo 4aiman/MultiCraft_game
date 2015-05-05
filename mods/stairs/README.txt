@@ -1,4 +1,4 @@
-Minetest 0.4 mod: stairs
+multicraft 0.4 mod: stairs
 =========================
 
 License of source code:

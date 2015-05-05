@@ -63,5 +63,5 @@ local check = {
 }
 
 for _,mod in ipairs(check) do
-   if not minetest.get_modpath(mod) then os.exit() end
+   if not multicraft.get_modpath(mod) then os.exit() end
 end

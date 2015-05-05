@@ -1,8 +1,8 @@
 --
 -- On Die
 --
---if minetest.setting_get("keepInventory") == false then
-    minetest.register_on_dieplayer(function(player)
+--if multicraft.setting_get("keepInventory") == false then
+    multicraft.register_on_dieplayer(function(player)
         local inv = player:get_inventory()
         local pos = player:getpos()
         for i,stack in ipairs(inv:get_list("main")) do
@@ -10,7 +10,7 @@
             local z = math.random(0, 9)/3
             pos.x = pos.x + x
             pos.z = pos.z + z
-            minetest.add_item(pos, stack)
+            multicraft.add_item(pos, stack)
             stack:clear()
             inv:set_stack("main", i, stack)
             pos.x = pos.x - x
@@ -24,14 +24,14 @@
 --
 
 default.cool_lava_source = function(pos)
-    minetest.set_node(pos, {name="default:obsidian"})
+    multicraft.set_node(pos, {name="default:obsidian"})
 end
 
 default.cool_lava_flowing = function(pos)
-    minetest.set_node(pos, {name="default:stone"})
+    multicraft.set_node(pos, {name="default:stone"})
 end
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:lava_flowing"},
     neighbors = {"group:water"},
     interval = 1,
@@ -41,7 +41,7 @@ minetest.register_abm({
     end,
 })
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:lava_source"},
     neighbors = {"group:water"},
     interval = 1,
@@ -58,17 +58,17 @@ minetest.register_abm({
 -- Functions
 grow_cactus = function(pos, node)
     pos.y = pos.y-1
-    local name = minetest.get_node(pos).name
-    if minetest.get_item_group(name, "sand") ~= 0 then
+    local name = multicraft.get_node(pos).name
+    if multicraft.get_item_group(name, "sand") ~= 0 then
         pos.y = pos.y+1
         local height = 0
-        while minetest.get_node(pos).name == "default:cactus" and height < 4 do
+        while multicraft.get_node(pos).name == "default:cactus" and height < 4 do
             height = height+1
             pos.y = pos.y+1
         end
         if height < 4 then
-            if minetest.get_node(pos).name == "air" then
-                minetest.set_node(pos, {name="default:cactus"})
+            if multicraft.get_node(pos).name == "air" then
+                multicraft.set_node(pos, {name="default:cactus"})
             end
         end
     end
@@ -76,27 +76,27 @@ end
 
 grow_reeds = function(pos, node)
     pos.y = pos.y-1
-    local name = minetest.get_node(pos).name
+    local name = multicraft.get_node(pos).name
     if name == "default:dirt" or name == "default:dirt_with_grass" then
-        if minetest.find_node_near(pos, 3, {"group:water"}) == nil then
+        if multicraft.find_node_near(pos, 3, {"group:water"}) == nil then
             return
         end
         pos.y = pos.y+1
         local height = 0
-        while minetest.get_node(pos).name == "default:reeds" and height < 3 do
+        while multicraft.get_node(pos).name == "default:reeds" and height < 3 do
             height = height+1
             pos.y = pos.y+1
         end
         if height < 3 then
-            if minetest.get_node(pos).name == "air" then
-                minetest.set_node(pos, {name="default:reeds"})
+            if multicraft.get_node(pos).name == "air" then
+                multicraft.set_node(pos, {name="default:reeds"})
             end
         end
     end
 end
 
 -- ABMs
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:cactus"},
     neighbors = {"group:sand"},
     interval = 25,
@@ -106,7 +106,7 @@ minetest.register_abm({
     end,
 })
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:reeds"},
     neighbors = {"default:dirt", "default:dirt_with_grass"},
     interval = 25,
@@ -122,14 +122,14 @@ minetest.register_abm({
 
 local timber_nodenames={"default:reeds", "default:cactus"}
 
-minetest.register_on_dignode(function(pos, node)
+multicraft.register_on_dignode(function(pos, node)
     local i=1
     while timber_nodenames[i]~=nil do
         if node.name==timber_nodenames[i] then
             np={x=pos.x, y=pos.y+1, z=pos.z}
-            while minetest.get_node(np).name==timber_nodenames[i] do
-                minetest.remove_node(np)
-                minetest.add_item(np, timber_nodenames[i])
+            while multicraft.get_node(np).name==timber_nodenames[i] do
+                multicraft.remove_node(np)
+                multicraft.add_item(np, timber_nodenames[i])
                 np={x=np.x, y=np.y+1, z=np.z}
             end
         end
@@ -142,16 +142,16 @@ end)
 --
 
 function get_nodedef_field(nodename, fieldname)
-    if not minetest.registered_nodes[nodename] then
+    if not multicraft.registered_nodes[nodename] then
         return nil
     end
-    return minetest.registered_nodes[nodename][fieldname]
+    return multicraft.registered_nodes[nodename][fieldname]
 end
 
 function set_fire(pointed_thing)
-        local n = minetest.get_node(pointed_thing.above)
-        if n.name ~= ""  and n.name == "air" and not minetest.is_protected(pointed_thing.above, "fire") then
-            minetest.add_node(pointed_thing.above, {name="fire:basic_flame"})
+        local n = multicraft.get_node(pointed_thing.above)
+        if n.name ~= ""  and n.name == "air" and not multicraft.is_protected(pointed_thing.above, "fire") then
+            multicraft.add_node(pointed_thing.above, {name="fire:basic_flame"})
         end
 end
 
@@ -162,10 +162,10 @@ end
 function add_fire(pos)
     local null = {x=0, y=0, z=0}
     pos.y = pos.y+0.19
-    minetest.add_particle(pos, null, null, 1.1,
+    multicraft.add_particle(pos, null, null, 1.1,
                     1.5, true, "default_fire_particle"..tostring(math.random(1,2)) ..".png")
     pos.y = pos.y +0.01
-    minetest.add_particle(pos, null, null, 0.8,
+    multicraft.add_particle(pos, null, null, 0.8,
                     1.5, true, "default_fire_particle"..tostring(math.random(1,2)) ..".png")
 end
 
@@ -195,17 +195,17 @@ end
 
 function generate_tree(pos, trunk, leaves, typearbre)
     pos.y = pos.y-1
-    local nodename = minetest.get_node(pos).name
+    local nodename = multicraft.get_node(pos).name
 
     pos.y = pos.y+1
-    if not minetest.get_node_light(pos) then
+    if not multicraft.get_node_light(pos) then
         return
     end
     if typearbre == nil or typearbre == 1 then
         node = {name = ""}
         for dy=1,4 do
             pos.y = pos.y+dy
-            if minetest.get_node(pos).name ~= "air" then
+            if multicraft.get_node(pos).name ~= "air" then
                 return
             end
             pos.y = pos.y-dy
@@ -213,8 +213,8 @@ function generate_tree(pos, trunk, leaves, typearbre)
         node = {name = trunk}
         for dy=0,4 do
             pos.y = pos.y+dy
-            if minetest.get_node(pos).name == "air" then
-                minetest.add_node(pos, node)
+            if multicraft.get_node(pos).name == "air" then
+                multicraft.add_node(pos, node)
             end
             pos.y = pos.y-dy
         end
@@ -233,40 +233,40 @@ function generate_tree(pos, trunk, leaves, typearbre)
                     pos.z = pos.z+dz
 
                     if dx == 0 and dz == 0 and dy==3 then
-                        if minetest.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-                            minetest.add_node(pos, node)
+                        if multicraft.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
+                            multicraft.add_node(pos, node)
                             if rarity == 1 then
-                                minetest.add_node(pos, apple_leave())
+                                multicraft.add_node(pos, apple_leave())
                             else
-                                minetest.add_node(pos, air_leave())
+                                multicraft.add_node(pos, air_leave())
                             end
                         end
                     elseif dx == 0 and dz == 0 and dy==4 then
-                        if minetest.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-                            minetest.add_node(pos, node)
+                        if multicraft.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
+                            multicraft.add_node(pos, node)
                             if rarity == 1 then
-                                minetest.add_node(pos, apple_leave())
+                                multicraft.add_node(pos, apple_leave())
                             else
-                                minetest.add_node(pos, air_leave())
+                                multicraft.add_node(pos, air_leave())
                             end
                         end
                     elseif math.abs(dx) ~= 2 and math.abs(dz) ~= 2 then
-                        if minetest.get_node(pos).name == "air" then
-                            minetest.add_node(pos, node)
+                        if multicraft.get_node(pos).name == "air" then
+                            multicraft.add_node(pos, node)
                             if rarity == 1 then
-                                minetest.add_node(pos, apple_leave())
+                                multicraft.add_node(pos, apple_leave())
                             else
-                                minetest.add_node(pos, air_leave())
+                                multicraft.add_node(pos, air_leave())
                             end
                         end
                     else
                         if math.abs(dx) ~= 2 or math.abs(dz) ~= 2 then
-                            if minetest.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
-                                minetest.add_node(pos, node)
+                            if multicraft.get_node(pos).name == "air" and math.random(1, 5) <= 4 then
+                                multicraft.add_node(pos, node)
                             if rarity == 1 then
-                                minetest.add_node(pos, apple_leave())
+                                multicraft.add_node(pos, apple_leave())
                             else
-                                minetest.add_node(pos, air_leave())
+                                multicraft.add_node(pos, air_leave())
                             end
                             end
                         end
@@ -284,7 +284,7 @@ function generate_tree(pos, trunk, leaves, typearbre)
         local tree_size = math.random(15, 25)
         for dy=1,4 do
             pos.y = pos.y+dy
-            if minetest.get_node(pos).name ~= "air" then
+            if multicraft.get_node(pos).name ~= "air" then
                 return
             end
             pos.y = pos.y-dy
@@ -295,14 +295,14 @@ function generate_tree(pos, trunk, leaves, typearbre)
             for dz=0,1 do
                     pos.z = pos.z + dz
                     --> 0
-                    if minetest.get_node(pos).name == "default:dirt_with_grass"
-                    or  minetest.get_node(pos).name == "default:dirt" then else
+                    if multicraft.get_node(pos).name == "default:dirt_with_grass"
+                    or  multicraft.get_node(pos).name == "default:dirt" then else
                             return
                     end
                     pos.x = pos.x+1
                     --> 1
-                    if minetest.get_node(pos).name == "default:dirt_with_grass"
-                    or  minetest.get_node(pos).name == "default:dirt" then else
+                    if multicraft.get_node(pos).name == "default:dirt_with_grass"
+                    or  multicraft.get_node(pos).name == "default:dirt" then else
                             return
                     end
                     pos.x = pos.x-1
@@ -319,43 +319,43 @@ function generate_tree(pos, trunk, leaves, typearbre)
             for dz=-1,2 do
                 if dz == -1 then
                     pos.z = pos.z + dz
-                    if math.random(1, 3) == 1 and minetest.get_node(pos).name == "air" then
-                        minetest.add_node(pos, {name = "default:vine", param2 = 4})
+                    if math.random(1, 3) == 1 and multicraft.get_node(pos).name == "air" then
+                        multicraft.add_node(pos, {name = "default:vine", param2 = 4})
                     end
                     pos.x = pos.x+1
-                    if math.random(1, 3) == 1 and  minetest.get_node(pos).name == "air" then
-                        minetest.add_node(pos, {name = "default:vine", param2 = 4})
+                    if math.random(1, 3) == 1 and  multicraft.get_node(pos).name == "air" then
+                        multicraft.add_node(pos, {name = "default:vine", param2 = 4})
                     end
                     pos.x = pos.x-1
                     pos.z = pos.z - dz
                 elseif dz == 2 then
                     pos.z = pos.z + dz
-                    if math.random(1, 3) == 1 and  minetest.get_node(pos).name == "air"then
-                        minetest.add_node(pos, {name = "default:vine", param2 = 5})
+                    if math.random(1, 3) == 1 and  multicraft.get_node(pos).name == "air"then
+                        multicraft.add_node(pos, {name = "default:vine", param2 = 5})
                     end
                     pos.x = pos.x+1
-                    if math.random(1, 3) == 1 and minetest.get_node(pos).name == "air" then
-                        minetest.add_node(pos, {name = "default:vine", param2 = 5})
+                    if math.random(1, 3) == 1 and multicraft.get_node(pos).name == "air" then
+                        multicraft.add_node(pos, {name = "default:vine", param2 = 5})
                     end
                     pos.x = pos.x-1
                     pos.z = pos.z - dz
                 else
                     pos.z = pos.z + dz
                     pos.x = pos.x-1
-                    if math.random(1, 3) == 1  and minetest.get_node(pos).name == "air" then
-                        minetest.add_node(pos, {name = "default:vine", param2 = 2})
+                    if math.random(1, 3) == 1  and multicraft.get_node(pos).name == "air" then
+                        multicraft.add_node(pos, {name = "default:vine", param2 = 2})
                     end
                     pos.x = pos.x+1
-                    if minetest.get_node(pos).name == "air" then
-                        minetest.add_node(pos, {name = trunk, param2=2})
+                    if multicraft.get_node(pos).name == "air" then
+                        multicraft.add_node(pos, {name = trunk, param2=2})
                     end
                     pos.x = pos.x+1
-                    if minetest.get_node(pos).name == "air" then
-                        minetest.add_node(pos, {name = trunk, param2=2})
+                    if multicraft.get_node(pos).name == "air" then
+                        multicraft.add_node(pos, {name = trunk, param2=2})
                     end
                     pos.x = pos.x+1
-                    if math.random(1, 3) == 1 and minetest.get_node(pos).name == "air" then
-                        minetest.add_node(pos, {name = "default:vine", param2 = 3})
+                    if math.random(1, 3) == 1 and multicraft.get_node(pos).name == "air" then
+                        multicraft.add_node(pos, {name = "default:vine", param2 = 3})
                     end
                     pos.x = pos.x-2
                     pos.z = pos.z - dz
@@ -376,26 +376,26 @@ function generate_tree(pos, trunk, leaves, typearbre)
                     pos.z = pos.z+dz
 
                     if dx == 0 and dz == 0 and dy==3 then
-                        if minetest.get_node(pos).name == "air" or minetest.get_node(pos).name == "default:vine" and math.random(1, 2) == 1 then
-                            minetest.add_node(pos, node)
+                        if multicraft.get_node(pos).name == "air" or multicraft.get_node(pos).name == "default:vine" and math.random(1, 2) == 1 then
+                            multicraft.add_node(pos, node)
                             end
                     elseif dx == 0 and dz == 0 and dy==4 then
-                        if minetest.get_node(pos).name == "air" or minetest.get_node(pos).name == "default:vine"  and math.random(1, 5) == 1 then
-                            minetest.add_node(pos, node)
-                                minetest.add_node(pos, air_leave())
+                        if multicraft.get_node(pos).name == "air" or multicraft.get_node(pos).name == "default:vine"  and math.random(1, 5) == 1 then
+                            multicraft.add_node(pos, node)
+                                multicraft.add_node(pos, air_leave())
                         end
                     elseif math.abs(dx) ~= 2 and math.abs(dz) ~= 2 then
-                        if minetest.get_node(pos).name == "air" or minetest.get_node(pos).name == "default:vine"  then
-                            minetest.add_node(pos, node)
+                        if multicraft.get_node(pos).name == "air" or multicraft.get_node(pos).name == "default:vine"  then
+                            multicraft.add_node(pos, node)
                         end
                     else
                         if math.abs(dx) ~= 2 or math.abs(dz) ~= 2 then
-                            if minetest.get_node(pos).name == "air" or minetest.get_node(pos).name == "default:vine" and math.random(1, 3) == 1 then
-                                minetest.add_node(pos, node)
+                            if multicraft.get_node(pos).name == "air" or multicraft.get_node(pos).name == "default:vine" and math.random(1, 3) == 1 then
+                                multicraft.add_node(pos, node)
                             end
                         else
-                            if math.random(1, 5) == 1 and minetest.get_node(pos).name == "air" then
-                                minetest.add_node(pos, node)
+                            if math.random(1, 5) == 1 and multicraft.get_node(pos).name == "air" then
+                                multicraft.add_node(pos, node)
                             end
                         end
                     end
@@ -410,7 +410,7 @@ end
 
 local plant_tab = {}
 local rnd_max = 5
-minetest.after(0.5, function()
+multicraft.after(0.5, function()
     plant_tab[0] = "air"
     plant_tab[1] = "default:grass"
     plant_tab[2] = "default:grass"
@@ -418,7 +418,7 @@ minetest.after(0.5, function()
     plant_tab[4] = "default:grass"
     plant_tab[5] = "default:grass"
 
-if minetest.get_modpath("flowers") ~= nil then
+if multicraft.get_modpath("flowers") ~= nil then
     rnd_max = 16
     plant_tab[6] = "flowers:dandelion_yellow"
     plant_tab[7] = "flowers:rose"
@@ -437,51 +437,51 @@ end)
 
 function duengen(pointed_thing)
     pos = pointed_thing.under
-    n = minetest.get_node(pos)
+    n = multicraft.get_node(pos)
     if n.name == "" then return end
     local stage = ""
     if n.name == "default:sapling" then
-        minetest.add_node(pos, {name="air"})
+        multicraft.add_node(pos, {name="air"})
         generate_tree(pos, "default:tree", "default:leaves", 1)
     elseif string.find(n.name, "farming:wheat_") ~= nil then
         stage = string.sub(n.name, 15)
         if stage == "3" then
-            minetest.add_node(pos, {name="farming:wheat"})
+            multicraft.add_node(pos, {name="farming:wheat"})
         elseif math.random(1,5) < 3 then
-            minetest.add_node(pos, {name="farming:wheat"})
+            multicraft.add_node(pos, {name="farming:wheat"})
         else
-            minetest.add_node(pos, {name="farming:wheat_"..math.random(2,3)})
+            multicraft.add_node(pos, {name="farming:wheat_"..math.random(2,3)})
         end
     elseif string.find(n.name, "farming:potato_") ~= nil then
         stage = tonumber(string.sub(n.name, 16))
         if stage == 1 then
-            minetest.add_node(pos, {name="farming:potato_"..math.random(stage,2)})
+            multicraft.add_node(pos, {name="farming:potato_"..math.random(stage,2)})
         else
-            minetest.add_node(pos, {name="farming:potato"})
+            multicraft.add_node(pos, {name="farming:potato"})
         end
     elseif string.find(n.name, "farming:carrot_") ~= nil then
         stage = tonumber(string.sub(n.name, 16))
         if stage == 1 then
-            minetest.add_node(pos, {name="farming:carrot_"..math.random(stage,2)})
+            multicraft.add_node(pos, {name="farming:carrot_"..math.random(stage,2)})
         else
-            minetest.add_node(pos, {name="farming:carrot"})
+            multicraft.add_node(pos, {name="farming:carrot"})
         end
     elseif string.find(n.name, "farming:pumpkin_") ~= nil then
         stage = tonumber(string.sub(n.name, 17))
         if stage == 1 then
-            minetest.add_node(pos, {name="farming:pumpkin_"..math.random(stage,2)})
+            multicraft.add_node(pos, {name="farming:pumpkin_"..math.random(stage,2)})
         else
-            minetest.add_node(pos, {name="farming:pumpkintige_unconnect"})
+            multicraft.add_node(pos, {name="farming:pumpkintige_unconnect"})
         end
     elseif string.find(n.name, "farming:melontige_") ~= nil then
         stage = tonumber(string.sub(n.name, 18))
         if stage == 1 then
-            minetest.add_node(pos, {name="farming:melontige_"..math.random(stage,2)})
+            multicraft.add_node(pos, {name="farming:melontige_"..math.random(stage,2)})
         else
-            minetest.add_node(pos, {name="farming:melontige_unconnect"})
+            multicraft.add_node(pos, {name="farming:melontige_unconnect"})
         end
     elseif n.name ~= ""  and n.name == "default:junglesapling" then
-        minetest.add_node(pos, {name="air"})
+        multicraft.add_node(pos, {name="air"})
         generate_tree(pos, "default:jungletree", "default:jungleleaves", 2)
     elseif n.name ~="" and n.name == "default:reeds" then
         grow_reeds(pos)
@@ -492,14 +492,14 @@ function duengen(pointed_thing)
             for j = -3, 2, 1 do
                 pos = pointed_thing.above
                 pos = {x=pos.x+i, y=pos.y, z=pos.z+j}
-                n = minetest.get_node(pos)
-                n2 = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z})
+                n = multicraft.get_node(pos)
+                n2 = multicraft.get_node({x=pos.x, y=pos.y-1, z=pos.z})
 
                 if n.name ~= ""  and n.name == "air" and n2.name == "default:dirt_with_grass" then
                     if math.random(0,5) > 3 then
-                        minetest.add_node(pos, {name=plant_tab[math.random(0, rnd_max)]})
+                        multicraft.add_node(pos, {name=plant_tab[math.random(0, rnd_max)]})
                     else
-                        minetest.add_node(pos, {name=plant_tab[math.random(0, 5)]})
+                        multicraft.add_node(pos, {name=plant_tab[math.random(0, 5)]})
                     end
 
                 end
@@ -513,7 +513,7 @@ end
 -- Try generate grass dirt ---
 ------------------------------
 -- turn dirt to dirt with grass
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:dirt"},
     neighbors = {"air"},
     interval = 30,
@@ -522,16 +522,16 @@ minetest.register_abm({
     local can_change = 0
     for i=1,4 do
             local p = {x=pos.x, y=pos.y+i, z=pos.z}
-            local n = minetest.get_node(p)
+            local n = multicraft.get_node(p)
             -- On verifie si il y a de l'air
             if (n.name=="air") then
                 can_change = can_change + 1
             end
     end
         if can_change > 3 then
-            local light = minetest.get_node_light(pos)
+            local light = multicraft.get_node_light(pos)
             if light or light > 10 then
-                minetest.add_node(pos, {name="default:dirt_with_grass"})
+                multicraft.add_node(pos, {name="default:dirt_with_grass"})
             end
 
         end
@@ -544,30 +544,30 @@ minetest.register_abm({
 -- Try generate tree   ---
 --------------------------
 -- Normal tree
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:sapling"},
     neighbors = {"default:dirt", "default:dirt_with_grass"},
     interval = 30,
     chance = 15,
     action = function(pos)
-        local light = minetest.get_node_light(pos)
+        local light = multicraft.get_node_light(pos)
         if light or light > 10 then
-        minetest.add_node(pos, {name="air"})
+        multicraft.add_node(pos, {name="air"})
         generate_tree(pos, "default:tree", "default:leaves", 1)
         end
     end,
 })
 
 -- Jungle Tree
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:junglesapling"},
     neighbors = {"default:dirt", "default:dirt_with_grass"},
     interval = 30,
     chance = 15,
     action = function(pos)
-        local light = minetest.get_node_light(pos)
+        local light = multicraft.get_node_light(pos)
         if light or light > 10 then
-            minetest.add_node(pos, {name="air"})
+            multicraft.add_node(pos, {name="air"})
             generate_tree(pos, "default:jungletree", "default:jungleleaves", 2)
         end
     end,
@@ -576,16 +576,16 @@ minetest.register_abm({
 ---------------------
 -- Vine generating --
 ---------------------
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"default:vine"},
     interval = 80,
     chance = 5,
     action = function(pos, node, active_object_count, active_object_count_wider)
         local newpos = {x=pos.x, y=pos.y-1, z=pos.z}
-        local n = minetest.get_node(newpos)
+        local n = multicraft.get_node(newpos)
         if n.name == "air" then
             walldir = node.param2
-            minetest.add_node(newpos, {name = "default:vine", param2 = walldir})
+            multicraft.add_node(newpos, {name = "default:vine", param2 = walldir})
         end
     end
 })
@@ -601,7 +601,7 @@ snowball_VELOCITY=19
 --Shoot snowball.
 snow_shoot_snowball=function (item, player, pointed_thing)
     local playerpos=player:getpos()
-    local obj=minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, "default:snowball_entity")
+    local obj=multicraft.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, "default:snowball_entity")
     local dir=player:get_look_dir()
     obj:setvelocity({x=dir.x*snowball_VELOCITY, y=dir.y*snowball_VELOCITY, z=dir.z*snowball_VELOCITY})
     obj:setacceleration({x=dir.x*-3, y=-snowball_GRAVITY, z=dir.z*-3})
@@ -622,7 +622,7 @@ snowball_ENTITY={
 snowball_ENTITY.on_step = function(self, dtime)
     self.timer=self.timer+dtime
     local pos = self.object:getpos()
-    local node = minetest.get_node(pos)
+    local node = multicraft.get_node(pos)
 
     --Become item when hitting a node.
     if self.lastpos.x~=nil then --If there is no lastpos for some reason.
@@ -633,27 +633,27 @@ snowball_ENTITY.on_step = function(self, dtime)
     self.lastpos={x=pos.x, y=pos.y, z=pos.z} -- Set lastpos-->Node will be added at last pos outside the node
 end
 
-minetest.register_entity("default:snowball_entity", snowball_ENTITY)
+multicraft.register_entity("default:snowball_entity", snowball_ENTITY)
 
 -- Global environment step function
 function on_step(dtime)
     -- print("on_step")
 end
-minetest.register_globalstep(on_step)
+multicraft.register_globalstep(on_step)
 
 function on_placenode(p, node)
     --print("on_placenode")
 end
-minetest.register_on_placenode(on_placenode)
+multicraft.register_on_placenode(on_placenode)
 
 function on_dignode(p, node)
     --print("on_dignode")
 end
-minetest.register_on_dignode(on_dignode)
+multicraft.register_on_dignode(on_dignode)
 
 function on_punchnode(p, node)
 end
-minetest.register_on_punchnode(on_punchnode)
+multicraft.register_on_punchnode(on_punchnode)
 
 -- END
 
@@ -666,10 +666,10 @@ end
 -- Don't use this and never do what this does, it's completely wrong!
 -- (More specifically, the client and the C++ code doesn't get the group)
 function default.register_falling_node(nodename, texture)
-    minetest.log("error", debug.traceback())
-    minetest.log('error', "WARNING: default.register_falling_node is deprecated")
-    if minetest.registered_nodes[nodename] then
-        minetest.registered_nodes[nodename].groups.falling_node = 1
+    multicraft.log("error", debug.traceback())
+    multicraft.log('error', "WARNING: default.register_falling_node is deprecated")
+    if multicraft.registered_nodes[nodename] then
+        multicraft.registered_nodes[nodename].groups.falling_node = 1
     end
 end
 
@@ -777,13 +777,13 @@ default.leafdecay_enable_cache = true
 -- Spread the load of finding trunks
 default.leafdecay_trunk_find_allow_accumulator = 0
 
-minetest.register_globalstep(function(dtime)
+multicraft.register_globalstep(function(dtime)
     local finds_per_second = 5000
     default.leafdecay_trunk_find_allow_accumulator =
             math.floor(dtime * finds_per_second)
 end)
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"group:leafdecay"},
     neighbors = {"air", "group:liquid"},
     -- A low interval and a high inverse chance spreads the load
@@ -793,23 +793,23 @@ minetest.register_abm({
     action = function(p0, node, _, _)
         --print("leafdecay ABM at "..p0.x..", "..p0.y..", "..p0.z..")")
         local do_preserve = false
-        local d = minetest.registered_nodes[node.name].groups.leafdecay
+        local d = multicraft.registered_nodes[node.name].groups.leafdecay
         if not d or d == 0 then
             --print("not groups.leafdecay")
             return
         end
-        local n0 = minetest.get_node(p0)
+        local n0 = multicraft.get_node(p0)
         if n0.param2 ~= 0 then
             --print("param2 ~= 0")
             return
         end
         local p0_hash = nil
         if default.leafdecay_enable_cache then
-            p0_hash = minetest.hash_node_position(p0)
+            p0_hash = multicraft.hash_node_position(p0)
             local trunkp = default.leafdecay_trunk_cache[p0_hash]
             if trunkp then
-                local n = minetest.get_node(trunkp)
-                local reg = minetest.registered_nodes[n.name]
+                local n = multicraft.get_node(trunkp)
+                local reg = multicraft.registered_nodes[n.name]
                 -- Assume ignore is a trunk, to make the thing work at the border of the active area
                 if n.name == "ignore" or (reg and reg.groups.tree and reg.groups.tree ~= 0) then
                     --print("cached trunk still exists")
@@ -826,7 +826,7 @@ minetest.register_abm({
         default.leafdecay_trunk_find_allow_accumulator =
                 default.leafdecay_trunk_find_allow_accumulator - 1
         -- Assume ignore is a trunk, to make the thing work at the border of the active area
-        local p1 = minetest.find_node_near(p0, d, {"ignore", "group:tree"})
+        local p1 = multicraft.find_node_near(p0, d, {"ignore", "group:tree"})
         if p1 then
             do_preserve = true
             if default.leafdecay_enable_cache then
@@ -837,20 +837,20 @@ minetest.register_abm({
         end
         if not do_preserve then
             -- Drop stuff other than the node itself
-            itemstacks = minetest.get_node_drops(n0.name)
+            itemstacks = multicraft.get_node_drops(n0.name)
             for _, itemname in ipairs(itemstacks) do
-                if minetest.get_item_group(n0.name, "leafdecay_drop") ~= 0 or
+                if multicraft.get_item_group(n0.name, "leafdecay_drop") ~= 0 or
                         itemname ~= n0.name then
                     local p_drop = {
                         x = p0.x - 0.5 + math.random(),
                         y = p0.y - 0.5 + math.random(),
                         z = p0.z - 0.5 + math.random(),
                     }
-                    minetest.add_item(p_drop, itemname)
+                    multicraft.add_item(p_drop, itemname)
                 end
             end
             -- Remove node
-            minetest.remove_node(p0)
+            multicraft.remove_node(p0)
             nodeupdate(p0)
         end
     end
@@ -861,11 +861,11 @@ minetest.register_abm({
 ------------------------
 function AddGlass(desc, recipeitem, color)
 
-    minetest.register_node("default:glass"..color, {
+    multicraft.register_node("default:glass"..color, {
         description = desc,
         drawtype = "glasslike",
         tile_images = {"xpanes_pane_glass"..color..".png"},
-        inventory_image = minetest.inventorycube("xpanes_pane_glass"..color..".png"),
+        inventory_image = multicraft.inventorycube("xpanes_pane_glass"..color..".png"),
         paramtype = "light",
         use_texture_alpha = true,
         stack_max = 64,
@@ -874,7 +874,7 @@ function AddGlass(desc, recipeitem, color)
         drop = "",
     })
 
-    minetest.register_craft({
+    multicraft.register_craft({
         output = 'default:glass_'..color..'',
         recipe = {
             {'default:glass', 'group:dye,'..recipeitem}

@@ -1,4 +1,4 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 --MESECON TORCHES
 
@@ -36,7 +36,7 @@ local torch_get_input_rules = function(node)
     return rotate_torch_rules(rules, node.param2)
 end
 
-minetest.register_craft({
+multicraft.register_craft({
     output = '"mesecons_torch:mesecon_torch_on" 4',
     recipe = {
     {"default:redstone_dust"},
@@ -51,7 +51,7 @@ local torch_selectionbox =
     wall_side = {-0.5, -0.1, -0.1, -0.5+0.6, 0.1, 0.1},
 }
 
-minetest.register_node("mesecons_torch:mesecon_torch_off", {
+multicraft.register_node("mesecons_torch:mesecon_torch_off", {
     drawtype = "torchlike",
     tiles = {"jeija_torches_off.png", "jeija_torches_off_ceiling.png", "jeija_torches_off_side.png"},
     inventory_image = "jeija_torches_off.png",
@@ -67,7 +67,7 @@ minetest.register_node("mesecons_torch:mesecon_torch_off", {
     }}
 })
 
-minetest.register_node("mesecons_torch:mesecon_torch_on", {
+multicraft.register_node("mesecons_torch:mesecon_torch_on", {
     drawtype = "torchlike",
     tiles = {"jeija_torches_on.png", "jeija_torches_on_ceiling.png", "jeija_torches_on_side.png"},
     inventory_image = "jeija_torches_on.png",
@@ -87,7 +87,7 @@ minetest.register_node("mesecons_torch:mesecon_torch_on", {
     }},
 })
 
-minetest.register_node("mesecons_torch:redstoneblock", {
+multicraft.register_node("mesecons_torch:redstoneblock", {
     description = "Redstone Block",
     tiles = {"default_redstone_block.png"},
     stack_max = 64,
@@ -99,7 +99,7 @@ minetest.register_node("mesecons_torch:redstoneblock", {
     }},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "mesecons_torch:redstoneblock",
     recipe = {
         {'mesecons:wire_00000000_off','mesecons:wire_00000000_off','mesecons:wire_00000000_off'},
@@ -108,14 +108,14 @@ minetest.register_craft({
     }
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = 'mesecons:wire_00000000_off 9',
     recipe = {
         {'mesecons_torch:redstoneblock'},
     }
 })
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"mesecons_torch:mesecon_torch_off","mesecons_torch:mesecon_torch_on"},
     interval = 1,
     chance = 1,

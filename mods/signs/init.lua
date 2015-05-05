@@ -1,9 +1,9 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- Font: 04.jp.org
 
 -- load characters map
-local chars_file = io.open(minetest.get_modpath("signs").."/characters", "r")
+local chars_file = io.open(multicraft.get_modpath("signs").."/characters", "r")
 local charmap = {}
 local max_chars = 16
 if not chars_file then
@@ -37,13 +37,13 @@ local signs_yard = {
 local sign_groups = {choppy=2, dig_immediate=2, decorative = 1}
 
 local construct_sign = function(pos)
-    local meta = minetest.get_meta(pos)
+    local meta = multicraft.get_meta(pos)
         meta:set_string("formspec", "field[text;;${text}]")
         meta:set_string("infotext", "")
 end
 
 local destruct_sign = function(pos)
-    local objects = minetest.get_objects_inside_radius(pos, 0.5)
+    local objects = multicraft.get_objects_inside_radius(pos, 0.5)
     for _, v in ipairs(objects) do
         if v:get_entity_name() == "signs:text" then
             v:remove()
@@ -52,7 +52,7 @@ local destruct_sign = function(pos)
 end
 
 local update_sign = function(pos, fields, sender)
-    local meta = minetest.get_meta(pos)
+    local meta = multicraft.get_meta(pos)
         local owner = meta:get_string("owner")
         meta:set_string("infotext", "")
         local text = meta:get_string("text")
@@ -61,7 +61,7 @@ local update_sign = function(pos, fields, sender)
                 meta:set_string("owner", sender:get_player_name() or "")
         end
         text = meta:get_string("text")
-    local objects = minetest.get_objects_inside_radius(pos, 0.5)
+    local objects = multicraft.get_objects_inside_radius(pos, 0.5)
     for _, v in ipairs(objects) do
         if v:get_entity_name() == "signs:text" then
             v:set_properties({textures={generate_texture(create_lines(text))}})
@@ -71,21 +71,21 @@ local update_sign = function(pos, fields, sender)
 
         -- if there is no entity
         local sign_info
-        if minetest.get_node(pos).name == "signs:sign_yard" then
-                sign_info = signs_yard[minetest.get_node(pos).param2 + 1]
-        elseif minetest.get_node(pos).name == "signs:sign_wall" then
-                sign_info = signs[minetest.get_node(pos).param2 + 1]
+        if multicraft.get_node(pos).name == "signs:sign_yard" then
+                sign_info = signs_yard[multicraft.get_node(pos).param2 + 1]
+        elseif multicraft.get_node(pos).name == "signs:sign_wall" then
+                sign_info = signs[multicraft.get_node(pos).param2 + 1]
         end
         if sign_info == nil then
                 return
         end
-        local text = minetest.add_entity({x = pos.x + sign_info.delta.x,
+        local text = multicraft.add_entity({x = pos.x + sign_info.delta.x,
                                                                                 y = pos.y + sign_info.delta.y,
                                                                                 z = pos.z + sign_info.delta.z}, "signs:text")
         text:setyaw(sign_info.yaw)
 end
 
-minetest.register_node("signs:sign_wall", {
+multicraft.register_node("signs:sign_wall", {
     description = "Sign",
     inventory_image = "default_sign_wall.png",
         walkable = false,
@@ -107,7 +107,7 @@ minetest.register_node("signs:sign_wall", {
                      y = under.y - above.y,
                      z = under.z - above.z}
 
-        local wdir = minetest.dir_to_wallmounted(dir)
+        local wdir = multicraft.dir_to_wallmounted(dir)
 
         local placer_pos = placer:getpos()
         if placer_pos then
@@ -118,23 +118,23 @@ minetest.register_node("signs:sign_wall", {
             }
         end
 
-        local fdir = minetest.dir_to_facedir(dir)
+        local fdir = multicraft.dir_to_facedir(dir)
 
         local sign_info
         if wdir == 0 then
             --how would you add sign to ceiling?
-            minetest.add_item(above, "signs:sign_wall")
+            multicraft.add_item(above, "signs:sign_wall")
                         itemstack:take_item()
                         return itemstack
         elseif wdir == 1 then
-            minetest.add_node(above, {name = "signs:sign_yard", param2 = fdir})
+            multicraft.add_node(above, {name = "signs:sign_yard", param2 = fdir})
             sign_info = signs_yard[fdir + 1]
         else
-            minetest.add_node(above, {name = "signs:sign_wall", param2 = fdir})
+            multicraft.add_node(above, {name = "signs:sign_wall", param2 = fdir})
             sign_info = signs[fdir + 1]
         end
 
-        local text = minetest.add_entity({x = above.x + sign_info.delta.x,
+        local text = multicraft.add_entity({x = above.x + sign_info.delta.x,
                                               y = above.y + sign_info.delta.y,
                                               z = above.z + sign_info.delta.z}, "signs:text")
         text:setyaw(sign_info.yaw)
@@ -156,7 +156,7 @@ minetest.register_node("signs:sign_wall", {
         end,
 })
 
-minetest.register_node("signs:sign_yard", {
+multicraft.register_node("signs:sign_yard", {
     paramtype = "light",
         sunlight_propagates = true,
         walkable = false,
@@ -185,13 +185,13 @@ minetest.register_node("signs:sign_yard", {
         end,
 })
 
-minetest.register_entity("signs:text", {
+multicraft.register_entity("signs:text", {
     collisionbox = { 0, 0, 0, 0, 0, 0 },
     visual = "upright_sprite",
     textures = {},
 
     on_activate = function(self)
-        local meta = minetest.get_meta(self.object:getpos())
+        local meta = multicraft.get_meta(self.object:getpos())
         local text = meta:get_string("text")
         self.object:set_properties({textures={generate_texture(create_lines(text))}})
     end
@@ -302,6 +302,6 @@ generate_line = function(s, ypos)
     return texture
 end
 
-if minetest.setting_get("log_mods") then
-        minetest.log("action", "signs loaded")
+if multicraft.setting_get("log_mods") then
+        multicraft.log("action", "signs loaded")
 end

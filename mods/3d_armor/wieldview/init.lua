@@ -1,15 +1,15 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 local time = 0
-local update_time = tonumber(minetest.setting_get("wieldview_update_time"))
+local update_time = tonumber(multicraft.setting_get("wieldview_update_time"))
 if not update_time then
 	update_time = 2
-	minetest.setting_set("wieldview_update_time", tostring(update_time))
+	multicraft.setting_set("wieldview_update_time", tostring(update_time))
 end
-local node_tiles = minetest.setting_getbool("wieldview_node_tiles")
+local node_tiles = multicraft.setting_getbool("wieldview_node_tiles")
 if not node_tiles then
 	node_tiles = false
-	minetest.setting_set("wieldview_node_tiles", "false")
+	multicraft.setting_set("wieldview_node_tiles", "false")
 end
 
 wieldview = {
@@ -17,17 +17,17 @@ wieldview = {
 	transform = {},
 }
 
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/transform.lua")
+dofile(multicraft.get_modpath(multicraft.get_current_modname()).."/transform.lua")
 
 wieldview.get_item_texture = function(self, item)
 	local texture = "3d_armor_trans.png"
 	if item ~= "" then
-		if minetest.registered_items[item] then
-			local inventory_image = minetest.registered_items[item].inventory_image
+		if multicraft.registered_items[item] then
+			local inventory_image = multicraft.registered_items[item].inventory_image
 			if inventory_image and inventory_image ~= "" then
 				texture = inventory_image
-			elseif node_tiles == true and minetest.registered_items[item].tiles then
-				texture = minetest.registered_items[item].tiles[1]
+			elseif node_tiles == true and multicraft.registered_items[item].tiles then
+				texture = multicraft.registered_items[item].tiles[1]
 			end
 		end
 		if wieldview.transform[item] then
@@ -57,18 +57,18 @@ wieldview.update_wielded_item = function(self, player)
 	self.wielded_item[name] = item
 end
 
-minetest.register_on_joinplayer(function(player)
+multicraft.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	wieldview.wielded_item[name] = ""
-	minetest.after(0, function(player)
+	multicraft.after(0, function(player)
 		wieldview:update_wielded_item(player)
 	end, player)
 end)
 
-minetest.register_globalstep(function(dtime)
+multicraft.register_globalstep(function(dtime)
 	time = time + dtime
 	if time > update_time then
-		for _,player in ipairs(minetest.get_connected_players()) do
+		for _,player in ipairs(multicraft.get_connected_players()) do
 			wieldview:update_wielded_item(player)
 		end
 		time = 0

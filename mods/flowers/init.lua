@@ -1,14 +1,14 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
--- Minetest 0.4 mod: default
+-- multicraft 0.4 mod: default
 -- See README.txt for licensing and other information.
 
 flower_tmp={}
 
 
 -- Map Generation
-dofile(minetest.get_modpath("flowers").."/mapgen.lua")
-dofile(minetest.get_modpath("flowers").."/func.lua")
+dofile(multicraft.get_modpath("flowers").."/mapgen.lua")
+dofile(multicraft.get_modpath("flowers").."/func.lua")
 
 
 
@@ -18,7 +18,7 @@ dofile(minetest.get_modpath("flowers").."/func.lua")
 
 
 local function add_simple_flower(name, desc, image, color)
-        minetest.register_node("flowers:"..name.."", {
+        multicraft.register_node("flowers:"..name.."", {
                 description = desc,
                 drawtype = "plantlike",
                 tiles = { image..".png" },
@@ -43,7 +43,7 @@ add_simple_flower("dandelion_yellow", "Yellow Dandelion", "flowers_dandelion_yel
 add_simple_flower("oxeye_daisy", "Oxeye Daisy", "flower_oxeye_daisy", "color_yellow")
 add_simple_flower("tulip_orange", "Orange Tulip", "flower_tulip_orange", "color_orange")
 
-minetest.register_node("flowers:tulip_pink", {
+multicraft.register_node("flowers:tulip_pink", {
         description = "Pink Tulip",
         drawtype = "plantlike",
         tiles = { "flower_tulip_pink.png" },
@@ -61,7 +61,7 @@ minetest.register_node("flowers:tulip_pink", {
         },
 })
 
-minetest.register_node("flowers:tulip_red", {
+multicraft.register_node("flowers:tulip_red", {
         description = "Red Tulip",
         drawtype = "plantlike",
         tiles = { "flower_tulip_red.png" },
@@ -80,7 +80,7 @@ minetest.register_node("flowers:tulip_red", {
 })
 
 
-minetest.register_node("flowers:tulip_white", {
+multicraft.register_node("flowers:tulip_white", {
         description = "White Tulip",
         drawtype = "plantlike",
         tiles = { "flower_tulip_white.png" },
@@ -101,7 +101,7 @@ minetest.register_node("flowers:tulip_white", {
 
 --- allium ---
 
-minetest.register_node("flowers:allium", {
+multicraft.register_node("flowers:allium", {
         description = "Allium",
         drawtype = "plantlike",
         tiles = { "flower_allium.png" },
@@ -121,7 +121,7 @@ minetest.register_node("flowers:allium", {
 
 --- paeonia ---
 
-minetest.register_node("flowers:paeonia", {
+multicraft.register_node("flowers:paeonia", {
         description = "Paeonia",
         drawtype = "plantlike",
         tiles = { "flower_paeonia.png" },
@@ -142,7 +142,7 @@ minetest.register_node("flowers:paeonia", {
 
 --- houstonia ---
 
-minetest.register_node("flowers:houstonia", {
+multicraft.register_node("flowers:houstonia", {
         description = "Houstonia",
         drawtype = "plantlike",
         tiles = { "flower_houstonia.png" },
@@ -162,7 +162,7 @@ minetest.register_node("flowers:houstonia", {
 
 ---blue_orchid ---
 
-minetest.register_node("flowers:blue_orchid", {
+multicraft.register_node("flowers:blue_orchid", {
         description = "Blue Orchid",
         drawtype = "plantlike",
         tiles = { "flower_blue_orchid.png" },
@@ -182,7 +182,7 @@ minetest.register_node("flowers:blue_orchid", {
 
 --- Fern ---
 
-minetest.register_node("flowers:fern", {
+multicraft.register_node("flowers:fern", {
         description = "Fern",
         drawtype = "plantlike",
         tiles = { "fern.png" },
@@ -201,7 +201,7 @@ minetest.register_node("flowers:fern", {
 })
 
 function register_large(name, desc, inv_img, bot_img, colr) --change in function
-    minetest.register_node("flowers:"..name.."_bottom", {
+    multicraft.register_node("flowers:"..name.."_bottom", {
         description = desc.." Bottom",
         drawtype = "plantlike",
         tiles = { "double_plant_"..name.."_bottom.png" },
@@ -214,17 +214,17 @@ function register_large(name, desc, inv_img, bot_img, colr) --change in function
         --[[
         on_place = function(itemstack, placer, pointed_thing)
             pointed_thing.under = pointed_thing.under-1
-            local name = minetest.get_node({x=pointed_thing.under, y=pointed_thing.under-1, z=pointed_thing.under}).name
-            if minetest.get_item_group(name, "soil") ~= 0 then
+            local name = multicraft.get_node({x=pointed_thing.under, y=pointed_thing.under-1, z=pointed_thing.under}).name
+            if multicraft.get_item_group(name, "soil") ~= 0 then
                 pointed_thing.under = pointed_thing.under+1
                 local height = 0
-                while minetest.get_node(pointed_thing.under).name == "flowers:"..name.."_bottom" and height < 2 do
+                while multicraft.get_node(pointed_thing.under).name == "flowers:"..name.."_bottom" and height < 2 do
                     height = height+1
                     pointed_thing.under = pointed_thing.under+1
                 end
                 if height <2 then
-                    if minetest.get_node(pointed_thing.under).name == "air" then
-                        minetest.set_node(pointed_thing.under, {name="flowers:"..name.."_top"})
+                    if multicraft.get_node(pointed_thing.under).name == "air" then
+                        multicraft.set_node(pointed_thing.under, {name="flowers:"..name.."_top"})
                     end
                 end
             end
@@ -240,7 +240,7 @@ function register_large(name, desc, inv_img, bot_img, colr) --change in function
     })
 
     -- Top
-    minetest.register_node("flowers:"..name.."_top", {
+    multicraft.register_node("flowers:"..name.."_top", {
         description = desc.." Top",
         drawtype = "plantlike",
         tiles = { "double_plant_"..name.."_top.png" },
@@ -266,22 +266,22 @@ end
 ---   Terrain Generation  ---
 -----------------------------
 
-minetest.register_abm({
+multicraft.register_abm({
         nodenames = {"group:flora"},
         neighbors = {"default:dirt_with_grass", "default:sand"},
         interval = 40,
         chance = 20,
         action = function(pos, node)
                 pos.y = pos.y - 1
-                local under = minetest.get_node(pos)
+                local under = multicraft.get_node(pos)
                 pos.y = pos.y + 1
                 if under.name == "default:sand" then
-                        minetest.set_node(pos, {name="default:dry_shrub"})
+                        multicraft.set_node(pos, {name="default:dry_shrub"})
                 elseif under.name ~= "default:sand" then
                         return
                 end
 
-                local light = minetest.get_node_light(pos)
+                local light = multicraft.get_node_light(pos)
                 if not light or light < 10 then
                         return
                 end
@@ -289,21 +289,21 @@ minetest.register_abm({
                 local pos0 = {x=pos.x-4,y=pos.y-4,z=pos.z-4}
                 local pos1 = {x=pos.x+4,y=pos.y+4,z=pos.z+4}
 
-                local flowers = minetest.find_nodes_in_area(pos0, pos1, "group:flora")
+                local flowers = multicraft.find_nodes_in_area(pos0, pos1, "group:flora")
                 if #flowers > 3 then
                         return
                 end
 
-                local seedling = minetest.find_nodes_in_area(pos0, pos1, "default:dirt_with_grass")
+                local seedling = multicraft.find_nodes_in_area(pos0, pos1, "default:dirt_with_grass")
                 if #seedling > 0 then
                         seedling = seedling[math.random(#seedling)]
                         seedling.y = seedling.y + 1
-                        light = minetest.get_node_light(seedling)
+                        light = multicraft.get_node_light(seedling)
                         if not light or light < 13 then
                                 return
                         end
-                        if minetest.get_node(seedling).name == "air" then
-                                minetest.set_node(seedling, {name=node.name})
+                        if multicraft.get_node(seedling).name == "air" then
+                                multicraft.set_node(seedling, {name=node.name})
                         end
                 end
         end,
@@ -313,7 +313,7 @@ minetest.register_abm({
 -- Flower Pot
 --
 
-minetest.register_node("flowers:pot",{
+multicraft.register_node("flowers:pot",{
         description = "Flower Pot",
         drawtype = "nodebox",
         node_box = { type = "fixed", fixed = {
@@ -331,12 +331,12 @@ minetest.register_node("flowers:pot",{
         stack_max = 16,
         sounds = default.node_sound_defaults(),
         after_place_node = function(pos, placer, itemstack)
-                local meta = minetest.get_meta(pos)
+                local meta = multicraft.get_meta(pos)
                 meta:set_string("owner",placer:get_player_name())
         end,
         on_rightclick = function(pos, node, clicker, itemstack)
                 if not itemstack then return end
-                local meta = minetest.get_meta(pos)
+                local meta = multicraft.get_meta(pos)
                 if clicker:get_player_name() == meta:get_string("owner") then
                         flower_pot_drop_item(pos,node)
                         local s = itemstack:take_item()
@@ -346,20 +346,20 @@ minetest.register_node("flowers:pot",{
                 return itemstack
         end,
         on_punch = function(pos,node,puncher)
-                local meta = minetest.get_meta(pos)
+                local meta = multicraft.get_meta(pos)
                 if puncher:get_player_name() == meta:get_string("owner") then
                         flower_pot_drop_item(pos,node)
                 end
         end,
         can_dig = function(pos,player)
-                local meta = minetest.get_meta(pos)
+                local meta = multicraft.get_meta(pos)
                 return player:get_player_name() == meta:get_string("owner")
         end,
         on_destruct = function(pos)
-                local node = minetest.get_node(pos)
+                local node = multicraft.get_node(pos)
                 flower_pot_drop_item(pos,node)
-                minetest.add_node(pos, {name="air"})
-                minetest.add_item(pos, "flowers:pot")
+                multicraft.add_node(pos, {name="air"})
+                multicraft.add_item(pos, "flowers:pot")
         end,
 })
 

@@ -1,4 +1,4 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- xPanes mod by xyz  custom by davedevils
 function pane(node, desc, dropitem, recipeitem, color)
@@ -14,20 +14,20 @@ function pane(node, desc, dropitem, recipeitem, color)
     }
 
     local function update_pane(pos)
-        if minetest.get_node(pos).name:find("xpanes:pane_"..node..""..color) == nil then
+        if multicraft.get_node(pos).name:find("xpanes:pane_"..node..""..color) == nil then
             return
         end
         local sum = 0
         for i = 1, 4 do
-            local node = minetest.get_node({x = pos.x + directions[i].x, y = pos.y + directions[i].y, z = pos.z + directions[i].z})
-            if minetest.registered_nodes[node.name].walkable ~= false then
+            local node = multicraft.get_node({x = pos.x + directions[i].x, y = pos.y + directions[i].y, z = pos.z + directions[i].z})
+            if multicraft.registered_nodes[node.name].walkable ~= false then
                 sum = sum + 2 ^ (i - 1)
             end
         end
         if sum == 0 then
             sum = 15
         end
-        minetest.add_node(pos, {name = "xpanes:pane_"..node..""..color.."_"..sum})
+        multicraft.add_node(pos, {name = "xpanes:pane_"..node..""..color.."_"..sum})
     end
 
     local function update_nearby(pos)
@@ -75,7 +75,7 @@ function pane(node, desc, dropitem, recipeitem, color)
         if cnt == 1 then
             texture = "xpanes_pane_half_"..node..""..color..".png"
         end
-        minetest.register_node("xpanes:pane_"..node..""..color.."_"..i, {
+        multicraft.register_node("xpanes:pane_"..node..""..color.."_"..i, {
             drawtype = "nodebox",
             tile_images = {"xpanes_top_"..node..""..color..".png", "xpanes_top_"..node..""..color..".png", texture},
             paramtype = "light",
@@ -93,7 +93,7 @@ function pane(node, desc, dropitem, recipeitem, color)
         })
     end
 
-    minetest.register_node("xpanes:pane_"..node..""..color, {
+    multicraft.register_node("xpanes:pane_"..node..""..color, {
         description = desc,
         tile_images = {"xpanes_pane_"..node..""..color..".png"},
         inventory_image = "xpanes_pane_"..node..""..color..".png",
@@ -107,10 +107,10 @@ function pane(node, desc, dropitem, recipeitem, color)
         groups = {decorative = 1}
     })
 
-    minetest.register_on_placenode(update_nearby)
-    minetest.register_on_dignode(update_nearby)
+    multicraft.register_on_placenode(update_nearby)
+    multicraft.register_on_dignode(update_nearby)
 
-    minetest.register_craft({
+    multicraft.register_craft({
         output = 'xpanes:pane_'..node..''..color..' 16',
         recipe = {
             {recipeitem, recipeitem, recipeitem},

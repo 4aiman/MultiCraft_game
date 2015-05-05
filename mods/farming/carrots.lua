@@ -1,4 +1,4 @@
-minetest.register_node("farming:carrot_1", {
+multicraft.register_node("farming:carrot_1", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -14,7 +14,7 @@ minetest.register_node("farming:carrot_1", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:carrot_2", {
+multicraft.register_node("farming:carrot_2", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -30,7 +30,7 @@ minetest.register_node("farming:carrot_2", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:carrot_3", {
+multicraft.register_node("farming:carrot_3", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -46,7 +46,7 @@ minetest.register_node("farming:carrot_3", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:carrot", {
+multicraft.register_node("farming:carrot", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -63,24 +63,24 @@ minetest.register_node("farming:carrot", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_craftitem("farming:carrot_item", {
+multicraft.register_craftitem("farming:carrot_item", {
     description = "Carrot",
     inventory_image = "farming_carrot.png",
-    on_use = minetest.item_eat(3),
+    on_use = multicraft.item_eat(3),
     groups = {foodstuffs = 1},
     on_place = function(itemstack, placer, pointed_thing)
         return farming:place_seed(itemstack, placer, pointed_thing, "farming:carrot_1")
     end
 })
 
-minetest.register_craftitem("farming:carrot_item_gold", {
+multicraft.register_craftitem("farming:carrot_item_gold", {
     description = "Golden Carrot",
     inventory_image = "farming_carrot_gold.png",
     groups = {brewing = 1},
-    on_use = minetest.item_eat(3),
+    on_use = multicraft.item_eat(3),
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:carrot_item_gold",
     recipe = {
         {'default:gold_lump'},

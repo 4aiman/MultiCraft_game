@@ -1,4 +1,4 @@
-Minetest mod "Crafting"
+multicraft mod "Crafting"
 =======================
 version: 2.0.1
 

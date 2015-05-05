@@ -1,4 +1,4 @@
-Minetest mod "Fences"
+multicraft mod "Fences"
 =======================
 version: 1.0
 

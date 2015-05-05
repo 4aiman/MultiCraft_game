@@ -24,7 +24,7 @@ function default.get_furnace_active_formspec(pos, percent)
 	"image[2.75,1.5;1,1;crafting_furnace_fire_bg.png^[lowpart:"..
 	(100-percent)..":default_furnace_fire_fg.png]"
 	
-	local meta = minetest.get_meta(pos)
+	local meta = multicraft.get_meta(pos)
 	local inv = meta:get_inventory()
 	inv:set_size("dst",1)
 
@@ -44,7 +44,7 @@ local chest_inv_size = 4*9
 local chest_inv_vers = 2
 
 function default.get_locked_chest_formspec(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = multicraft.get_meta(pos)
 		local inv_v = meta:get_int("chest_inv_ver")
 		if inv_v and inv_v < chest_inv_vers then
 			local inv = meta:get_inventory()
@@ -63,12 +63,12 @@ function default.get_locked_chest_formspec(pos)
 	return formspec
 end
 
-minetest.register_abm({
+multicraft.register_abm({
         nodenames = {"default:chest"},
         interval = 1,
         chance = 1,
         action = function(pos, node)
-		local meta = minetest.get_meta(pos)
+		local meta = multicraft.get_meta(pos)
 		local inv_v = meta:get_int("chest_inv_ver")
 		if inv_v and inv_v < chest_inv_vers then
 			local inv = meta:get_inventory()

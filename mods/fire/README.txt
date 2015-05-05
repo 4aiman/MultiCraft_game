@@ -1,4 +1,4 @@
-Minetest 0.4 mod: fire
+multicraft 0.4 mod: fire
 ======================
 
 License of source code:

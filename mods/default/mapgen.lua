@@ -4,27 +4,27 @@
 -- Aliases for map generator outputs
 --
 
-minetest.register_alias("mapgen_air", "air")
-minetest.register_alias("mapgen_stone", "default:stone")
-minetest.register_alias("mapgen_tree", "default:tree")
-minetest.register_alias("mapgen_leaves", "default:leaves")
-minetest.register_alias("mapgen_jungletree", "default:jungletree")
-minetest.register_alias("mapgen_jungleleaves", "default:jungleleaves")
-minetest.register_alias("mapgen_apple", "default:leaves")
-minetest.register_alias("mapgen_water_source", "default:water_source")
-minetest.register_alias("mapgen_dirt", "default:dirt")
-minetest.register_alias("mapgen_sand", "default:sand")
-minetest.register_alias("mapgen_gravel", "default:gravel")
-minetest.register_alias("mapgen_clay", "default:clay")
-minetest.register_alias("mapgen_lava_source", "default:lava_source")
-minetest.register_alias("mapgen_cobble", "default:cobble")
-minetest.register_alias("mapgen_mossycobble", "default:mossycobble")
-minetest.register_alias("mapgen_dirt_with_grass", "default:dirt_with_grass")
-minetest.register_alias("mapgen_junglegrass", "default:junglegrass")
-minetest.register_alias("mapgen_stone_with_coal", "default:stone_with_coal")
-minetest.register_alias("mapgen_stone_with_iron", "default:stone_with_iron")
-minetest.register_alias("mapgen_desert_sand", "default:sand")
-minetest.register_alias("mapgen_desert_stone", "default:sandstone")
+multicraft.register_alias("mapgen_air", "air")
+multicraft.register_alias("mapgen_stone", "default:stone")
+multicraft.register_alias("mapgen_tree", "default:tree")
+multicraft.register_alias("mapgen_leaves", "default:leaves")
+multicraft.register_alias("mapgen_jungletree", "default:jungletree")
+multicraft.register_alias("mapgen_jungleleaves", "default:jungleleaves")
+multicraft.register_alias("mapgen_apple", "default:leaves")
+multicraft.register_alias("mapgen_water_source", "default:water_source")
+multicraft.register_alias("mapgen_dirt", "default:dirt")
+multicraft.register_alias("mapgen_sand", "default:sand")
+multicraft.register_alias("mapgen_gravel", "default:gravel")
+multicraft.register_alias("mapgen_clay", "default:clay")
+multicraft.register_alias("mapgen_lava_source", "default:lava_source")
+multicraft.register_alias("mapgen_cobble", "default:cobble")
+multicraft.register_alias("mapgen_mossycobble", "default:mossycobble")
+multicraft.register_alias("mapgen_dirt_with_grass", "default:dirt_with_grass")
+multicraft.register_alias("mapgen_junglegrass", "default:junglegrass")
+multicraft.register_alias("mapgen_stone_with_coal", "default:stone_with_coal")
+multicraft.register_alias("mapgen_stone_with_iron", "default:stone_with_iron")
+multicraft.register_alias("mapgen_desert_sand", "default:sand")
+multicraft.register_alias("mapgen_desert_stone", "default:sandstone")
 
 --
 -- Ore generation
@@ -33,7 +33,7 @@ minetest.register_alias("mapgen_desert_stone", "default:sandstone")
 --
 -- Coal
 --
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_coal",
     wherein        = "default:stone",
@@ -43,7 +43,7 @@ minetest.register_ore({
     height_min     = -59,
     height_max     = -12,
 })
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_coal",
     wherein        = "default:stone",
@@ -53,7 +53,7 @@ minetest.register_ore({
     height_min     = -11,
     height_max     = 64,
 })
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_coal",
     wherein        = "default:stone",
@@ -67,7 +67,7 @@ minetest.register_ore({
 --
 -- Iron
 --
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_iron",
     wherein        = "default:stone",
@@ -77,7 +77,7 @@ minetest.register_ore({
     height_min     = -59,
     height_max     = -10,
 })
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_iron",
     wherein        = "default:stone",
@@ -91,7 +91,7 @@ minetest.register_ore({
 --
 -- Gold
 --
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_gold",
     wherein        = "default:stone",
@@ -101,7 +101,7 @@ minetest.register_ore({
     height_min     = -59,
     height_max     = -35,
 })
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_gold",
     wherein        = "default:stone",
@@ -115,7 +115,7 @@ minetest.register_ore({
 --
 -- Diamond
 --
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_diamond",
     wherein        = "default:stone",
@@ -125,7 +125,7 @@ minetest.register_ore({
     height_min     = -59,
     height_max     = -48,
 })
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_diamond",
     wherein        = "default:stone",
@@ -135,7 +135,7 @@ minetest.register_ore({
     height_min     = -59,
     height_max     = -48,
 })
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_diamond",
     wherein        = "default:stone",
@@ -150,7 +150,7 @@ minetest.register_ore({
 -- Redstone
 --
 
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_redstone",
     wherein        = "default:stone",
@@ -161,7 +161,7 @@ minetest.register_ore({
     height_max     = -48,
 })
 
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_redstone",
     wherein        = "default:stone",
@@ -176,7 +176,7 @@ minetest.register_ore({
 -- Emerald
 --
 
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_emerald",
     wherein        = "default:stone",
@@ -187,7 +187,7 @@ minetest.register_ore({
     height_max     = -35,
 })
 
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_emerald",
     wherein        = "default:stone",
@@ -202,7 +202,7 @@ minetest.register_ore({
 -- Lapis Lazuli
 --
 
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_lapis",
     wherein        = "default:stone",
@@ -213,7 +213,7 @@ minetest.register_ore({
     height_max     = -46,
 })
 
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:stone_with_lapis",
     wherein        = "default:stone",
@@ -227,7 +227,7 @@ minetest.register_ore({
 --
 -- Glowstone
 --
-minetest.register_ore({
+multicraft.register_ore({
     ore_type       = "scatter",
     ore            = "default:glowstone",
     wherein        = "default:stone",
@@ -239,7 +239,7 @@ minetest.register_ore({
 })
 
 function default.generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, chunk_size, ore_per_chunk, height_min, height_max)
-    minetest.log('action', "WARNING: default.generate_ore is deprecated")
+    multicraft.log('action', "WARNING: default.generate_ore is deprecated")
 
     if maxp.y < height_min or minp.y > height_max then
         return
@@ -268,8 +268,8 @@ function default.generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume
                     local y2 = y0+y1
                     local z2 = z0+z1
                     local p2 = {x=x2, y=y2, z=z2}
-                    if minetest.get_node(p2).name == wherein then
-                        minetest.set_node(p2, {name=name})
+                    if multicraft.get_node(p2).name == wherein then
+                        multicraft.set_node(p2, {name=name})
                     end
                 end
             end
@@ -283,10 +283,10 @@ end
 function default.make_reeds(pos, size)
     for y=0,size-1 do
         local p = {x=pos.x, y=pos.y+y, z=pos.z}
-        local nn = minetest.get_node(p).name
-        if minetest.registered_nodes[nn] and
-            minetest.registered_nodes[nn].buildable_to then
-            minetest.set_node(p, {name="default:reeds"})
+        local nn = multicraft.get_node(p).name
+        if multicraft.registered_nodes[nn] and
+            multicraft.registered_nodes[nn].buildable_to then
+            multicraft.set_node(p, {name="default:reeds"})
         else
             return
         end
@@ -296,10 +296,10 @@ end
 function default.make_cactus(pos, size)
     for y=0,size-1 do
         local p = {x=pos.x, y=pos.y+y, z=pos.z}
-        local nn = minetest.get_node(p).name
-        if minetest.registered_nodes[nn] and
-            minetest.registered_nodes[nn].buildable_to or nn=='air' then
-            minetest.set_node(p, {name="default:cactus"})
+        local nn = multicraft.get_node(p).name
+        if multicraft.registered_nodes[nn] and
+            multicraft.registered_nodes[nn].buildable_to or nn=='air' then
+            multicraft.set_node(p, {name="default:cactus"})
         else
             return
         end
@@ -307,7 +307,7 @@ function default.make_cactus(pos, size)
 end
 
 
-minetest.register_on_generated(function(minp, maxp, seed)
+multicraft.register_on_generated(function(minp, maxp, seed)
     if maxp.y >= 2 and minp.y <= 0 then
         -- Generate clay
         -- Assume X and Z lengths are equal
@@ -317,17 +317,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
         for divz=0+1,divs-1-1 do
             local cx = minp.x + math.floor((divx+0.5)*divlen)
             local cz = minp.z + math.floor((divz+0.5)*divlen)
-            if minetest.get_node({x=cx,y=1,z=cz}).name == "default:water_source" and
-                    minetest.get_node({x=cx,y=0,z=cz}).name == "default:sand" then
+            if multicraft.get_node({x=cx,y=1,z=cz}).name == "default:water_source" and
+                    multicraft.get_node({x=cx,y=0,z=cz}).name == "default:sand" then
                 local is_shallow = true
                 local num_water_around = 0
-                if minetest.get_node({x=cx-divlen*2,y=1,z=cz+0}).name == "default:water_source" then
+                if multicraft.get_node({x=cx-divlen*2,y=1,z=cz+0}).name == "default:water_source" then
                     num_water_around = num_water_around + 1 end
-                if minetest.get_node({x=cx+divlen*2,y=1,z=cz+0}).name == "default:water_source" then
+                if multicraft.get_node({x=cx+divlen*2,y=1,z=cz+0}).name == "default:water_source" then
                     num_water_around = num_water_around + 1 end
-                if minetest.get_node({x=cx+0,y=1,z=cz-divlen*2}).name == "default:water_source" then
+                if multicraft.get_node({x=cx+0,y=1,z=cz-divlen*2}).name == "default:water_source" then
                     num_water_around = num_water_around + 1 end
-                if minetest.get_node({x=cx+0,y=1,z=cz+divlen*2}).name == "default:water_source" then
+                if multicraft.get_node({x=cx+0,y=1,z=cz+divlen*2}).name == "default:water_source" then
                     num_water_around = num_water_around + 1 end
                 if num_water_around >= 2 then
                     is_shallow = false
@@ -335,8 +335,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
                 if is_shallow then
                     for x1=-divlen,divlen do
                     for z1=-divlen,divlen do
-                        if minetest.get_node({x=cx+x1,y=0,z=cz+z1}).name == "default:sand" then
-                            minetest.set_node({x=cx+x1,y=0,z=cz+z1}, {name="default:clay"})
+                        if multicraft.get_node({x=cx+x1,y=0,z=cz+z1}).name == "default:sand" then
+                            multicraft.set_node({x=cx+x1,y=0,z=cz+z1}, {name="default:clay"})
                         end
                     end
                     end
@@ -345,7 +345,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
         end
         end
         -- Generate reeds
-        local perlin1 = minetest.get_perlin(354, 3, 0.7, 100)
+        local perlin1 = multicraft.get_perlin(354, 3, 0.7, 100)
         -- Assume X and Z lengths are equal
         local divlen = 8
         local divs = (maxp.x-minp.x)/divlen+1;
@@ -362,15 +362,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
             for i=0,reeds_amount do
                 local x = pr:next(x0, x1)
                 local z = pr:next(z0, z1)
-                if minetest.get_node({x=x,y=1,z=z}).name == "default:dirt_with_grass" and
-                        minetest.find_node_near({x=x,y=1,z=z}, 1, "default:water_source") then
+                if multicraft.get_node({x=x,y=1,z=z}).name == "default:dirt_with_grass" and
+                        multicraft.find_node_near({x=x,y=1,z=z}, 1, "default:water_source") then
                     default.make_reeds({x=x,y=2,z=z}, pr:next(2, 4))
                 end
             end
         end
         end
         -- Generate cactuses
-        local perlin1 = minetest.get_perlin(230, 3, 0.6, 100)
+        local perlin1 = multicraft.get_perlin(230, 3, 0.6, 100)
         -- Assume X and Z lengths are equal
         local divlen = 14
         local divs = (maxp.x-minp.x)/divlen+1;
@@ -390,13 +390,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
                 -- Find ground level (0...15)
                 local ground_y = nil
                 for y=30,0,-1 do
-                    if minetest.get_node({x=x,y=y,z=z}).name ~= "air" then
+                    if multicraft.get_node({x=x,y=y,z=z}).name ~= "air" then
                         ground_y = y
                         break
                     end
                 end
                 -- If desert sand, make cactus
-                local nm = minetest.get_node({x=x,y=ground_y,z=z}).name
+                local nm = multicraft.get_node({x=x,y=ground_y,z=z}).name
                 if ground_y and (nm == "default:sand" or nm == 'default:desert_sand') then
                     default.make_cactus({x=x,y=ground_y+1,z=z}, pr:next(2, 4))
                 end
@@ -404,7 +404,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
         end
         end
         -- Generate grass
-        local perlin1 = minetest.get_perlin(329, 3, 0.6, 100)
+        local perlin1 = multicraft.get_perlin(329, 3, 0.6, 100)
         -- Assume X and Z lengths are equal
         local divlen = 5
         local divs = (maxp.x-minp.x)/divlen+1;
@@ -424,7 +424,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
                 -- Find ground level (0...15)
                 local ground_y = nil
                 for y=30,0,-1 do
-                    if minetest.get_node({x=x,y=y,z=z}).name ~= "air" then
+                    if multicraft.get_node({x=x,y=y,z=z}).name ~= "air" then
                         ground_y = y
                         break
                     end
@@ -432,20 +432,20 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
                 if ground_y then
                     local p = {x=x,y=ground_y+1,z=z}
-                    local nn = minetest.get_node(p).name
+                    local nn = multicraft.get_node(p).name
                     -- Check if the node can be replaced
-                    if minetest.registered_nodes[nn] and
-                        minetest.registered_nodes[nn].buildable_to then
-                        nn = minetest.get_node({x=x,y=ground_y,z=z}).name
+                    if multicraft.registered_nodes[nn] and
+                        multicraft.registered_nodes[nn].buildable_to then
+                        nn = multicraft.get_node({x=x,y=ground_y,z=z}).name
                         -- If desert sand, add dry shrub
                         if math.random()<0.1 then
                         --if pr:next() < 5500 then -- the "proper" alternative
                            if (nn == "default:sand" or nn == 'default:desert_sand') then
-                              minetest.set_node(p,{name="default:dry_shrub"})
+                              multicraft.set_node(p,{name="default:dry_shrub"})
                            end
                         -- If dirt with grass, add grass
                         elseif nn == "default:dirt_with_grass" then
-                            minetest.set_node(p,{name="default:grass"})
+                            multicraft.set_node(p,{name="default:grass"})
                         end
                     end
                 end
@@ -460,7 +460,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 end)
 
 local function replace(old, new, min, max)
-    minetest.register_ore({
+    multicraft.register_ore({
         ore_type       = "scatter",
         ore            = new,
         wherein        = old,
@@ -486,7 +486,7 @@ replace("default:water_source", "default:bedrock", -90, -80)
 replace("default:water_flowing", "default:bedrock", -90, -80)
 
 local function bedrock(old)
-    minetest.register_ore({
+    multicraft.register_ore({
         ore_type       = "scatter",
         ore            = "default:bedrock",
         wherein        = old,

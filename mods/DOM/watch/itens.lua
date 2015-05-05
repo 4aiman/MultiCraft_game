@@ -1,5 +1,5 @@
 -- Watch recipe
-minetest.register_craft({
+multicraft.register_craft({
   description = "Watch",
   output = 'watch:watch',
   recipe = {

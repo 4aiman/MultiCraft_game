@@ -1,5 +1,5 @@
 hud = {}
-local modpath = minetest.get_modpath("hud")
+local modpath = multicraft.get_modpath("hud")
 
 dofile(modpath .. "/api.lua")
 dofile(modpath .. "/functions.lua")

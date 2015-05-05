@@ -1,4 +1,4 @@
-=== BUILTIN_ITEM MOD for MINETEST-C55 ===
+=== BUILTIN_ITEM MOD for multicraft-C55 ===
 by PilzAdam
 
 Features:
@@ -6,22 +6,22 @@ This mod adds some new features to the builtin items:
 - The items are pushed by flowing water
 - The items are destroyed by lava
 - The items are removed after 300 seconds or the time that is specified by
-   remove_items in minetest.conf (0 disables it)
+   remove_items in multicraft.conf (0 disables it)
 
 How to install:
-Unzip the archive an place it in minetest-base-directory/mods/minetest/
+Unzip the archive an place it in multicraft-base-directory/mods/multicraft/
 if you have a windows client or a linux run-in-place client. If you have
-a linux system-wide instalation place it in ~/.minetest/mods/minetest/.
+a linux system-wide instalation place it in ~/.multicraft/mods/multicraft/.
 If you want to install this mod only in one world create the folder
 worldmods/ in your worlddirectory.
 For further information or help see:
-http://wiki.minetest.com/wiki/Installing_Mods
+http://wiki.multicraft.com/wiki/Installing_Mods
 
 License:
 WTFPL (see below)
 
 See also:
-http://minetest.net/
+http://multicraft.net/
 
          DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                     Version 2, December 2004

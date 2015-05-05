@@ -1,6 +1,6 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
-minetest.register_node("mesecons_noteblock:noteblock", {
+multicraft.register_node("mesecons_noteblock:noteblock", {
     description = "Noteblock",
     tiles = {"mesecons_noteblock.png"},
     groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2, mese = 1},
@@ -8,12 +8,12 @@ minetest.register_node("mesecons_noteblock:noteblock", {
     visual_scale = 1.3,
     paramtype="light",
     after_place_node = function(pos)
-        minetest.add_node(pos, {name="mesecons_noteblock:noteblock", param2=0})
+        multicraft.add_node(pos, {name="mesecons_noteblock:noteblock", param2=0})
     end,
     on_punch = function (pos, node) -- change sound when punched
         local param2 = node.param2+1
         if param2==12 then param2=0 end
-        minetest.add_node(pos, {name = node.name, param2 = param2})
+        multicraft.add_node(pos, {name = node.name, param2 = param2})
         mesecon.noteblock_play(pos, param2)
     end,
     sounds = default.node_sound_wood_defaults(),
@@ -24,7 +24,7 @@ minetest.register_node("mesecons_noteblock:noteblock", {
     }}
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = '"mesecons_noteblock:noteblock" 1',
     recipe = {
         {"group:wood", "group:wood", "group:wood"},
@@ -60,7 +60,7 @@ mesecon.noteblock_play = function (pos, param2)
     elseif param2==7 then
         soundname="mesecons_noteblock_gsharp"
     end
-    local block_below_name = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+    local block_below_name = multicraft.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
     if block_below_name == "default:glass" then
         soundname="mesecons_noteblock_hihat"
     end
@@ -76,6 +76,6 @@ mesecon.noteblock_play = function (pos, param2)
     if block_below_name == "default:wood" then
         soundname="mesecons_noteblock_litecrash"
     end
-    minetest.sound_play(soundname,
+    multicraft.sound_play(soundname,
     {pos = pos, gain = 1.0, max_hear_distance = 32,})
 end

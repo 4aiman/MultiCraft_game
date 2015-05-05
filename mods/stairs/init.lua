@@ -1,13 +1,13 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
--- Minetest 0.4 mod: stairs
+-- multicraft 0.4 mod: stairs
 -- See README.txt for licensing and other information.
 
 stairs = {}
 
 -- Node will be called stairs:stair_<subname>
 function stairs.register_stair(subname, recipeitem, groups, images, description, sounds)
-    minetest.register_node(":stairs:stair_" .. subname, {
+    multicraft.register_node(":stairs:stair_" .. subname, {
         description = description,
         drawtype = "nodebox",
         tiles = images,
@@ -32,7 +32,7 @@ function stairs.register_stair(subname, recipeitem, groups, images, description,
             local p1 = pointed_thing.above
             if p0.y-1 == p1.y then
                 local fakestack = ItemStack("stairs:stair_" .. subname.."upside_down")
-                local ret = minetest.item_place(fakestack, placer, pointed_thing)
+                local ret = multicraft.item_place(fakestack, placer, pointed_thing)
                 if ret:is_empty() then
                     itemstack:take_item()
                     return itemstack
@@ -40,11 +40,11 @@ function stairs.register_stair(subname, recipeitem, groups, images, description,
             end
 
             -- Otherwise place regularly
-            return minetest.item_place(itemstack, placer, pointed_thing)
+            return multicraft.item_place(itemstack, placer, pointed_thing)
         end,
     })
 
-    minetest.register_node(":stairs:stair_" .. subname.."upside_down", {
+    multicraft.register_node(":stairs:stair_" .. subname.."upside_down", {
         drop = "stairs:stair_" .. subname,
         drawtype = "nodebox",
         tiles = images,
@@ -62,7 +62,7 @@ function stairs.register_stair(subname, recipeitem, groups, images, description,
         },
     })
 
-    minetest.register_craft({
+    multicraft.register_craft({
         output = 'stairs:stair_' .. subname .. ' 4',
         recipe = {
             {recipeitem, "", ""},
@@ -72,7 +72,7 @@ function stairs.register_stair(subname, recipeitem, groups, images, description,
     })
 
     -- Flipped recipe for the silly minecrafters
-    minetest.register_craft({
+    multicraft.register_craft({
         output = 'stairs:stair_' .. subname .. ' 4',
         recipe = {
             {"", "", recipeitem},
@@ -84,7 +84,7 @@ end
 
 -- Node will be called stairs:slab_<subname>
 function stairs.register_slab(subname, recipeitem, groups, images, description, sounds)
-    minetest.register_node(":stairs:slab_" .. subname, {
+    multicraft.register_node(":stairs:slab_" .. subname, {
         description = description,
         drawtype = "nodebox",
         tiles = images,
@@ -107,7 +107,7 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
             local slabnode = nil
             local p0 = pointed_thing.under
             local p1 = pointed_thing.above
-            local n0 = minetest.get_node(p0)
+            local n0 = multicraft.get_node(p0)
             if n0.name == "stairs:slab_" .. subname and
                     p0.y+1 == p1.y then
                 slabpos = p0
@@ -115,17 +115,17 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
             end
             if slabpos then
                 -- Remove the slab at slabpos
-                minetest.remove_node(slabpos)
+                multicraft.remove_node(slabpos)
                 -- Make a fake stack of a single item and try to place it
                 local fakestack = ItemStack(recipeitem)
                 pointed_thing.above = slabpos
-                fakestack = minetest.item_place(fakestack, placer, pointed_thing)
+                fakestack = multicraft.item_place(fakestack, placer, pointed_thing)
                 -- If the item was taken from the fake stack, decrement original
                 if not fakestack or fakestack:is_empty() then
                     itemstack:take_item(1)
                 -- Else put old node back
                 else
-                    minetest.set_node(slabpos, slabnode)
+                    multicraft.set_node(slabpos, slabnode)
                 end
                 return itemstack
             end
@@ -135,24 +135,24 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
                 -- Turn into full block if pointing at a existing slab
                 if n0.name == "stairs:slab_" .. subname.."upside_down" then
                     -- Remove the slab at the position of the slab
-                    minetest.remove_node(p0)
+                    multicraft.remove_node(p0)
                     -- Make a fake stack of a single item and try to place it
                     local fakestack = ItemStack(recipeitem)
                     pointed_thing.above = p0
-                    fakestack = minetest.item_place(fakestack, placer, pointed_thing)
+                    fakestack = multicraft.item_place(fakestack, placer, pointed_thing)
                     -- If the item was taken from the fake stack, decrement original
                     if not fakestack or fakestack:is_empty() then
                         itemstack:take_item(1)
                     -- Else put old node back
                     else
-                        minetest.set_node(p0, n0)
+                        multicraft.set_node(p0, n0)
                     end
                     return itemstack
                 end
 
                 -- Place upside down slab
                 local fakestack = ItemStack("stairs:slab_" .. subname.."upside_down")
-                local ret = minetest.item_place(fakestack, placer, pointed_thing)
+                local ret = multicraft.item_place(fakestack, placer, pointed_thing)
                 if ret:is_empty() then
                     itemstack:take_item()
                     return itemstack
@@ -164,7 +164,7 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
                     p0.y+1 ~= p1.y then
                 -- Place upside down slab
                 local fakestack = ItemStack("stairs:slab_" .. subname.."upside_down")
-                local ret = minetest.item_place(fakestack, placer, pointed_thing)
+                local ret = multicraft.item_place(fakestack, placer, pointed_thing)
                 if ret:is_empty() then
                     itemstack:take_item()
                     return itemstack
@@ -172,18 +172,18 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
             end
 
             -- Otherwise place regularly
-            return minetest.item_place(itemstack, placer, pointed_thing)
+            return multicraft.item_place(itemstack, placer, pointed_thing)
         end,
     })
 
-    minetest.register_node(":stairs:slab_" .. subname.."upside_down", {
+    multicraft.register_node(":stairs:slab_" .. subname.."upside_down", {
         drop = "stairs:slab_"..subname,
         drawtype = "nodebox",
         tiles = images,
         paramtype = "light",
         stack_max = 64,
         paramtype2 = "facedir",
-        on_place = minetest.rotate_node,
+        on_place = multicraft.rotate_node,
         is_ground_content = true,
         groups = groups,
         sounds = sounds,
@@ -193,7 +193,7 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
         },
     })
 
-    minetest.register_craft({
+    multicraft.register_craft({
         output = 'stairs:slab_' .. subname .. ' 6',
         recipe = {
             {recipeitem, recipeitem, recipeitem},

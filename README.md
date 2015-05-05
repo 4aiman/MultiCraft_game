@@ -1,8 +1,8 @@
 # MultiCraft_game
-Based on Minetest_game and Overcraft_Origins subgame for Minetest and MultiCraft.
+Subgame for MultiCraft.
 
 
-A Minecraft-like game for the Minetest game engine [overcraft_origins]
+A Minecraft clone game for the MultiCraft game engine.
 ======================================================================
 
 License of source code
@@ -44,6 +44,3 @@ Vattic's Terms:
 	- These guidelines can be changed at any time.
 
 See README.txt in each mod directory for information about other authors.
-
-License of menu/header.png
-Copyright (C) 2013 jojoa1997 CC BY-SA 3.0

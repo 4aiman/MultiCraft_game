@@ -1,11 +1,11 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 
 -- Boilerplate to support localized strings if intllib mod is installed.
 local S;
-if (minetest.get_modpath("intllib")) then
-    dofile(minetest.get_modpath("intllib").."/intllib.lua");
-    S = intllib.Getter(minetest.get_current_modname());
+if (multicraft.get_modpath("intllib")) then
+    dofile(multicraft.get_modpath("intllib").."/intllib.lua");
+    S = intllib.Getter(multicraft.get_current_modname());
 else
     S = function ( s ) return s end;
 end
@@ -22,7 +22,7 @@ local function deepcopy ( t )
     return nt;
 end
 
-local newbook = deepcopy(minetest.registered_items["default:book"]);
+local newbook = deepcopy(multicraft.registered_items["default:book"]);
 
 newbook.on_use = function ( itemstack, user, pointed_thing )
 
@@ -30,16 +30,16 @@ newbook.on_use = function ( itemstack, user, pointed_thing )
 
     local formspec = "size[8,9]"..
 		"background[-0.5,-0.5;9,10;book_bg.png]"..
-        "textarea[0.5,0.25;7.5,9.25;text;;"..minetest.formspec_escape(text).."]"..
+        "textarea[0.5,0.25;7.5,9.25;text;;"..multicraft.formspec_escape(text).."]"..
         "button_exit[3,8.25;2,1;ok;Exit]";
 
-    minetest.show_formspec(user:get_player_name(), "default:book", formspec);
+    multicraft.show_formspec(user:get_player_name(), "default:book", formspec);
 
 end
 
-minetest.register_craftitem(":default:book", newbook);
+multicraft.register_craftitem(":default:book", newbook);
 
-minetest.register_on_player_receive_fields(function ( player, formname, fields )
+multicraft.register_on_player_receive_fields(function ( player, formname, fields )
     if ((formname == "default:book") and fields and fields.text) then
         local stack = player:get_wielded_item();
         if (stack:get_name() and (stack:get_name() == "default:book")) then

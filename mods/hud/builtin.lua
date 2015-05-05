@@ -1,6 +1,6 @@
 HUD_IW_MAX = 8
 HUD_IW_TICK = 0.4
-if minetest.is_singleplayer() == true then
+if multicraft.is_singleplayer() == true then
         HUD_IW_TICK = 0.2
 end
 
@@ -16,7 +16,7 @@ HUD_ARMOR_POS = {x = 0.5, y = 1}
 HUD_ARMOR_OFFSET = {x = -262, y = -110}
 
 -- Reorder everything when using ItemWeel
-hud.item_wheel = false --minetest.setting_getbool("hud_item_wheel")
+hud.item_wheel = false --multicraft.setting_getbool("hud_item_wheel")
 if hud.item_wheel then
         HUD_HEALTH_POS = {x = 0.5,y = 1}
         HUD_HEALTH_OFFSET = {x = -385, y = -77}
@@ -31,13 +31,13 @@ end
 -- read hud.conf settings
 hud.read_conf()
 
-local damage_enabled = minetest.setting_getbool("enable_damage")
+local damage_enabled = multicraft.setting_getbool("enable_damage")
 
-hud.show_hunger = true --minetest.get_modpath("hunger") ~= nil
-hud.show_armor = minetest.get_modpath("3d_armor") ~= nil
+hud.show_hunger = true --multicraft.get_modpath("hunger") ~= nil
+hud.show_armor = multicraft.get_modpath("3d_armor") ~= nil
 
 -- check if some settings are invalid
---local enable_hunger = minetest.setting_getbool("hud_hunger_enable")
+--local enable_hunger = multicraft.setting_getbool("hud_hunger_enable")
 --if (enable_hunger == true or HUD_ENABLE_HUNGER == true) and not hud.show_hunger then
 --      hud.notify_hunger(5)
 --end

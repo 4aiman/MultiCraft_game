@@ -1,4 +1,4 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -- This mod provides the visible text on signs library used by Home Decor
 -- and perhaps other mods at some point in the future.  Forked from thexyz's/
@@ -7,8 +7,8 @@ if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copyin
 
 signs_lib = {}
 
-signs_lib.modpath = minetest.get_modpath("signs_lib")
-signs_lib.intllib_modpath = minetest.get_modpath("intllib")
+signs_lib.modpath = multicraft.get_modpath("signs_lib")
+signs_lib.intllib_modpath = multicraft.get_modpath("intllib")
 
 signs_lib.wall_sign_model = {
     nodebox = {
@@ -74,7 +74,7 @@ signs_lib.sign_post_model = {
 local S
 if signs_lib.intllib_modpath then
     dofile(signs_lib.intllib_modpath.."/intllib.lua")
-    S = intllib.Getter(minetest.get_current_modname())
+    S = intllib.Getter(multicraft.get_current_modname())
 else
     S = function ( s ) return s end
 end
@@ -110,7 +110,7 @@ end
 
 -- infinite stacks
 
-if minetest.get_modpath("unified_inventory") or not minetest.setting_getbool("creative_mode") then
+if multicraft.get_modpath("unified_inventory") or not multicraft.setting_getbool("creative_mode") then
     signs_lib.expect_infinite_stacks = false
 else
     signs_lib.expect_infinite_stacks = true
@@ -118,7 +118,7 @@ end
 
 -- CONSTANTS
 
-local MP = minetest.get_modpath("signs_lib")
+local MP = multicraft.get_modpath("signs_lib")
 
 -- Used by `build_char_db' to locate the file.
 local FONT_FMT = "%s/hdf_%02x.png"
@@ -176,7 +176,7 @@ local MAX_INPUT_CHARS = 600
 local charwidth = { }
 
 -- File to cache the font size to.
-local CHARDB_FILE = minetest.get_worldpath().."/signs_lib_chardb"
+local CHARDB_FILE = multicraft.get_worldpath().."/signs_lib_chardb"
 
 -- helper functions to trim sign text input/output
 
@@ -223,7 +223,7 @@ local function build_char_db()
     local cdbf = io.open(CHARDB_FILE, "rt")
 
     if cdbf then
-        minetest.log("info", "[signs_lib] "..S("Reading cached character database."))
+        multicraft.log("info", "[signs_lib] "..S("Reading cached character database."))
         for line in cdbf:lines() do
             local ch, w = line:match("(0x[0-9A-Fa-f]+)%s+([0-9][0-9]*)")
             if ch and w then
@@ -247,12 +247,12 @@ local function build_char_db()
             -- (font probably was changed).
             if check_random_chars() then
                 LINE_HEIGHT = nil
-                minetest.log("info", "[signs_lib] "
+                multicraft.log("info", "[signs_lib] "
                     ..S("Font seems to have changed. Rebuilding cache.")
                 )
             end
         else
-            minetest.log("warning", "[signs_lib] "
+            multicraft.log("warning", "[signs_lib] "
                 ..S("Could not find font line height in cached DB. Trying brute force.")
             )
         end
@@ -291,7 +291,7 @@ local function build_char_db()
     local e -- Note: `cdbf' is already declared local above.
     cdbf, e = io.open(CHARDB_FILE, "wt")
     if not cdbf then
-        minetest.log("warning", "[signs_lib] Could not save cached char DB: "..(e or ""))
+        multicraft.log("warning", "[signs_lib] Could not save cached char DB: "..(e or ""))
         return
     end
 
@@ -464,7 +464,7 @@ local function set_obj_text(obj, text, new)
 end
 
 signs_lib.construct_sign = function(pos, locked)
-    local meta = minetest.get_meta(pos)
+    local meta = multicraft.get_meta(pos)
     meta:set_string(
         "formspec",
         "size[6,4]"..
@@ -475,7 +475,7 @@ signs_lib.construct_sign = function(pos, locked)
 end
 
 signs_lib.destruct_sign = function(pos)
-    local objects = minetest.get_objects_inside_radius(pos, 0.5)
+    local objects = multicraft.get_objects_inside_radius(pos, 0.5)
     for _, v in ipairs(objects) do
         local e = v:get_luaentity()
         if e and e.name == "signs:text" then
@@ -495,7 +495,7 @@ local function make_infotext(text)
 end
 
 signs_lib.update_sign = function(pos, fields, owner)
-    local meta = minetest.get_meta(pos)
+    local meta = multicraft.get_meta(pos)
 
     local new
     if fields then
@@ -514,7 +514,7 @@ signs_lib.update_sign = function(pos, fields, owner)
     end
     local text = meta:get_string("text")
     if text == nil then return end
-    local objects = minetest.get_objects_inside_radius(pos, 0.5)
+    local objects = multicraft.get_objects_inside_radius(pos, 0.5)
     for _, v in ipairs(objects) do
         local e = v:get_luaentity()
         if e and e.name == "signs:text" then
@@ -525,20 +525,20 @@ signs_lib.update_sign = function(pos, fields, owner)
 
     -- if there is no entity
     local sign_info
-    local signnode = minetest.get_node(pos)
+    local signnode = multicraft.get_node(pos)
     if signnode.name == "signs:sign_yard" then
-        sign_info = signs_lib.yard_sign_model.textpos[minetest.get_node(pos).param2 + 1]
+        sign_info = signs_lib.yard_sign_model.textpos[multicraft.get_node(pos).param2 + 1]
     elseif signnode.name == "signs:sign_hanging" then
-        sign_info = signs_lib.hanging_sign_model.textpos[minetest.get_node(pos).param2 + 1]
+        sign_info = signs_lib.hanging_sign_model.textpos[multicraft.get_node(pos).param2 + 1]
     elseif string.find(signnode.name, "sign_wall") then
-        sign_info = signs_lib.wall_sign_model.textpos[minetest.get_node(pos).param2 + 1]
+        sign_info = signs_lib.wall_sign_model.textpos[multicraft.get_node(pos).param2 + 1]
     else -- ...it must be a sign on a fence post.
-        sign_info = signs_lib.sign_post_model.textpos[minetest.get_node(pos).param2 + 1]
+        sign_info = signs_lib.sign_post_model.textpos[multicraft.get_node(pos).param2 + 1]
     end
     if sign_info == nil then
         return
     end
-    local text = minetest.add_entity({x = pos.x + sign_info.delta.x,
+    local text = multicraft.add_entity({x = pos.x + sign_info.delta.x,
                                         y = pos.y + sign_info.delta.y,
                                         z = pos.z + sign_info.delta.z}, "signs:text")
     text:setyaw(sign_info.yaw)
@@ -548,30 +548,30 @@ end
 
 function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
     local name
-    name = minetest.get_node(pointed_thing.under).name
+    name = multicraft.get_node(pointed_thing.under).name
     if fences_with_sign[name] then
-        if minetest.is_protected(pointed_thing.under, placer:get_player_name()) then
-            minetest.record_protection_violation(pointed_thing.under,
+        if multicraft.is_protected(pointed_thing.under, placer:get_player_name()) then
+            multicraft.record_protection_violation(pointed_thing.under,
                 placer:get_player_name())
             return itemstack
         end
     else
-        name = minetest.get_node(pointed_thing.above).name
-        local def = minetest.registered_nodes[name]
+        name = multicraft.get_node(pointed_thing.above).name
+        local def = multicraft.registered_nodes[name]
         if not def.buildable_to then
             return itemstack
         end
-        if minetest.is_protected(pointed_thing.above, placer:get_player_name()) then
-            minetest.record_protection_violation(pointed_thing.above,
+        if multicraft.is_protected(pointed_thing.above, placer:get_player_name()) then
+            multicraft.record_protection_violation(pointed_thing.above,
                 placer:get_player_name())
             return itemstack
         end
     end
 
-    local node=minetest.get_node(pointed_thing.under)
+    local node=multicraft.get_node(pointed_thing.under)
 
-    if minetest.registered_nodes[node.name] and minetest.registered_nodes[node.name].on_rightclick then
-        return minetest.registered_nodes[node.name].on_rightclick(pointed_thing.under, node, placer, itemstack)
+    if multicraft.registered_nodes[node.name] and multicraft.registered_nodes[node.name].on_rightclick then
+        return multicraft.registered_nodes[node.name].on_rightclick(pointed_thing.under, node, placer, itemstack)
     else
         local above = pointed_thing.above
         local under = pointed_thing.under
@@ -579,7 +579,7 @@ function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
                      y = under.y - above.y,
                      z = under.z - above.z}
 
-        local wdir = minetest.dir_to_wallmounted(dir)
+        local wdir = multicraft.dir_to_wallmounted(dir)
 
         local placer_pos = placer:getpos()
         if placer_pos then
@@ -590,33 +590,33 @@ function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
             }
         end
 
-        local fdir = minetest.dir_to_facedir(dir)
+        local fdir = multicraft.dir_to_facedir(dir)
 
         local sign_info
-        local pt_name = minetest.get_node(under).name
+        local pt_name = multicraft.get_node(under).name
 --      print(dump(pt_name))
         local signname = itemstack:get_name()
 
         if fences_with_sign[pt_name] and signname == "default:sign_wall" then
-            minetest.add_node(under, {name = fences_with_sign[pt_name], param2 = fdir})
+            multicraft.add_node(under, {name = fences_with_sign[pt_name], param2 = fdir})
             sign_info = signs_lib.sign_post_model.textpos[fdir + 1]
         elseif wdir == 0 and signname == "default:sign_wall" then
-            minetest.add_node(above, {name = "signs:sign_hanging", param2 = fdir})
+            multicraft.add_node(above, {name = "signs:sign_hanging", param2 = fdir})
             sign_info = signs_lib.hanging_sign_model.textpos[fdir + 1]
         elseif wdir == 1 and signname == "default:sign_wall" then
-            minetest.add_node(above, {name = "signs:sign_yard", param2 = fdir})
+            multicraft.add_node(above, {name = "signs:sign_yard", param2 = fdir})
             sign_info = signs_lib.yard_sign_model.textpos[fdir + 1]
         else -- it must be a wooden or metal wall sign.
-            minetest.add_node(above, {name = signname, param2 = fdir})
+            multicraft.add_node(above, {name = signname, param2 = fdir})
             sign_info = signs_lib.wall_sign_model.textpos[fdir + 1]
             if locked then
-                local meta = minetest.get_meta(above)
+                local meta = multicraft.get_meta(above)
                 local owner = placer:get_player_name()
                 meta:set_string("owner", owner)
             end
         end
 
-        local text = minetest.add_entity({x = above.x + sign_info.delta.x,
+        local text = multicraft.add_entity({x = above.x + sign_info.delta.x,
                                               y = above.y + sign_info.delta.y,
                                               z = above.z + sign_info.delta.z}, "signs:text")
         text:setyaw(sign_info.yaw)
@@ -629,18 +629,18 @@ function signs_lib.determine_sign_type(itemstack, placer, pointed_thing, locked)
 end
 
 function signs_lib.receive_fields(pos, formname, fields, sender, lock)
-    if minetest.is_protected(pos, sender:get_player_name()) then
-        minetest.record_protection_violation(pos,
+    if multicraft.is_protected(pos, sender:get_player_name()) then
+        multicraft.record_protection_violation(pos,
             sender:get_player_name())
         return
     end
     lockstr = ""
     if lock then lockstr = "locked " end
     if fields and fields.text and fields.ok then
-        minetest.log("action", S("%s wrote \"%s\" to "..lockstr.."sign at %s"):format(
+        multicraft.log("action", S("%s wrote \"%s\" to "..lockstr.."sign at %s"):format(
             (sender:get_player_name() or ""),
             fields.text,
-            minetest.pos_to_string(pos)
+            multicraft.pos_to_string(pos)
         ))
         if lock then
             signs_lib.update_sign(pos, fields, sender:get_player_name())
@@ -650,7 +650,7 @@ function signs_lib.receive_fields(pos, formname, fields, sender, lock)
     end
 end
 
-minetest.register_node(":default:sign_wall", {
+multicraft.register_node(":default:sign_wall", {
     description = S("Sign"),
     inventory_image = "default_sign_wall.png",
     wield_image = "default_sign_wall.png",
@@ -680,7 +680,7 @@ minetest.register_node(":default:sign_wall", {
     end,
 })
 
-minetest.register_node(":signs:sign_yard", {
+multicraft.register_node(":signs:sign_yard", {
     paramtype = "light",
     sunlight_propagates = true,
     paramtype2 = "facedir",
@@ -708,7 +708,7 @@ minetest.register_node(":signs:sign_yard", {
     end,
 })
 
-minetest.register_node(":signs:sign_hanging", {
+multicraft.register_node(":signs:sign_hanging", {
     paramtype = "light",
     sunlight_propagates = true,
     paramtype2 = "facedir",
@@ -743,7 +743,7 @@ minetest.register_node(":signs:sign_hanging", {
     end,
 })
 
-minetest.register_node(":signs:sign_post", {
+multicraft.register_node(":signs:sign_post", {
     paramtype = "light",
     sunlight_propagates = true,
     paramtype2 = "facedir",
@@ -769,9 +769,9 @@ minetest.register_node(":signs:sign_post", {
 
 -- Locked wall sign
 
-minetest.register_privilege("sign_editor", "Can edit all locked signs")
+multicraft.register_privilege("sign_editor", "Can edit all locked signs")
 
-minetest.register_node(":locked_sign:sign_wall_locked", {
+multicraft.register_node(":locked_sign:sign_wall_locked", {
     description = S("Sign"),
     inventory_image = "signs_locked_inv.png",
     wield_image = "signs_locked_inv.png",
@@ -800,11 +800,11 @@ minetest.register_node(":locked_sign:sign_wall_locked", {
         signs_lib.destruct_sign(pos)
     end,
     on_receive_fields = function(pos, formname, fields, sender)
-        local meta = minetest.get_meta(pos)
+        local meta = multicraft.get_meta(pos)
         local owner = meta:get_string("owner")
         local pname = sender:get_player_name() or ""
-        if pname ~= owner and pname ~= minetest.setting_get("name")
-          and not minetest.check_player_privs(pname, {sign_editor=true}) then
+        if pname ~= owner and pname ~= multicraft.setting_get("name")
+          and not multicraft.check_player_privs(pname, {sign_editor=true}) then
             return
         end
         signs_lib.receive_fields(pos, formname, fields, sender, true)
@@ -813,11 +813,11 @@ minetest.register_node(":locked_sign:sign_wall_locked", {
         signs_lib.update_sign(pos)
     end,
     can_dig = function(pos, player)
-        local meta = minetest.get_meta(pos)
+        local meta = multicraft.get_meta(pos)
         local owner = meta:get_string("owner")
         local pname = player:get_player_name()
-        return pname == owner or pname == minetest.setting_get("name")
-            or minetest.check_player_privs(pname, {sign_editor=true})
+        return pname == owner or pname == multicraft.setting_get("name")
+            or multicraft.check_player_privs(pname, {sign_editor=true})
     end,
 })
 
@@ -826,7 +826,7 @@ minetest.register_node(":locked_sign:sign_wall_locked", {
 local sign_colors = { "green", "yellow", "red", "white_red", "white_black" }
 
 for _, color in ipairs(sign_colors) do
-    minetest.register_node(":signs:sign_wall_"..color, {
+    multicraft.register_node(":signs:sign_wall_"..color, {
         description = S("Sign ("..color..", metal)"),
         inventory_image = "signs_"..color.."_inv.png",
         wield_image = "signs_"..color.."_inv.png",
@@ -866,7 +866,7 @@ end
 local signs_text_on_activate
 
 signs_text_on_activate = function(self)
-    local meta = minetest.get_meta(self.object:getpos())
+    local meta = multicraft.get_meta(self.object:getpos())
     local text = meta:get_string("text")
     local new = (meta:get_int("__signslib_new_format") ~= 0)
     if text then
@@ -875,7 +875,7 @@ signs_text_on_activate = function(self)
     end
 end
 
-minetest.register_entity(":signs:text", {
+multicraft.register_entity(":signs:text", {
     collisionbox = { 0, 0, 0, 0, 0, 0 },
     visual = "upright_sprite",
     textures = {},
@@ -886,10 +886,10 @@ minetest.register_entity(":signs:text", {
 -- And the good stuff here! :-)
 
 function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
-    local def = minetest.registered_nodes[fencename]
-    local def_sign = minetest.registered_nodes[fencewithsignname]
+    local def = multicraft.registered_nodes[fencename]
+    local def_sign = multicraft.registered_nodes[fencewithsignname]
     if not (def and def_sign) then
-        minetest.log("warning", "[signs_lib] Attempt to register unknown node as fence")
+        multicraft.log("warning", "[signs_lib] Attempt to register unknown node as fence")
         return
     end
     def = signs_lib.table_copy(def)
@@ -897,34 +897,34 @@ function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
     fences_with_sign[fencename] = fencewithsignname
 
     def.on_place = function(itemstack, placer, pointed_thing, ...)
-        local node_above = minetest.get_node(pointed_thing.above)
-        local node_under = minetest.get_node(pointed_thing.under)
-        local def_above = minetest.registered_nodes[node_above.name]
-        local def_under = minetest.registered_nodes[node_under.name]
-        local fdir = minetest.dir_to_facedir(placer:get_look_dir())
+        local node_above = multicraft.get_node(pointed_thing.above)
+        local node_under = multicraft.get_node(pointed_thing.under)
+        local def_above = multicraft.registered_nodes[node_above.name]
+        local def_under = multicraft.registered_nodes[node_under.name]
+        local fdir = multicraft.dir_to_facedir(placer:get_look_dir())
         local playername = placer:get_player_name()
 
-        if minetest.is_protected(pointed_thing.under, playername) then
-            minetest.record_protection_violation(pointed_thing.under, playername)
+        if multicraft.is_protected(pointed_thing.under, playername) then
+            multicraft.record_protection_violation(pointed_thing.under, playername)
             return
         end
 
-        if minetest.is_protected(pointed_thing.above, playername) then
-            minetest.record_protection_violation(pointed_thing.above, playername)
+        if multicraft.is_protected(pointed_thing.above, playername) then
+            multicraft.record_protection_violation(pointed_thing.above, playername)
             return
         end
 
         if def_under and def_under.on_rightclick then
             return def_under.on_rightclick(pointed_thing.under, node_under, placer, itemstack) or itemstack
         elseif def_under and def_under.buildable_to then
-            minetest.add_node(pointed_thing.under, {name = fencename, param2 = fdir})
+            multicraft.add_node(pointed_thing.under, {name = fencename, param2 = fdir})
             if not signs_lib.expect_infinite_stacks then
                 itemstack:take_item()
             end
             placer:set_wielded_item(itemstack)
             return itemstack
         elseif not def_above or def_above.buildable_to then
-            minetest.add_node(pointed_thing.above, {name = fencename, param2 = fdir})
+            multicraft.add_node(pointed_thing.above, {name = fencename, param2 = fdir})
             if not signs_lib.expect_infinite_stacks then
                 itemstack:take_item()
             end
@@ -947,25 +947,25 @@ function signs_lib.register_fence_with_sign(fencename, fencewithsignname)
     local fencename = fencename
     def_sign.after_dig_node = function(pos, node, ...)
         node.name = fencename
-        minetest.add_node(pos, node)
+        multicraft.add_node(pos, node)
     end
     def_sign.drop = "default:sign_wall"
-    minetest.register_node(":"..fencename, def)
-    minetest.register_node(":"..fencewithsignname, def_sign)
+    multicraft.register_node(":"..fencename, def)
+    multicraft.register_node(":"..fencewithsignname, def_sign)
     table.insert(signs_lib.sign_node_list, fencewithsignname)
     print(S("Registered %s and %s"):format(fencename, fencewithsignname))
 end
 
 build_char_db()
 
-minetest.register_alias("homedecor:fence_wood_with_sign", "signs:sign_post")
-minetest.register_alias("sign_wall_locked", "locked_sign:sign_wall_locked")
+multicraft.register_alias("homedecor:fence_wood_with_sign", "signs:sign_post")
+multicraft.register_alias("sign_wall_locked", "locked_sign:sign_wall_locked")
 
 signs_lib.register_fence_with_sign("default:fence_wood", "signs:sign_post")
 
 -- restore signs' text after /clearobjects and the like
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = signs_lib.sign_node_list,
     interval = 15,
     chance = 1,
@@ -976,7 +976,7 @@ minetest.register_abm({
 
 -- locked sign
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "locked_sign:sign_wall_locked",
     recipe = {
         {"group:wood", "group:wood", "group:wood"},
@@ -987,7 +987,7 @@ minetest.register_craft({
 
 --Alternate recipe.
 
-minetest.register_craft({
+multicraft.register_craft({
         output = "locked_sign:sign_wall_locked",
         recipe = {
             {"default:sign_wall"},
@@ -997,7 +997,7 @@ minetest.register_craft({
 
 -- craft recipes for the metal signs
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_green 4",
         recipe = {
             { "dye:dark_green", "dye:white", "dye:dark_green" },
@@ -1005,7 +1005,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_green 2",
         recipe = {
             { "dye:dark_green", "dye:white", "dye:dark_green" },
@@ -1013,7 +1013,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_yellow 4",
         recipe = {
             { "dye:yellow", "dye:black", "dye:yellow" },
@@ -1021,7 +1021,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_yellow 2",
         recipe = {
             { "dye:yellow", "dye:black", "dye:yellow" },
@@ -1029,7 +1029,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_red 4",
         recipe = {
             { "dye:red", "dye:white", "dye:red" },
@@ -1037,7 +1037,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_red 2",
         recipe = {
             { "dye:red", "dye:white", "dye:red" },
@@ -1045,7 +1045,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_white_red 4",
         recipe = {
             { "dye:white", "dye:red", "dye:white" },
@@ -1053,7 +1053,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_white_red 2",
         recipe = {
             { "dye:white", "dye:red", "dye:white" },
@@ -1061,7 +1061,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_white_black 4",
         recipe = {
             { "dye:white", "dye:black", "dye:white" },
@@ -1069,7 +1069,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+multicraft.register_craft( {
         output = "signs:sign_wall_white_black 2",
         recipe = {
             { "dye:white", "dye:black", "dye:white" },
@@ -1077,6 +1077,6 @@ minetest.register_craft( {
         },
 })
 
-if minetest.setting_get("log_mods") then
-    minetest.log("action", S("signs loaded"))
+if multicraft.setting_get("log_mods") then
+    multicraft.log("action", S("signs loaded"))
 end

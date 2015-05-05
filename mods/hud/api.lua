@@ -11,7 +11,7 @@ local sb_bg = {}	-- statbar background ids
 local items = hud.registered_items
 
 local function throw_error(msg)
-	minetest.log("error", "Better HUD[error]: " .. msg)
+	multicraft.log("error", "Better HUD[error]: " .. msg)
 end
 
 
@@ -182,7 +182,7 @@ local function add_hud_item(player, name, def)
 	hud_id[i_name].id = player:hud_add(def)
 end
 
-minetest.register_on_joinplayer(function(player)
+multicraft.register_on_joinplayer(function(player)
 
 	-- first: hide the default statbars
 	local hud_flags = player:hud_get_flags()
@@ -200,8 +200,8 @@ minetest.register_on_joinplayer(function(player)
 	end
 
 	-- fancy hotbar (only when no crafting mod present)
-	if minetest.get_modpath("crafting") == nil then
-	    minetest.after(0.5, function()
+	if multicraft.get_modpath("crafting") == nil then
+	    multicraft.after(0.5, function()
 		player:hud_set_hotbar_image("hud_hotbar.png")
 		player:hud_set_hotbar_selected_image("hud_hotbar_selected.png")
 	    end)

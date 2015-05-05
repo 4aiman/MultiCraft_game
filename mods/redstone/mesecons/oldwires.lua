@@ -1,4 +1,4 @@
-minetest.register_node("mesecons:mesecon_off", {
+multicraft.register_node("mesecons:mesecon_off", {
     drawtype = "raillike",
     tiles = {"jeija_mesecon_off.png", "jeija_mesecon_curved_off.png", "jeija_mesecon_t_junction_off.png", "jeija_mesecon_crossing_off.png"},
     inventory_image = "jeija_mesecon_off.png",
@@ -18,7 +18,7 @@ minetest.register_node("mesecons:mesecon_off", {
     }}
 })
 
-minetest.register_node("mesecons:mesecon_on", {
+multicraft.register_node("mesecons:mesecon_on", {
     drawtype = "raillike",
     tiles = {"jeija_mesecon_on.png", "jeija_mesecon_curved_on.png", "jeija_mesecon_t_junction_on.png", "jeija_mesecon_crossing_on.png"},
     paramtype = "light",

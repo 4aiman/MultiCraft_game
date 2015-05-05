@@ -1,6 +1,6 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
-local path = minetest.get_modpath(minetest.get_current_modname())
+local path = multicraft.get_modpath(multicraft.get_current_modname())
 
 -- Load Info command
 dofile(path.."/info.lua")
@@ -23,7 +23,7 @@ local disallowed = {
 	["[0-9].-[0-9].-[0-9].-[0-9].-[0-9]"]	=	"Too many numbers in your username. "..
 												"Please try again with less than five digits in your username."
 }
-minetest.register_on_prejoinplayer(function(name, ip)
+multicraft.register_on_prejoinplayer(function(name, ip)
 	local lname = name:lower()
 	for re, reason in pairs(disallowed) do
 		if lname:find(re) then

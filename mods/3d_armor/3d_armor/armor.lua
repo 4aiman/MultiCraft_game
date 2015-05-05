@@ -2,13 +2,13 @@ ARMOR_INIT_DELAY = 1
 ARMOR_INIT_TIMES = 1
 ARMOR_BONES_DELAY = 1
 ARMOR_UPDATE_TIME = 1
-ARMOR_DROP = minetest.get_modpath("bones") ~= nil
+ARMOR_DROP = multicraft.get_modpath("bones") ~= nil
 ARMOR_DESTROY = false
 ARMOR_LEVEL_MULTIPLIER = 1
 ARMOR_HEAL_MULTIPLIER = 1
 
-local modpath = minetest.get_modpath(ARMOR_MOD_NAME)
-local worldpath = minetest.get_worldpath()
+local modpath = multicraft.get_modpath(ARMOR_MOD_NAME)
+local worldpath = multicraft.get_worldpath()
 local input = io.open(modpath.."/armor.conf", "r")
 if input then
     dofile(modpath.."/armor.conf")
@@ -89,10 +89,10 @@ armor.set_player_armor = function(self, player)
     local name = player:get_player_name()
     local player_inv = player:get_inventory()
     if not name then
-        minetest.log("error", "Failed to read player name")
+        multicraft.log("error", "Failed to read player name")
         return
     elseif not player_inv then
-        minetest.log("error", "Failed to read player inventory")
+        multicraft.log("error", "Failed to read player inventory")
         return
     end
     local armor_texture = "3d_armor_trans.png"
@@ -145,7 +145,7 @@ armor.set_player_armor = function(self, player)
             end
         end
     end
-    --[[if minetest.get_modpath("shields") then
+    --[[if multicraft.get_modpath("shields") then
         armor_level = armor_level * 0.9
     end]]
     if material.type and material.count == #self.elements then
@@ -186,12 +186,12 @@ armor.update_armor = function(self, player)
     end
     if self.player_hp[name] > hp then
         local player_inv = player:get_inventory()
-        local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
+        local armor_inv = multicraft.get_inventory({type="detached", name=name.."_armor"})
         if not player_inv then
-            minetest.log("error", "Failed to read player inventory")
+            multicraft.log("error", "Failed to read player inventory")
             return
         elseif not armor_inv then
-            minetest.log("error", "Failed to read detached inventory")
+            multicraft.log("error", "Failed to read detached inventory")
             return
         end
         local heal_max = 0
@@ -209,9 +209,9 @@ armor.update_armor = function(self, player)
                 state = state + stack:get_wear()
                 items = items + 1
                 if stack:get_count() == 0 then
-                    local desc = minetest.registered_items[item].description
+                    local desc = multicraft.registered_items[item].description
                     if desc then
-                        minetest.chat_send_player(name, "Your "..desc.." got destroyed!")
+                        multicraft.chat_send_player(name, "Your "..desc.." got destroyed!")
                     end
                     self:set_player_armor(player)
                     armor:update_inventory(player)
@@ -287,7 +287,7 @@ default.player_register_model("3d_armor_character.x", {
 
 -- Register Callbacks
 
-minetest.register_on_player_receive_fields(function(player, formname, fields)
+multicraft.register_on_player_receive_fields(function(player, formname, fields)
     local name = player:get_player_name()
     if inventory_plus and fields.armor then
         local formspec = armor:get_armor_formspec(name)
@@ -296,7 +296,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
     end
     for field, _ in pairs(fields) do
         if string.find(field, "skins_set_") then
-            minetest.after(0, function(player)
+            multicraft.after(0, function(player)
                 local skin = armor:get_player_skin(name)
                 armor.textures[name].skin = skin..".png"
                 armor:set_player_armor(player)
@@ -305,31 +305,31 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
     end
 end)
 
-minetest.register_on_joinplayer(function(player)
+multicraft.register_on_joinplayer(function(player)
     default.player_set_model(player, "3d_armor_character.x")
     local name = player:get_player_name()
     local player_inv = player:get_inventory()
-    local armor_inv = minetest.create_detached_inventory(name.."_armor",{
+    local armor_inv = multicraft.create_detached_inventory(name.."_armor",{
         allow_put = function(inv, listname, index, stack, player)
             local item = stack:get_name()
-            if not minetest.registered_items[item] then return end
-            if not minetest.registered_items[item].groups then return end
-            if  minetest.registered_items[item].groups['armor_head']
+            if not multicraft.registered_items[item] then return end
+            if not multicraft.registered_items[item].groups then return end
+            if  multicraft.registered_items[item].groups['armor_head']
             and index == 1
             then
                 return 1
             end
-            if  minetest.registered_items[item].groups['armor_torso']
+            if  multicraft.registered_items[item].groups['armor_torso']
             and index == 2
             then
                 return 1
             end
-            if  minetest.registered_items[item].groups['armor_legs']
+            if  multicraft.registered_items[item].groups['armor_legs']
             and index == 3
             then
                 return 1
             end
-            if  minetest.registered_items[item].groups['armor_feet']
+            if  multicraft.registered_items[item].groups['armor_feet']
             and index == 4
             then
                 return 1
@@ -394,24 +394,24 @@ minetest.register_on_joinplayer(function(player)
         wielditem = "3d_armor_trans.png",
         preview = armor.default_skin.."_preview.png",
     }
-    if minetest.get_modpath("skins") then
+    if multicraft.get_modpath("skins") then
         local skin = skins.skins[name]
         if skin and skins.get_type(skin) == skins.type.MODEL then
             armor.textures[name].skin = skin..".png"
         end
-    elseif minetest.get_modpath("simple_skins") then
+    elseif multicraft.get_modpath("simple_skins") then
         local skin = skins.skins[name]
         if skin then
             armor.textures[name].skin = skin..".png"
         end
-    --[[elseif minetest.get_modpath("u_skins") then
+    --[[elseif multicraft.get_modpath("u_skins") then
         local skin = u_skins.u_skins[name]
         if skin and u_skins.get_type(skin) == u_skins.type.MODEL then
             armor.textures[name].skin = skin..".png"
         end]]
     end
-    if minetest.get_modpath("player_textures") then
-        local filename = minetest.get_modpath("player_textures").."/textures/player_"..name
+    if multicraft.get_modpath("player_textures") then
+        local filename = multicraft.get_modpath("player_textures").."/textures/player_"..name
         local f = io.open(filename..".png")
         if f then
             f:close()
@@ -419,7 +419,7 @@ minetest.register_on_joinplayer(function(player)
         end
     end
     for i=1, ARMOR_INIT_TIMES do
-        minetest.after(ARMOR_INIT_DELAY * i, function(player)
+        multicraft.after(ARMOR_INIT_DELAY * i, function(player)
             armor:set_player_armor(player)
             if inventory_plus == nil and unified_inventory == nil then
                 --armor:update_inventory(player)
@@ -429,13 +429,13 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 if ARMOR_DROP == true or ARMOR_DESTROY == true then
-    minetest.register_on_dieplayer(function(player)
+    multicraft.register_on_dieplayer(function(player)
         local name = player:get_player_name()
         local pos = player:getpos()
         if name and pos then
             local drop = {}
             local player_inv = player:get_inventory()
-            local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
+            local armor_inv = multicraft.get_inventory({type="detached", name=name.."_armor"})
             for i=1, player_inv:get_size("armor") do
                 local stack = armor_inv:get_stack("armor", i)
                 if stack:get_count() > 0 then
@@ -454,12 +454,12 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
                 armor:update_inventory(player)
             end]]
             if ARMOR_DESTROY == false then
-                if minetest.get_modpath("bones") then
-                    minetest.after(ARMOR_BONES_DELAY, function()
+                if multicraft.get_modpath("bones") then
+                    multicraft.after(ARMOR_BONES_DELAY, function()
                         pos = vector.round(pos)
-                        local node = minetest.get_node(pos)
+                        local node = multicraft.get_node(pos)
                         if node.name == "bones:bones" then
-                            local meta = minetest.get_meta(pos)
+                            local meta = multicraft.get_meta(pos)
                             local owner = meta:get_string("owner")
                             local inv = meta:get_inventory()
                             if name == owner then
@@ -473,7 +473,7 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
                     end)
                 else
                     for _,stack in ipairs(drop) do
-                        local obj = minetest.add_item(pos, stack)
+                        local obj = multicraft.add_item(pos, stack)
                         if obj then
                             local x = math.random(1, 5)
                             if math.random(1,2) == 1 then
@@ -492,10 +492,10 @@ if ARMOR_DROP == true or ARMOR_DESTROY == true then
     end)
 end
 
-minetest.register_globalstep(function(dtime)
+multicraft.register_globalstep(function(dtime)
     time = time + dtime
     if time > ARMOR_UPDATE_TIME then
-        for _,player in ipairs(minetest.get_connected_players()) do
+        for _,player in ipairs(multicraft.get_connected_players()) do
             armor:update_armor(player)
         end
         time = 0

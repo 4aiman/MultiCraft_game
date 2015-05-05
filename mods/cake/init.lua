@@ -1,4 +1,4 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 --[[
 #!#!#!#Cake mod created by Jordan4ibanez#!#!#
@@ -13,7 +13,7 @@ slice_4 = { -7/16, -8/16, -7/16, 3/16, 0/16, 7/16}
 slice_5 = { -7/16, -8/16, -7/16, 5/16, 0/16, 7/16}
 slice_6 = { -7/16, -8/16, -7/16, 7/16, 0/16, 7/16}
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "cake:cake",
     recipe = {
         {'bucket:bucket_water', 'bucket:bucket_water', 'bucket:bucket_water'},
@@ -23,7 +23,7 @@ minetest.register_craft({
     replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}},
 })
 
-minetest.register_node("cake:cake", {
+multicraft.register_node("cake:cake", {
     description = "Cake",
     tiles = {"cake_top.png","cake_bottom.png","cake_side.png","cake_side.png","cake_side.png","cake_side.png"},
     paramtype = "light",
@@ -44,11 +44,11 @@ minetest.register_node("cake:cake", {
     on_rightclick = function(pos, node, clicker, itemstack)
         if clicker:get_hp() < 20 then
             clicker:set_hp(clicker:get_hp()+2)
-            minetest.add_node(pos,{type="node",name="cake:cake_5",param2=param2})
+            multicraft.add_node(pos,{type="node",name="cake:cake_5",param2=param2})
         end
     end,
 })
-minetest.register_node("cake:cake_5", {
+multicraft.register_node("cake:cake_5", {
     description = "Cake [5 Slices Left]",
     tiles = cake_texture,
     paramtype = "light",
@@ -68,11 +68,11 @@ minetest.register_node("cake:cake_5", {
     on_rightclick = function(pos, node, clicker, itemstack)
         if clicker:get_hp() < 20 then
             clicker:set_hp(clicker:get_hp()+2)
-            minetest.add_node(pos,{type="node",name="cake:cake_4",param2=param2})
+            multicraft.add_node(pos,{type="node",name="cake:cake_4",param2=param2})
         end
     end,
 })
-minetest.register_node("cake:cake_4", {
+multicraft.register_node("cake:cake_4", {
     description = "Cake [4 Slices Left]",
     tiles = cake_texture,
     paramtype = "light",
@@ -92,11 +92,11 @@ minetest.register_node("cake:cake_4", {
     on_rightclick = function(pos, node, clicker, itemstack)
         if clicker:get_hp() < 20 then
             clicker:set_hp(clicker:get_hp()+2)
-            minetest.add_node(pos,{type="node",name="cake:cake_3",param2=param2})
+            multicraft.add_node(pos,{type="node",name="cake:cake_3",param2=param2})
         end
     end,
 })
-minetest.register_node("cake:cake_3", {
+multicraft.register_node("cake:cake_3", {
     description = "Cake [3 Slices Left]",
     tiles = cake_texture,
     paramtype = "light",
@@ -116,11 +116,11 @@ minetest.register_node("cake:cake_3", {
     on_rightclick = function(pos, node, clicker, itemstack)
         if clicker:get_hp() < 20 then
             clicker:set_hp(clicker:get_hp()+2)
-            minetest.add_node(pos,{type="node",name="cake:cake_2",param2=param2})
+            multicraft.add_node(pos,{type="node",name="cake:cake_2",param2=param2})
         end
     end,
 })
-minetest.register_node("cake:cake_2", {
+multicraft.register_node("cake:cake_2", {
     description = "Cake [2 Slices Left]",
     tiles = cake_texture,
     paramtype = "light",
@@ -140,11 +140,11 @@ minetest.register_node("cake:cake_2", {
     on_rightclick = function(pos, node, clicker, itemstack)
         if clicker:get_hp() < 20 then
             clicker:set_hp(clicker:get_hp()+2)
-            minetest.add_node(pos,{type="node",name="cake:cake_1",param2=param2})
+            multicraft.add_node(pos,{type="node",name="cake:cake_1",param2=param2})
         end
     end,
 })
-minetest.register_node("cake:cake_1", {
+multicraft.register_node("cake:cake_1", {
     description = "Cake [1 Slice Left]",
     tiles = cake_texture,
     paramtype = "light",
@@ -164,7 +164,7 @@ minetest.register_node("cake:cake_1", {
     on_rightclick = function(pos, node, clicker, itemstack)
         if clicker:get_hp() < 20 then
             clicker:set_hp(clicker:get_hp()+2)
-            minetest.remove_node(pos)
+            multicraft.remove_node(pos)
         end
     end,
 })

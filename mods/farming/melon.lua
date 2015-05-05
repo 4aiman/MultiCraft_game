@@ -1,4 +1,4 @@
-minetest.register_node("farming:melon", {
+multicraft.register_node("farming:melon", {
     description = "Melon",
     paramtype2 = "facedir",
     stack_max = 64,
@@ -18,26 +18,26 @@ minetest.register_node("farming:melon", {
         local have_change = 0
         for x=-1,1 do
                 local p = {x=pos.x+x, y=pos.y, z=pos.z}
-                local n = minetest.get_node(p)
+                local n = multicraft.get_node(p)
             if string.find(n.name, "melontige_linked_") and have_change == 0 then
                     have_change = 1
-                    minetest.add_node(p, {name="farming:melontige_unconnect"})
+                    multicraft.add_node(p, {name="farming:melontige_unconnect"})
             end
         end
         if have_change == 0 then
             for z=-1,1 do
                 p = {x=pos.x, y=pos.y, z=pos.z+z}
-                local n = minetest.get_node(p)
+                local n = multicraft.get_node(p)
                 if string.find(n.name, "melontige_linked_") and have_change == 0 then
                         have_change = 1
-                        minetest.add_node(p, {name="farming:melontige_unconnect"})
+                        multicraft.add_node(p, {name="farming:melontige_unconnect"})
                 end
             end
         end
     end
 })
 
-minetest.register_node("farming:melontige_1", {
+multicraft.register_node("farming:melontige_1", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -54,7 +54,7 @@ minetest.register_node("farming:melontige_1", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:melontige_2", {
+multicraft.register_node("farming:melontige_2", {
     paramtype = "light",
     walkable = false,
     drawtype = "plantlike",
@@ -71,7 +71,7 @@ minetest.register_node("farming:melontige_2", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:melontige_unconnect", {
+multicraft.register_node("farming:melontige_unconnect", {
     paramtype = "light",
     walkable = false,
     sunlight_propagates = true,
@@ -82,7 +82,7 @@ minetest.register_node("farming:melontige_unconnect", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:melontige_linked_r", {
+multicraft.register_node("farming:melontige_linked_r", {
     paramtype = "light",
     sunlight_propagates = true,
     walkable = false,
@@ -113,7 +113,7 @@ minetest.register_node("farming:melontige_linked_r", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:melontige_linked_l", {
+multicraft.register_node("farming:melontige_linked_l", {
     paramtype = "light",
     walkable = false,
     sunlight_propagates = true,
@@ -144,7 +144,7 @@ minetest.register_node("farming:melontige_linked_l", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:melontige_linked_t", {
+multicraft.register_node("farming:melontige_linked_t", {
     paramtype = "light",
     walkable = false,
     sunlight_propagates = true,
@@ -175,7 +175,7 @@ minetest.register_node("farming:melontige_linked_t", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_node("farming:melontige_linked_b", {
+multicraft.register_node("farming:melontige_linked_b", {
     paramtype = "light",
     walkable = false,
     sunlight_propagates = true,
@@ -206,7 +206,7 @@ minetest.register_node("farming:melontige_linked_b", {
     sounds = default.node_sound_leaves_defaults(),
 })
 
-minetest.register_craftitem("farming:melon_seed", {
+multicraft.register_craftitem("farming:melon_seed", {
     description = "Melon seed",
     stack_max = 64,
     groups = {materials = 1},
@@ -216,22 +216,22 @@ minetest.register_craftitem("farming:melon_seed", {
     end,
 })
 
-minetest.register_craftitem("farming:melon_item", {
+multicraft.register_craftitem("farming:melon_item", {
     description = "Melon",
     stack_max = 64,
     inventory_image = "farming_melon.png",
-    on_use = minetest.item_eat(2),
+    on_use = multicraft.item_eat(2),
     groups = {foodstuffs = 1},
 })
 
-minetest.register_craftitem("farming:melon_item_speckled", {
+multicraft.register_craftitem("farming:melon_item_speckled", {
     description = "Melon Speckled",
     stack_max = 64,
     inventory_image = "farming_melon_speckled.png",
     groups = {brewing = 1},
 })
 
-minetest.register_abm({
+multicraft.register_abm({
     nodenames = {"farming:melontige_unconnect"},
     neighbors = {"air"},
     interval = 25,
@@ -239,22 +239,22 @@ minetest.register_abm({
     action = function(pos)
     local have_change = 0
     local newpos = {x=pos.x, y=pos.y, z=pos.z}
-    local light = minetest.get_node_light(pos)
+    local light = multicraft.get_node_light(pos)
     if light or light > 10 then
         for x=-1,1 do
                 local p = {x=pos.x+x, y=pos.y-1, z=pos.z}
                 newpos = {x=pos.x+x, y=pos.y, z=pos.z}
-                local n = minetest.get_node(p)
-                local nod = minetest.get_node(newpos)
+                local n = multicraft.get_node(p)
+                local nod = multicraft.get_node(newpos)
             if n.name=="default:dirt_with_grass" and nod.name=="air" and have_change == 0
             or n.name=="default:dirt" and nod.name=="air" and have_change == 0
             or string.find(n.name, "farming:soil") and nod.name=="air" and have_change == 0 then
                     have_change = 1
-                    minetest.add_node(newpos, {name="farming:melon"})
+                    multicraft.add_node(newpos, {name="farming:melon"})
                     if x == 1 then
-                        minetest.add_node(pos, {name="farming:melontige_linked_r" })
+                        multicraft.add_node(pos, {name="farming:melontige_linked_r" })
                     else
-                        minetest.add_node(pos, {name="farming:melontige_linked_l"})
+                        multicraft.add_node(pos, {name="farming:melontige_linked_l"})
                     end
             end
         end
@@ -262,17 +262,17 @@ minetest.register_abm({
             for z=-1,1 do
                     p = {x=pos.x, y=pos.y-1, z=pos.z+z}
                     newpos = {x=pos.x, y=pos.y, z=pos.z+z}
-                    n = minetest.get_node(p)
-                    local nod2 = minetest.get_node(newpos)
+                    n = multicraft.get_node(p)
+                    local nod2 = multicraft.get_node(newpos)
                     if n.name=="default:dirt_with_grass" and nod2.name=="air" and have_change == 0
                     or n.name=="default:dirt" and nod2.name=="air" and have_change == 0
                     or string.find(n.name, "farming:soil") and nod2.name=="air" and have_change == 0 then
                         have_change = 1
-                        minetest.add_node(newpos, {name="farming:melon"})
+                        multicraft.add_node(newpos, {name="farming:melon"})
                     if z == 1 then
-                        minetest.add_node(pos, {name="farming:melontige_linked_t" })
+                        multicraft.add_node(pos, {name="farming:melontige_linked_t" })
                     else
-                        minetest.add_node(pos, {name="farming:melontige_linked_b" })
+                        multicraft.add_node(pos, {name="farming:melontige_linked_b" })
                     end
                     end
             end
@@ -283,13 +283,13 @@ minetest.register_abm({
 
 farming:add_plant("farming:melontige_unconnect", {"farming:melontige_1", "farming:melontige_2"}, 50, 20)
 
-minetest.register_craft({
+multicraft.register_craft({
     type = "shapeless",
     output = "farming:melon_seed",
     recipe = {"farming:melon_item"}
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = 'farming:melon',
     recipe = {
         {'farming:melon_item', 'farming:melon_item', 'farming:melon_item'},

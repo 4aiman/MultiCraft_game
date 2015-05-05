@@ -1,6 +1,6 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
-minetest.register_entity(":__builtin:item", {
+multicraft.register_entity(":__builtin:item", {
     initial_properties = {
         hp_max = 1,
         physical = true,
@@ -27,9 +27,9 @@ minetest.register_entity(":__builtin:item", {
         end
         local item_texture = nil
         local item_type = ""
-        if minetest.registered_items[itemname] then
-            item_texture = minetest.registered_items[itemname].inventory_image
-            item_type = minetest.registered_items[itemname].type
+        if multicraft.registered_items[itemname] then
+            item_texture = multicraft.registered_items[itemname].inventory_image
+            item_type = multicraft.registered_items[itemname].type
         end
         local prop = {
             is_visible = true,
@@ -51,7 +51,7 @@ minetest.register_entity(":__builtin:item", {
 
     get_staticdata = function(self)
         --return self.itemstring
-        return minetest.serialize({
+        return multicraft.serialize({
             itemstring = self.itemstring,
             always_collect = self.always_collect,
             timer = self.timer,
@@ -60,7 +60,7 @@ minetest.register_entity(":__builtin:item", {
 
     on_activate = function(self, staticdata, dtime_s)
         if string.sub(staticdata, 1, string.len("return")) == "return" then
-            local data = minetest.deserialize(staticdata)
+            local data = multicraft.deserialize(staticdata)
             if data and type(data) == "table" then
                 self.itemstring = data.itemstring
                 self.always_collect = data.always_collect
@@ -80,7 +80,7 @@ minetest.register_entity(":__builtin:item", {
     end,
 
     on_step = function(self, dtime)
-        local time = tonumber(minetest.setting_get("remove_items"))
+        local time = tonumber(multicraft.setting_get("remove_items"))
         if not time then
             time = 300
         end
@@ -94,17 +94,17 @@ minetest.register_entity(":__builtin:item", {
 
         local p = self.object:getpos()
 
-        local name = minetest.get_node(p).name
+        local name = multicraft.get_node(p).name
         if name == "default:lava_flowing" or name == "default:lava_source" then
-            minetest.sound_play("builtin_item_lava", {pos=self.object:getpos()})
+            multicraft.sound_play("builtin_item_lava", {pos=self.object:getpos()})
             self.object:remove()
             return
         end
 
-        if minetest.registered_nodes[name].liquidtype == "flowing" then
+        if multicraft.registered_nodes[name].liquidtype == "flowing" then
             get_flowing_dir = function(self)
                 local pos = self.object:getpos()
-                local param2 = minetest.get_node(pos).param2
+                local param2 = multicraft.get_node(pos).param2
                 for i,d in ipairs({-1, 1, -1, 1}) do
                     if i<3 then
                         pos.x = pos.x+d
@@ -112,8 +112,8 @@ minetest.register_entity(":__builtin:item", {
                         pos.z = pos.z+d
                     end
 
-                    local name = minetest.get_node(pos).name
-                    local par2 = minetest.get_node(pos).param2
+                    local name = multicraft.get_node(pos).name
+                    local par2 = multicraft.get_node(pos).param2
                     if name == "default:water_flowing" and par2 < param2 then
                         return pos
                     end
@@ -148,9 +148,9 @@ minetest.register_entity(":__builtin:item", {
         end
 
         p.y = p.y - 0.3
-        local nn = minetest.get_node(p).name
+        local nn = multicraft.get_node(p).name
         -- If node is not registered or node is walkably solid
-        if not minetest.registered_nodes[nn] or minetest.registered_nodes[nn].walkable then
+        if not multicraft.registered_nodes[nn] or multicraft.registered_nodes[nn].walkable then
             if self.physical_state then
                 self.object:setvelocity({x=0,y=0,z=0})
                 self.object:setacceleration({x=0, y=0, z=0})
@@ -183,6 +183,6 @@ minetest.register_entity(":__builtin:item", {
     end,
 })
 
-if minetest.setting_get("log_mods") then
-    minetest.log("action", "builtin_item loaded")
+if multicraft.setting_get("log_mods") then
+    multicraft.log("action", "builtin_item loaded")
 end

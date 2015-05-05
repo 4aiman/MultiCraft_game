@@ -2,13 +2,13 @@ local function create_soil(pos, inv, p)
     if pos == nil then
         return false
     end
-    local node = minetest.get_node(pos)
+    local node = multicraft.get_node(pos)
     local name = node.name
-    local above = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})
+    local above = multicraft.get_node({x=pos.x, y=pos.y+1, z=pos.z})
     if name == "default:dirt" or name == "default:dirt_with_grass" then
         if above.name == "air" then
             node.name = "farming:soil"
-            minetest.set_node(pos, node)
+            multicraft.set_node(pos, node)
             if inv and p and name == "default:dirt_with_grass" then
                 for name,rarity in pairs(farming.seeds) do
                     if math.random(1, rarity-p) == 1 then
@@ -22,12 +22,12 @@ local function create_soil(pos, inv, p)
     return false
 end
 
-minetest.register_tool("farming:hoe_wood", {
+multicraft.register_tool("farming:hoe_wood", {
     description = "Wood Hoe",
     inventory_image = "farming_tool_woodhoe.png",
     on_place = function(itemstack, user, pointed_thing)
         if create_soil(pointed_thing.under, user:get_inventory(), 0) then
-            if not minetest.setting_getbool("creative_mode") then
+            if not multicraft.setting_getbool("creative_mode") then
                 itemstack:add_wear(65535/30)
             end
             return itemstack
@@ -36,7 +36,7 @@ minetest.register_tool("farming:hoe_wood", {
     groups = {tools = 1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:hoe_wood",
     recipe = {
         {"default:wood", "default:wood"},
@@ -45,12 +45,12 @@ minetest.register_craft({
     }
 })
 
-minetest.register_tool("farming:hoe_stone", {
+multicraft.register_tool("farming:hoe_stone", {
     description = "Stone Hoe",
     inventory_image = "farming_tool_stonehoe.png",
     on_place = function(itemstack, user, pointed_thing)
         if create_soil(pointed_thing.under, user:get_inventory(), 5) then
-            if not minetest.setting_getbool("creative_mode") then
+            if not multicraft.setting_getbool("creative_mode") then
                 itemstack:add_wear(65535/50)
             end
             return itemstack
@@ -59,7 +59,7 @@ minetest.register_tool("farming:hoe_stone", {
     groups = {tools = 1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:hoe_stone",
     recipe = {
         {"default:cobble", "default:cobble"},
@@ -68,12 +68,12 @@ minetest.register_craft({
     }
 })
 
-minetest.register_tool("farming:hoe_steel", {
+multicraft.register_tool("farming:hoe_steel", {
     description = "Steel Hoe",
     inventory_image = "farming_tool_steelhoe.png",
     on_place = function(itemstack, user, pointed_thing)
         if create_soil(pointed_thing.under, user:get_inventory(), 10) then
-            if not minetest.setting_getbool("creative_mode") then
+            if not multicraft.setting_getbool("creative_mode") then
                 itemstack:add_wear(65535/80)
             end
             return itemstack
@@ -82,7 +82,7 @@ minetest.register_tool("farming:hoe_steel", {
     groups = {tools = 1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:hoe_steel",
     recipe = {
         {"default:steel_ingot", "default:steel_ingot"},
@@ -91,12 +91,12 @@ minetest.register_craft({
     }
 })
 
-minetest.register_tool("farming:hoe_gold", {
+multicraft.register_tool("farming:hoe_gold", {
     description = "Gold Hoe",
     inventory_image = "farming_tool_goldhoe.png",
     on_place = function(itemstack, user, pointed_thing)
         if create_soil(pointed_thing.under, user:get_inventory(), 7) then
-            if not minetest.setting_getbool("creative_mode") then
+            if not multicraft.setting_getbool("creative_mode") then
                 itemstack:add_wear(65535/60)
             end
             return itemstack
@@ -105,7 +105,7 @@ minetest.register_tool("farming:hoe_gold", {
     groups = {tools = 1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:hoe_gold",
     recipe = {
         {"default:gold_ingot", "default:gold_ingot"},
@@ -114,12 +114,12 @@ minetest.register_craft({
     }
 })
 
-minetest.register_tool("farming:hoe_diamond", {
+multicraft.register_tool("farming:hoe_diamond", {
     description = "Diamond Hoe",
     inventory_image = "farming_tool_diamondhoe.png",
     on_place = function(itemstack, user, pointed_thing)
         if create_soil(pointed_thing.under, user:get_inventory(), 15) then
-            if not minetest.setting_getbool("creative_mode") then
+            if not multicraft.setting_getbool("creative_mode") then
                 itemstack:add_wear(65535/120)
             end
             return itemstack
@@ -128,7 +128,7 @@ minetest.register_tool("farming:hoe_diamond", {
     groups = {tools = 1},
 })
 
-minetest.register_craft({
+multicraft.register_craft({
     output = "farming:hoe_diamond",
     recipe = {
         {"default:diamond", "default:diamond"},

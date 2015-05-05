@@ -1,4 +1,4 @@
-if not minetest.get_modpath("check") then os.exit() end
+if not multicraft.get_modpath("check") then os.exit() end
 if not default.multicraft_is_variable_is_a_part_of_multicraft_subgame_and_copying_it_means_you_use_our_code_so_we_become_contributors_of_your_project then exit() end
 -------------------------
 -- adbs mod by 4aiman  --
@@ -172,7 +172,7 @@ adbs.dd = {
                 if self.state == 4 then return end
                 local pos = self.object:getpos()
                 pos.y=pos.y-1.5
-                if minetest.get_node(pos).name == 'air' then
+                if multicraft.get_node(pos).name == 'air' then
                    return
                 end
                 local v = self.object:getvelocity()
@@ -184,7 +184,7 @@ adbs.dd = {
                 self.state = 4
                 self:set_animation(4)
                 self.busy = true
-                minetest.after(1,function()
+                multicraft.after(1,function()
                    v.y = vy
                    self.object:setvelocity(v)
                    self.busy = false
@@ -217,7 +217,7 @@ adbs.dd = {
                 local vel = self.object:getvelocity()
                 self.busy = true
                 self.object:setvelocity({x=x, y=3, z=z})
-                minetest.after(0.3,function()
+                multicraft.after(0.3,function()
                    self.object:setvelocity(vel)
                    self.busy = false
                 end)
@@ -234,7 +234,7 @@ adbs.dd = {
                return
             end
             self.busy = true
-            minetest.after(0.3,function()
+            multicraft.after(0.3,function()
                self.busy = false
             end)
             if not self.animation.current then
@@ -319,7 +319,7 @@ adbs.dd = {
                    tmp[_] = self[_]
                end
             end
-            return minetest.serialize(tmp)
+            return multicraft.serialize(tmp)
          end,
 
          on_activate = function(self, staticdata, dtime_s)
@@ -328,14 +328,14 @@ adbs.dd = {
                self.object:after_spawn()
             end
             self.walk_time_max = self.walk_velocity *2
-            if self.mob_type == 3 and minetest.setting_getbool("only_peaceful_mobs") then
+            if self.mob_type == 3 and multicraft.setting_getbool("only_peaceful_mobs") then
                 self.alive = false
                 self.object:remove()
                 return
             end
 
             if staticdata then
-                local tmp = minetest.deserialize(staticdata)
+                local tmp = multicraft.deserialize(staticdata)
                 if tmp then
                    for _,stat in pairs(tmp) do
                        self[_] = stat
@@ -373,21 +373,21 @@ adbs.dd = {
                      local pos =  self.object:getpos()
                      for _,drop in ipairs(self.drops) do
                     if math.random(1, drop.chance) == 1 then
-                            local itm = minetest.add_item(pos, ItemStack(drop.name.." "..math.random(drop.min, drop.max)))
+                            local itm = multicraft.add_item(pos, ItemStack(drop.name.." "..math.random(drop.min, drop.max)))
                             if itm then
                                itm:setvelocity({x=math.random()*math.random(-1,1),y=math.random()*math.random(0,2),z=math.random()*math.random(-1,1)})
                             end
                      end
                      end
                  if self.sounds and self.sounds.die then
-                   minetest.sound_play(self.sounds.die, {object = self.object})
+                   multicraft.sound_play(self.sounds.die, {object = self.object})
                  end
                      self.alive = false
                      self.object:remove()
                   end
             else
                if self.sounds and self.sounds.damage then
-                  minetest.sound_play(self.sounds.damage, {object = self.object})
+                  multicraft.sound_play(self.sounds.damage, {object = self.object})
                end
             end
 
@@ -395,10 +395,10 @@ adbs.dd = {
             if digger and digger:is_player() then
                local wstack = digger:get_wielded_item()
                local wear = wstack:get_wear()
-               local uses = minetest.registered_items[wstack:get_name()].uses or 1562
+               local uses = multicraft.registered_items[wstack:get_name()].uses or 1562
                if wear + 65535/uses >= 65535 then
                   wstack:clear()
-                  minetest.sound_play("default_break_tool",{pos = digger:getpos(),gain = 0.5, max_hear_distance = 10,})
+                  multicraft.sound_play("default_break_tool",{pos = digger:getpos(),gain = 0.5, max_hear_distance = 10,})
                else
                    wstack:set_wear(wear + 65535/uses)
                end
@@ -408,9 +408,9 @@ adbs.dd = {
 
          natural_damage = function(self)
             local pos = self.object:getpos()
-            local node = minetest.get_node(pos)
-            local light = minetest.get_node_light(pos)
-            local nodedef = minetest.registered_nodes[node.name]
+            local node = multicraft.get_node(pos)
+            local light = multicraft.get_node_light(pos)
+            local nodedef = multicraft.registered_nodes[node.name]
 
             if  self.light_damage>0
             and light == 15 then
@@ -498,9 +498,9 @@ adbs.dd = {
                local yaw = self.object:getyaw()
                local x = -math.sin(yaw)
                local z = math.cos(yaw)
-               local nm = minetest.get_node(posf).name
-               if  minetest.registered_nodes[nm]
-               and minetest.registered_nodes[nm].walkable
+               local nm = multicraft.get_node(posf).name
+               if  multicraft.registered_nodes[nm]
+               and multicraft.registered_nodes[nm].walkable
                then
                    self:jump()
                end
@@ -509,7 +509,7 @@ adbs.dd = {
 
             if self.timer>0.5 then
                if self.mob_type > 2 then
-                  if minetest.setting_getbool("only_peaceful_mobs") then
+                  if multicraft.setting_getbool("only_peaceful_mobs") then
                     self.alive = nil
                     self.object:remove()
                   end
@@ -530,7 +530,7 @@ adbs.dd = {
                      self.follow = nil
                   end
 
-                  if minetest.get_node(pos).name:find('water')
+                  if multicraft.get_node(pos).name:find('water')
                   then self.in_water = true
                   else self.in_water = nil
                   end
@@ -556,7 +556,7 @@ adbs.dd = {
                              end
 
                              if pos2 then
-                                local path = minetest.find_path(pos1,pos2,self.view_range*2,1 ,2,"A*")
+                                local path = multicraft.find_path(pos1,pos2,self.view_range*2,1 ,2,"A*")
                                 if path and #path>1 then
                                    local ppp
                                    ppp = path[3] or path[2]
@@ -586,19 +586,19 @@ adbs.dd = {
 
                        else
                            local ppp = self.destination
-                           local nm = minetest.get_node(ppp).name
+                           local nm = multicraft.get_node(ppp).name
                            local spos = {x=ppp.x, y=posf.y, z=ppp.z}
-                           local nm2 = minetest.get_node(spos).name
+                           local nm2 = multicraft.get_node(spos).name
                            if  ppp.y > posf.y
-                           and minetest.registered_nodes[nm]
-                           and minetest.registered_nodes[nm].walkable
+                           and multicraft.registered_nodes[nm]
+                           and multicraft.registered_nodes[nm].walkable
                            then
                               self:jump()
                            end
 
                            if
-                           minetest.registered_nodes[nm2]
-                           and minetest.registered_nodes[nm2].walkable
+                           multicraft.registered_nodes[nm2]
+                           and multicraft.registered_nodes[nm2].walkable
                            then
                               self:jump()
                            end
@@ -649,7 +649,7 @@ adbs.dd = {
 
                         else
                             self.state = 1
-                            for _,player in pairs(minetest.get_connected_players()) do
+                            for _,player in pairs(multicraft.get_connected_players()) do
                                local s = self.object:getpos()
                                local p = player:getpos()
                                local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
@@ -669,12 +669,12 @@ adbs.dd = {
 
                   else
 
-                   if not minetest.setting_getbool("enable_damage")
+                   if not multicraft.setting_getbool("enable_damage")
                       then
                          self.state = 1
                          self.target = nil
                    else
-                      local players = minetest.get_connected_players()
+                      local players = multicraft.get_connected_players()
                       for _,player in pairs(players) do
                          local op = pos
                          local pp = player:getpos()
@@ -733,14 +733,14 @@ adbs.dd = {
                                  end
                                  self.object:setyaw(yaw)
                                  p.y = p.y +0.5
-                                 if minetest.line_of_sight(s1, p, 0.9) then
+                                 if multicraft.line_of_sight(s1, p, 0.9) then
                                     self.set_velocity(self, 0)
                                     if self.shoot_timer > self.shoot_interval and math.random(1, 100) <= 30 then
                                        self.shoot_timer = 0
                                        if self.sounds and self.sounds.attack then
-                                          minetest.sound_play(self.sounds.attack, {object = self.object})
+                                          multicraft.sound_play(self.sounds.attack, {object = self.object})
                                        end
-                                       local obj = minetest.add_entity(s, self.arrow)
+                                       local obj = multicraft.add_entity(s, self.arrow)
                                        obj:get_luaentity().master = self.object
                                        obj:get_luaentity().target = self.target
                                        if obj:get_luaentity().path then
@@ -774,7 +774,7 @@ adbs.dd = {
                                      for jj=-4,4 do
                                          for kk=-self.view_range,self.view_range do
                                              local new_pos = {x=pos1.x+ii, y=pos1.y+jj, z=pos1.z+kk}
-                                             if minetest.line_of_sight(new_pos, p, 0.5) then
+                                             if multicraft.line_of_sight(new_pos, p, 0.5) then
                                                 local dist = ((pos1.x-new_pos.x)^2 + (pos1.y-new_pos.y)^2 + (pos1.z-new_pos.z)^2)^0.5
                                                 if dist < self.arrow_dist then
                                                    to_go = new_pos
@@ -793,9 +793,9 @@ adbs.dd = {
                                  local post = to_go
                                     if post then
                                        pos1.y = pos1.y-1
-                                       local path = minetest.find_path(posf,post,self.view_range*2,3 ,3,"A*")
+                                       local path = multicraft.find_path(posf,post,self.view_range*2,3 ,3,"A*")
                                        if not path then
-                                          path = minetest.find_path(posf,post,self.view_range*2,3 ,3,"A*")
+                                          path = multicraft.find_path(posf,post,self.view_range*2,3 ,3,"A*")
                                        end
                                        if path and #path>1 then
                                           local ppp
@@ -880,7 +880,7 @@ adbs.dd = {
                self.lifetimer = self.lifetimer - dtime
                if self.lifetimer >= -1 and self.lifetimer <= 0 and not self.tamed then
                   local player_count = 0
-                  for _,obj in ipairs(minetest.get_objects_inside_radius(pos, 20)) do
+                  for _,obj in ipairs(multicraft.get_objects_inside_radius(pos, 20)) do
                       if obj:is_player() then
                           player_count = player_count+1
                       end
@@ -902,7 +902,7 @@ adbs.dd = {
                 else
                    local basepos = pos
                    basepos.y = basepos.y - 10
-                   local y = minetest.get_surface(basepos,10,false)
+                   local y = multicraft.get_surface(basepos,10,false)
                    if y then
                       self.object:setacceleration({x=x, y=math.random(), z=z})
                    else
@@ -915,7 +915,7 @@ adbs.dd = {
                 else
                    local basepos = pos
                    basepos.y = basepos.y - 10
-                   local y = minetest.get_surface(basepos,10,false)
+                   local y = multicraft.get_surface(basepos,10,false)
                    if y then
                       self.object:setacceleration({x=0, y=math.random(), z=0})
                    else
@@ -925,15 +925,15 @@ adbs.dd = {
             end
 
 
-            local n = minetest.get_node(pos)
+            local n = multicraft.get_node(pos)
             local p1 = {x=pos.x,y=pos.y-1,z=pos.z}
             local p2 = {x=pos.x,y=pos.y-2,z=pos.z}
 
-            local n2 = minetest.get_node(p2)
+            local n2 = multicraft.get_node(p2)
 
-            if minetest.get_item_group(n.name, "water") ~= 0 then
-               local n1 = minetest.get_node(p1)
-               if  minetest.get_item_group(n1.name, "water") == 0
+            if multicraft.get_item_group(n.name, "water") ~= 0 then
+               local n1 = multicraft.get_node(p1)
+               if  multicraft.get_item_group(n1.name, "water") == 0
                and self.jump then
                    self:jump()
                else
@@ -996,7 +996,7 @@ adbs.dd = {
                if self.mob_type<=2 then
                   if not self.follow then
                      if self.attractor ~= "" then
-                         for _,object in pairs(minetest.get_objects_inside_radius(pos, self.attractor_dist_max)) do
+                         for _,object in pairs(multicraft.get_objects_inside_radius(pos, self.attractor_dist_max)) do
                             if object:get_wielded_item():get_name() == self.attractor then
                                self.target = object
                                self.follow = true
@@ -1031,7 +1031,7 @@ adbs.dd = {
                         local x = -math.sin(yaw)
                         local z = math.cos(yaw)
 
-                        local nm = minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z}).name
+                        local nm = multicraft.get_node({x=pos.x+x, y=pos.y, z=pos.z+z}).name
                         if (nm~='air' and nm~='ignore'
                         and  self.jump
                         and self.state~=4 )
@@ -1073,7 +1073,7 @@ adbs.dd = {
                             local x = -math.sin(yaw)
                             local z = math.cos(yaw)
 
-                            local nm = minetest.get_node({x=pos.x+x, y=pos.y, z=pos.z+z}).name
+                            local nm = multicraft.get_node({x=pos.x+x, y=pos.y, z=pos.z+z}).name
                             if (nm~='air' and nm~='ignore'
                             and  self.jump
                             and self.state~=4 )
@@ -1083,7 +1083,7 @@ adbs.dd = {
                          end
                          math.randomseed(os.time())
                          local prev_state = self.state
-                         minetest.after(math.random(10), function(prev_state) self.aggressor = nil self.state=prev_state end)
+                         multicraft.after(math.random(10), function(prev_state) self.aggressor = nil self.state=prev_state end)
                      end
                   end
 
@@ -1096,7 +1096,7 @@ adbs.dd = {
             if self.sounds
             and self.sounds.random
             and math.random(1, 100) <= 1 then
-                minetest.sound_play(self.sounds.random, {object = self.object})
+                multicraft.sound_play(self.sounds.random, {object = self.object})
             end
 
             if self.colouring
@@ -1122,7 +1122,7 @@ adbs.dd = {
             end
 
             if self.horny and not self.lover then
-               local ents = minetest.get_objects_inside_radius(pos, self.lover_dist_max)
+               local ents = multicraft.get_objects_inside_radius(pos, self.lover_dist_max)
                for i,obj in ipairs(ents) do
                    local ent = obj:get_luaentity()
 
@@ -1138,7 +1138,7 @@ adbs.dd = {
                       ent.target = self
                       self.lover = ent.id
                       ent.lover = self.id
-                      minetest.after(7,function(dtime)
+                      multicraft.after(7,function(dtime)
                             local mob
                             local nm =self.name:sub(self.name:find(':')+1)
                             local name = adbs.children[nm]
@@ -1186,7 +1186,7 @@ adbs.dd = {
               end
               local produce = ''
               if self.produce == 'wool' then
-                 if minetest.registered_items["wool:".. adbs.colors[self.color]] then
+                 if multicraft.registered_items["wool:".. adbs.colors[self.color]] then
                     produce = "wool:".. adbs.colors[self.color]
                  end
               else
@@ -1205,7 +1205,7 @@ adbs.dd = {
                   local start_i = 1
                   if rnd<0 then rnd = -rnd  start_i = rnd end
                   for i=start_i,rnd do
-                      local it = minetest.add_item(ppp, produce)
+                      local it = multicraft.add_item(ppp, produce)
                       if it then
                          it:get_luaentity().collect = true
                          local v={}
@@ -1235,7 +1235,7 @@ adbs.dd = {
                      self.horny = true
                      self.hornytimer=0
                      local ppp = self.object:getpos()
-                     local sdd = minetest.add_particlespawner({
+                     local sdd = multicraft.add_particlespawner({
                                                               amount = 10,
                                                               time = 0,
                                                               minpos = {x=ppp.x-0.3,y=ppp.y-0.3,z=ppp.z-0.3},
@@ -1251,7 +1251,7 @@ adbs.dd = {
                                                               collisiondetection = false,
                                                               texture = "heart.png"
                                                              })
-                     minetest.after(1,function() minetest.delete_particlespawner(sdd) end)
+                     multicraft.after(1,function() multicraft.delete_particlespawner(sdd) end)
                   end
                else
                   self.food = (self.food or 0) + 1
@@ -1275,7 +1275,7 @@ adbs.dd = {
                       end
                       local produce = ''
                       if self.produce == 'wool' then
-                         if minetest.registered_items["wool:".. adbs.colors[self.color]] then
+                         if multicraft.registered_items["wool:".. adbs.colors[self.color]] then
                             produce = "wool:".. adbs.colors[self.color]
                          end
                       else
@@ -1295,7 +1295,7 @@ adbs.dd = {
                          if rnd<0 then rnd = -rnd  start_i = rnd end
                          if not self.produce_replace then
                               for i=start_i,rnd do
-                                  local it = minetest.add_item(ppp, produce)
+                                  local it = multicraft.add_item(ppp, produce)
                                   if it then
                                      it:get_luaentity().collect = true
                                      local v={}
@@ -1318,7 +1318,7 @@ adbs.dd = {
                       local item1 = "dye:"..adbs.colors[self.color]
                       local item2 = "dye:"..color
                       local input = {method = 'normal', items = {item1,item2},}
-                      local output = minetest.get_craft_result(input)
+                      local output = multicraft.get_craft_result(input)
                       local otnm
                       if output then otnm = output.item:get_name() end
                       if otnm and otnm:find(':') then color=otnm:sub(otnm:find(':')+1) end
@@ -1358,7 +1358,7 @@ adbs.add = {
             if self.dead then
                local pos = self.object:getpos()
                pos.y = pos.y-0.2
-               local node = minetest.get_node(pos)
+               local node = multicraft.get_node(pos)
                if node.name == 'air' then
                      self.object:setacceleration({x=0, y=-9.8, z=0})
                else
@@ -1369,7 +1369,7 @@ adbs.add = {
             end
 
             local pos = self.object:getpos()
-            local node = minetest.get_node(pos)
+            local node = multicraft.get_node(pos)
 
             if node.name ~= "air" and node.name ~= "ignore" then
                if     node.name:find("water") then
@@ -1389,7 +1389,7 @@ adbs.add = {
                self:fly(s,p)
             end
 
-            for _,object in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+            for _,object in pairs(multicraft.get_objects_inside_radius(pos, 1)) do
                 local name
                 if object.is_player and object:is_player() then
                    name = object:get_player_name()
@@ -1415,7 +1415,7 @@ adbs.add = {
                 end
             end
             pos.y = pos.y-1
-            for _,object in pairs(minetest.get_objects_inside_radius(pos, 1)) do
+            for _,object in pairs(multicraft.get_objects_inside_radius(pos, 1)) do
                 local name
                 if object.is_player and object:is_player() then
                    name = object:get_player_name()
@@ -1449,7 +1449,7 @@ adbs.add = {
 
 function adbs.register_mob(name, def)
     setmetatable (def,adbs.dd)
-    minetest.register_entity(name, def)
+    multicraft.register_entity(name, def)
     if def.child==0 then
        adbs.registered_mobs[#(adbs.registered_mobs)+1] = name
     end
@@ -1457,19 +1457,19 @@ end
 
 function adbs.register_ammo(name, def)
     setmetatable (def,adbs.add)
-    minetest.register_entity(name, def)
+    multicraft.register_entity(name, def)
 end
 
 function adbs.spawn_mob(pos, name)
    if not adbs.can_spawn(name) then return end
-   local ent = minetest.add_entity(pos, name)
+   local ent = multicraft.add_entity(pos, name)
    if ent and ent:get_luaentity() then
       local obj = ent:get_luaentity()
       obj.id = #adbs.ids+1
       adbs.ids[#adbs.ids+1] = ent
 
       if obj.humanoid then
-         local inv = ent:get_inventory() or minetest.create_detached_inventory('adbs_'..    obj.id)
+         local inv = ent:get_inventory() or multicraft.create_detached_inventory('adbs_'..    obj.id)
 
             inv:set_size("helm", 1)
             inv:set_size("torso", 1)
@@ -1524,7 +1524,7 @@ function adbs.register_spawn(name,
        if not near then near = {"air"} end
 
        adbs.max_count[nm] = aocnt
-           minetest.register_abm({
+           multicraft.register_abm({
                 nodenames = nodes,
                 neighbors = near,
                 interval = 10,
@@ -1533,8 +1533,8 @@ function adbs.register_spawn(name,
                     if aocw > aocnt then return end
                     if not adbs.spawning_mobs[nm] then return end
                     pos.y = pos.y+1
-                    local l = minetest.get_node_light(pos)
-                    local daytime = minetest.get_timeofday()
+                    local l = multicraft.get_node_light(pos)
+                    local daytime = multicraft.get_timeofday()
                     local high_time
                     if time_max<time_min then
                         if daytime<time_max then
@@ -1556,7 +1556,7 @@ function adbs.register_spawn(name,
                     if     pos.y > height then return end
                     local minp={x=pos.x-1, y=pos.y, z=pos.z-1}
                     local maxp={x=pos.x+1, y=pos.y+2, z=pos.z+1}
-                    local num = #(minetest.find_nodes_in_area(minp, maxp, near))
+                    local num = #(multicraft.find_nodes_in_area(minp, maxp, near))
                     if num< room then return end
 
                     if  spawn_func and not spawn_func(pos, node) then return end
@@ -2045,7 +2045,7 @@ adbs.register_mob("adbs:skeleton", {
     },
     after_spawn = function(self)
        local wpn = self.object:set_wielded_item(ItemStack(self.weapon))
-       local inv = self.object:get_inventory() or minetest.get_inventory({type="detached", name="adbs_".. self.id})
+       local inv = self.object:get_inventory() or multicraft.get_inventory({type="detached", name="adbs_".. self.id})
        if inv then
        end
 
@@ -2123,7 +2123,7 @@ adbs.register_mob("adbs:zombie", {
         wielditem = "default_tool_goldshovel.png",
     }
        local wpn = self.object:set_wielded_item(ItemStack("default:shovel_gold"))
-       local inv = self.object:get_inventory() or minetest.get_inventory({type="detached", name="adbs_".. self.id})
+       local inv = self.object:get_inventory() or multicraft.get_inventory({type="detached", name="adbs_".. self.id})
        if inv then
           inv:set_stack('helm', 1, ItemStack("3d_armor:helmet_steel"))
        end
@@ -2132,7 +2132,7 @@ adbs.register_mob("adbs:zombie", {
 
 for i, mob in ipairs(adbs.registered_mobs) do
     local name = mob:sub(mob:find(':')+1)
-    minetest.register_craftitem(mob, {
+    multicraft.register_craftitem(mob, {
         description = name:gsub("%a",string.upper,1) .. " spawn egg",
         inventory_image = "adbs_"..name.."_spawn_egg.png",
 

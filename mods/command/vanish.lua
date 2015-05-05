@@ -1,8 +1,8 @@
 vanished_players = {}
 
-minetest.register_privilege("vanish", "Allow to use /vanish command")
+multicraft.register_privilege("vanish", "Allow to use /vanish command")
 
-minetest.register_chatcommand("vanish", {
+multicraft.register_chatcommand("vanish", {
     params = "",
     description = "Make user invisible at eye of all",
     privs = {vanish = true},
@@ -18,6 +18,6 @@ minetest.register_chatcommand("vanish", {
             collisionbox = {-0.35, -1, -0.35, 0.35, 1, 0.35}}
         end
 
-        minetest.get_player_by_name(name):set_properties(prop)
+        multicraft.get_player_by_name(name):set_properties(prop)
     end
 })

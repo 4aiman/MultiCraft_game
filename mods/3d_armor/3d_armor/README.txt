@@ -8,7 +8,7 @@ a player's armor group level making them less vulnerable to weapons.
 
 Armor takes damage when a player is hurt but also offers a percentage chance of healing.
 
-default settings: [minetest.conf]
+default settings: [multicraft.conf]
 
 # Set number of seconds between armor updates.
 3d_armor_update_time = 1
